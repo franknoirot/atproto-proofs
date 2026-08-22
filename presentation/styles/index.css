@@ -73,7 +73,10 @@ html, body, #app { background: var(--plane); }
 .slidev-layout em { font-style: normal; color: var(--ink); font-weight: 650; }
 .slidev-layout a { color: var(--lean-a); text-decoration: none; }
 
-.slidev-layout ul, .slidev-layout ol { margin: 0 0 0.8rem; padding-left: 1.15rem; }
+/* UnoCSS's reset strips list markers; put them back, or a list of statements
+   reads as indented prose. */
+.slidev-layout ul { list-style: disc; margin: 0 0 0.8rem; padding-left: 1.15rem; }
+.slidev-layout ol { list-style: decimal; margin: 0 0 0.8rem; padding-left: 1.35rem; }
 .slidev-layout li { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.4rem; }
 .slidev-layout li::marker { color: var(--ink-muted); }
 
@@ -157,7 +160,8 @@ svg text { font-family: var(--sans); }
 
 /* Grid helpers, so slides can lay out without reaching for utility soup. */
 .cols   { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 2rem; align-items: start; }
-.cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; align-items: start; }
+ /* Stretch, so a row of cards has one bottom edge rather than three. */
+.cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; align-items: stretch; }
 .stack  { display: flex; flex-direction: column; gap: 0.8rem; }
 
 /* --------------------------------------------------------- slidev chrome */

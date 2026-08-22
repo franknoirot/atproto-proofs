@@ -746,39 +746,92 @@ the drafter did not write down. That is an argument *for* formalising, not again
 -->
 
 ---
-clicks: 2
+clicks: 4
 ---
 
 <div class="kicker">the certificate</div>
 
-## Six evaluations standing in for a thousand
+## Six checks instead of a thousand
 
-<SwingChart :h="290" markers :breakpoints="[-500, -150, -149, 350, 351, 500]">
-Circles mark the six breakpoints of Fairfax's certificate. Two pairs are adjacent
-integers and land on the same pixel — that is the point of them.
+<SwingChart :h="272" markers :breakpoints="[-500, -150, -149, 350, 351, 500]"
+  :jumps="[-149.5, 350.5]">
+The rings are the only six swings Fairfax actually evaluates. Everything between
+them is settled by an argument rather than by a measurement.
 </SwingChart>
 
-<div class="cols">
-<div>
+<div class="cols-3">
 <v-click>
+<div class="card">
+
+### 1 · Between jumps it is a straight line
 
 <p class="small">
-The gap is affine in the swing except for a step function that counts turnout in
-seats party A holds. On any stretch where no seat changes hands the gap is
-monotone, so its extremes are its endpoints.
+As the swing moves, the gap climbs at a steady rate — twice the swing, always. No
+map can make it climb faster or slower.
 </p>
+
+</div>
+</v-click>
+
+<v-click>
+<div class="card">
+
+### 2 · A jump is a seat changing hands
 
 <p class="small">
-So the prover supplies a <em>certificate</em>: breakpoints spanning the band, where
-consecutive entries either agree on who holds what, or are adjacent integers. Both
-conditions are decidable.
+That is the only thing that breaks the line. Fairfax has two inside the band, at
+the vertical rules.
 </p>
 
+</div>
+</v-click>
+
+<v-click>
+<div class="card">
+
+### 3 · A steady climb is highest and lowest at its ends
+
+<p class="small">
+So if the gap is inside the limit at both ends of a stretch, it is inside the limit
+<em>everywhere</em> in that stretch. Check the two ends; the middle comes free.
+</p>
+
+</div>
 </v-click>
 </div>
 
-<div>
 <v-click>
+
+<p style="margin-top:1rem">
+Six ends — the two edges of the band, and the swing either side of each jump —
+settle all 1001 swings in it.
+</p>
+
+</v-click>
+
+<!--
+This is the answer to "couldn't you just check every swing?" At ±5 points you
+could, if slowly. At ±50 you could not, and the certificate is the same length.
+
+Walk the three cards in order and point at the chart for each. The green line is
+the argument drawn out: two straight climbs, two drops where a seat changes hands,
+and rings only at the ends of each climb.
+
+Worth saying out loud: this is not an approximation or a sampling argument. The
+middle of a stretch is not spot-checked, it is *proved* — the theorem is what
+licenses skipping it.
+-->
+
+---
+clicks: 3
+---
+
+<div class="kicker">who does what</div>
+
+## Regulators publish lemmas. Regulated actors supply certificates.
+
+<div class="cols">
+<div>
 
 ```lean
 ⟨by decide,
@@ -787,11 +840,56 @@ conditions are decidable.
      (by decide) (by decide) (by decide)⟩
 ```
 
+<p class="small">That is Fairfax's entire proof of § 5. Three pieces:</p>
+
+<ul>
+<li><code>swingRobust_of_chain</code> is <strong>the regulator's theorem</strong> —
+  the argument from the last slide, written once and shipped in the theory package.</li>
+<li>The list is <strong>Fairfax's certificate</strong>: the swings either side of
+  each seat change, bracketed by the edges of the band.</li>
+<li>The three <code>by decide</code>s are <strong>arithmetic</strong>: the map is
+  well formed, the list really does span the band, and no seat change is hiding
+  inside a stretch.</li>
+</ul>
+
+</div>
+
+<div>
+<v-click>
+<div class="card">
+
+### Why the list has pairs
+
 <p class="small">
-<strong>The division of labour is the point.</strong>
-<code>swingRobust_of_chain</code> is general mathematics, written once, by the
-party that wrote the rule. The state contributes a list and three decidable facts
-about its own map.
+−150 and −149 look redundant. They are not. A stretch has to have no jump inside
+it, so the list stops just before each seat change and restarts just after.
+Swings are counted in whole hundredths of a point, so "just before" and "just
+after" are exact values, not an approximation.
+</p>
+
+</div>
+</v-click>
+
+<v-click>
+<div class="card">
+
+### Why this scales
+
+<p class="small">
+Widening the band multiplies the swings to check without bound, but adds only two
+entries to the certificate per seat that can change hands — at most 22 on a
+ten-district map, however wide the band.
+</p>
+
+</div>
+</v-click>
+
+<v-click>
+
+<p class="small muted">
+And the expensive half is done once. The regulator proves the general argument;
+each state contributes a short list and some arithmetic about its own map. That
+division is what makes this shape work outside a demo.
 </p>
 
 </v-click>
@@ -799,21 +897,13 @@ about its own map.
 </div>
 
 <!--
-This is the answer to "couldn't you just check every swing?" At ±5 points you
-could, if slowly. At ±50 you could not, and the certificate is the same length.
-
-1001 whole-basis-point swings in the band; six breakpoints. Widening the band
-barely lengthens the certificate — two entries per seat that changes hands, so at
-most 22 on a ten-district map however wide it gets — against a sweep that grows
-without bound.
-
-The adjacent-integer case is not a convenience — the step function jumps at a seat
-change, so a constant-holdings step can never straddle one. Because swings are
-whole basis points, stepping over a jump one integer at a time is *exact*, not an
-approximation.
-
 If there is one slide to remember for adapting this to another domain, it is this
 one: **regulators publish lemmas, regulated actors supply certificates.**
+
+The hard mathematics is done once, by the party that wrote the rule and has both
+the expertise and the standing to be believed. Each filer contributes something
+cheap and specific to their own situation. A scheme that asked every regulated
+actor to produce original mathematics would never get off the ground.
 -->
 
 ---
@@ -1268,10 +1358,10 @@ layout: default
 | slot | redistricting | emissions permits | bank capital | clinical trials |
 | --- | --- | --- | --- | --- |
 | **artifact**<br><span class="cid">lexicon + Lean type + decoder</span> | districting plan | facility & process inventory | position-level balance sheet | protocol + analysis plan |
-| **tier-1 clauses**<br><span class="cid">decidable; recomputation</span> | contiguity, population equality, county splits, efficiency gap | mass balance closes, every source reported, totals under cap | capital ratios, concentration and leverage limits | registered endpoints match analysed ones, no post-hoc outcomes |
-| **tier-2 obligation**<br><span class="cid">quantifies over the unenumerable</span> | gap stays bounded under **every** swing in a band | emissions stay under cap across **every** operating profile in the permitted envelope | solvency holds under **every** scenario in a stress family | type-I error stays under α across **every** stopping rule the trial could have used |
-| **regulator's lemma**<br><span class="cid">published once, in the theory</span> | gap is affine between seat changes | emissions monotone in load within the envelope | stressed loss is subadditive across the family | sequential-testing bound |
-| **actor's certificate**<br><span class="cid">cheap, decidable, per-artifact</span> | the swings where a seat changes hands | the vertices of the operating envelope | the binding scenario per exposure class | the realised interim analyses |
+| **tier-1 clauses**<br><span class="cid">settled by arithmetic</span> | contiguity, population equality, county splits, efficiency gap | mass balance closes, every source reported, totals under cap | capital ratios, concentration and leverage limits | registered endpoints match analysed ones, no post-hoc outcomes |
+| **tier-2 obligation**<br><span class="cid">covers more cases than you can check</span> | gap stays bounded under **every** swing in a band | emissions stay under cap across **every** operating profile in the permitted envelope | solvency holds under **every** scenario in a stress family | type-I error stays under α across **every** stopping rule the trial could have used |
+| **regulator's lemma**<br><span class="cid">published once, in the theory</span> | the gap climbs at a steady rate between seat changes | emissions only rise with load, within the envelope | a combined stress is no worse than its parts added up | sequential-testing bound |
+| **actor's certificate**<br><span class="cid">cheap, per-artifact</span> | the swings where a seat changes hands | the vertices of the operating envelope | the binding scenario per exposure class | the realised interim analyses |
 
 </div>
 
@@ -1380,7 +1470,7 @@ the open.
 - **Publish the decoder with the rule.** Otherwise two honest checkers can
   disagree about what a record means and neither is wrong.
 - **Regulators publish lemmas; regulated actors supply certificates.** That
-  division is what makes the unenumerable obligations tractable at scale.
+  division is what makes the check-every-case obligations tractable at scale.
 - **Say what the proof does not cover.** The trust boundary belongs in the record
   graph, not in a footnote.
 

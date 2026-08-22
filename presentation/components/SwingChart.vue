@@ -14,8 +14,16 @@ import { computed, ref } from 'vue'
 import { plan, spct, SWING_SERIES } from '../demo'
 
 const props = withDefaults(
-  defineProps<{ h?: number; w?: number; markers?: boolean; breakpoints?: number[] }>(),
-  { h: 380, w: 1040, markers: false, breakpoints: () => [] },
+  defineProps<{
+    h?: number
+    w?: number
+    /** Ring the swings the certificate actually evaluates. */
+    markers?: boolean
+    breakpoints?: number[]
+    /** Draw a rule where a seat changes hands, so the jumps are named. */
+    jumps?: number[]
+  }>(),
+  { h: 380, w: 1040, markers: false, breakpoints: () => [], jumps: () => [] },
 )
 
 const M = { t: 16, r: 132, b: 46, l: 88 }
@@ -95,6 +103,9 @@ const over = (v: number) => Math.abs(v) > LIMIT
       <span class="item">
         <span class="swatch box" style="background: rgba(255,255,255,0.09)" />within the statutory limit
       </span>
+      <span v-if="jumps.length" class="item">
+        <span class="swatch rule" />a seat changes hands
+      </span>
       <button class="chart-toggle" @click="showTable = !showTable">
         {{ showTable ? 'chart' : 'table' }}
       </button>
@@ -149,10 +160,22 @@ const over = (v: number) => Math.abs(v) > LIMIT
         efficiency gap
       </text>
 
+      <!-- Where a seat changes hands. Naming the jumps is what makes the
+           straight stretches between them visible as stretches. -->
+      <line
+        v-for="j in jumps" :key="`j${j}`"
+        :x1="geom.X(j)" :y1="M.t" :x2="geom.X(j)" :y2="M.t + geom.ph"
+        style="stroke: var(--ink-muted); opacity: 0.5" stroke-width="1"
+      />
+
       <template v-for="s in series" :key="s.key">
         <polyline :points="s.path" fill="none" :stroke="s.color" stroke-width="2"
           stroke-linejoin="round" stroke-linecap="round" />
-        <text :x="geom.X(s.last.s) + 10" :y="geom.Y(s.last.egBp) + 4" class="dlabel" :fill="s.color">
+        <!-- Clear of the endpoint ring when the certificate is being shown. -->
+        <text
+          :x="geom.X(s.last.s) + (markers ? 20 : 10)" :y="geom.Y(s.last.egBp) + 4"
+          class="dlabel" :fill="s.color"
+        >
           {{ s.label }}
         </text>
       </template>
@@ -200,4 +223,5 @@ const over = (v: number) => Math.abs(v) > LIMIT
   cursor: pointer;
 }
 .chart-toggle:hover { color: var(--ink); border-color: var(--ink-muted); }
+.legend .swatch.rule { width: 2px; height: 13px; border-radius: 1px; background: var(--ink-muted); }
 </style>
