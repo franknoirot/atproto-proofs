@@ -16,7 +16,7 @@
  */
 
 import { describe, expect, it } from 'vitest'
-import { CRACKLAND_V1, CRACKLAND_V2, FAIRFAX, type SeedPlan } from '../src/seed/geography.js'
+import { GERRYLAND_V1, GERRYLAND_V2, FAIRFAX, type SeedPlan } from '../src/seed/geography.js'
 
 type Tally = { a: number; t: number }
 
@@ -70,8 +70,8 @@ function identityBp(ts: Tally[]): number {
 describe('seed geography', () => {
   const cases = [
     { name: 'Fairfax', plan: FAIRFAX, seats: 6, egBp: -200 },
-    { name: 'Crackland v1', plan: CRACKLAND_V1, seats: 4, egBp: 1800 },
-    { name: 'Crackland v2', plan: CRACKLAND_V2, seats: 6, egBp: -200 },
+    { name: 'Gerryland v1', plan: GERRYLAND_V1, seats: 4, egBp: 1800 },
+    { name: 'Gerryland v2', plan: GERRYLAND_V2, seats: 6, egBp: -200 },
   ] as const
 
   for (const c of cases) {
@@ -112,16 +112,16 @@ describe('seed geography', () => {
     })
   }
 
-  it('gives Fairfax and the revised Crackland map identical efficiency gaps', () => {
+  it('gives Fairfax and the revised Gerryland map identical efficiency gaps', () => {
     // The premise of the whole demo: § 2 cannot tell these two apart, so a rule
     // that stops at § 2 does not distinguish a durable map from a fragile one.
-    expect(efficiencyGapBp(tallies(FAIRFAX))).toBe(efficiencyGapBp(tallies(CRACKLAND_V2)))
+    expect(efficiencyGapBp(tallies(FAIRFAX))).toBe(efficiencyGapBp(tallies(GERRYLAND_V2)))
   })
 
-  it('gives Fairfax competitive seats and the revised Crackland map safe ones', () => {
+  it('gives Fairfax competitive seats and the revised Gerryland map safe ones', () => {
     // Where they differ. A seat changes hands under swing `s` when its share of
     // the vote crosses half, that is, at `s = 5000 − share`. Fairfax has two
-    // such crossings inside the ±500 bp band; Crackland v2 has none, which is
+    // such crossings inside the ±500 bp band; Gerryland v2 has none, which is
     // exactly why one satisfies § 5 and the other cannot.
     const crossings = (plan: SeedPlan) =>
       tallies(plan)
@@ -130,13 +130,13 @@ describe('seed geography', () => {
         .sort((x, y) => x - y)
 
     expect(crossings(FAIRFAX)).toEqual([-150, 350])
-    expect(crossings(CRACKLAND_V2)).toEqual([])
+    expect(crossings(GERRYLAND_V2)).toEqual([])
   })
 
-  it('shares precincts between the two Crackland maps', () => {
+  it('shares precincts between the two Gerryland maps', () => {
     // Only the districting differs between v1 and v2. If the votes differed too,
     // the comparison would prove nothing about maps.
-    expect(CRACKLAND_V1.precincts).toEqual(CRACKLAND_V2.precincts)
-    expect(CRACKLAND_V1.assignment).not.toEqual(CRACKLAND_V2.assignment)
+    expect(GERRYLAND_V1.precincts).toEqual(GERRYLAND_V2.precincts)
+    expect(GERRYLAND_V1.assignment).not.toEqual(GERRYLAND_V2.assignment)
   })
 })

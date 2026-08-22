@@ -380,16 +380,16 @@ clicks: 2
 </div>
 <div>
 
-### Crackland v1
-<DistrictMap plan="crackland1" />
-<div class="cid" style="margin-top:0.5rem">State of Crackland</div>
+### Gerryland v1
+<DistrictMap plan="gerryland1" />
+<div class="cid" style="margin-top:0.5rem">State of Gerryland</div>
 
 </div>
 <div>
 
-### Crackland v2
-<DistrictMap plan="crackland2" />
-<div class="cid" style="margin-top:0.5rem">State of Crackland</div>
+### Gerryland v2
+<DistrictMap plan="gerryland2" />
+<div class="cid" style="margin-top:0.5rem">State of Gerryland</div>
 
 </div>
 </div>
@@ -406,7 +406,7 @@ the only variable — which is what a districting rule is supposed to be about.
 <v-click>
 
 <p class="muted">
-The two Crackland maps share precinct data exactly — the fills are identical and
+The two Gerryland maps share precinct data exactly — the fills are identical and
 <em>only the white boundaries differ</em>. If the votes differed too, comparing
 them would prove nothing about maps.
 </p>
@@ -427,12 +427,12 @@ columns, nothing obviously wrong. Hold that thought.
 
 ## The same three maps, as numbers
 
-<SharesTable :plans="['fairfax', 'crackland1', 'crackland2']" />
+<SharesTable :plans="['fairfax', 'gerryland1', 'gerryland2']" />
 
 <!--
 The table-view twin, here as its own slide so you can jump to it when someone
 asks. Diamonds mark the seats that change hands inside the ±5-point band —
-Fairfax has two, Crackland v2 has none, and that single difference is the whole
+Fairfax has two, Gerryland v2 has none, and that single difference is the whole
 back half of the talk.
 -->
 
@@ -450,8 +450,8 @@ clicks: 2
 | `dev.provable.requirement` | `fda-section-2` | <Cid of="section2" :chars="22" /> |
 | `dev.provable.requirement` | `fda-section-5` | <Cid of="section5" :chars="22" /> |
 | `gov.redistrict.plan` | `fairfax-2026` | <Cid of="fairfax" :chars="22" /> |
-| `gov.redistrict.plan` | `crackland-2026` | <Cid of="crackland1" :chars="22" /> |
-| `gov.redistrict.plan` | `crackland-2026-revised` | <Cid of="crackland2" :chars="22" /> |
+| `gov.redistrict.plan` | `gerryland-2026` | <Cid of="gerryland1" :chars="22" /> |
+| `gov.redistrict.plan` | `gerryland-2026-revised` | <Cid of="gerryland2" :chars="22" /> |
 
 <div class="cols" style="margin-top:1.2rem">
 <div>
@@ -556,19 +556,19 @@ clicks: 2
 <div class="cols">
 <div>
 
-<DistrictMap plan="crackland1" :cell="30" />
-<div style="margin-top:0.7rem"><ShareStrip plan="crackland1" :w="300" /></div>
+<DistrictMap plan="gerryland1" :cell="30" />
+<div style="margin-top:0.7rem"><ShareStrip plan="gerryland1" :w="300" /></div>
 
 </div>
 <div>
 
-<Verdict id="crackland1-s2" />
+<Verdict id="gerryland1-s2" />
 
 <v-click>
 
 The map clears *every* structural clause. It is contiguous, population-equal and
 county-respecting. Four districts packed at 75% and six cracked below 50% put the
-efficiency gap at *<Val check="crackland1-s2" gap />*.
+efficiency gap at *<Val check="gerryland1-s2" gap />*.
 
 </v-click>
 
@@ -611,16 +611,16 @@ gap <Val check="fairfax-s2" gap /> · <Val check="fairfax-s2" seats /> seats
 </div>
 <div>
 
-### Crackland v2
-<DistrictMap plan="crackland2" :cell="26" />
+### Gerryland v2
+<DistrictMap plan="gerryland2" :cell="26" />
 <div class="cid" style="margin-top:0.5rem">
-gap <Val check="crackland2-s2" gap /> · <Val check="crackland2-s2" seats /> seats
+gap <Val check="gerryland2-s2" gap /> · <Val check="gerryland2-s2" seats /> seats
 </div>
 
 </div>
 <div>
 
-<Verdict id="crackland2-s2" :summary="false" />
+<Verdict id="gerryland2-s2" :summary="false" />
 
 </div>
 </div>
@@ -628,7 +628,7 @@ gap <Val check="crackland2-s2" gap /> · <Val check="crackland2-s2" seats /> sea
 <v-click>
 
 Same voters as before, redrawn. The gap is now
-*<Val check="crackland2-s2" gap />* — identical to Fairfax's, to the basis point.
+*<Val check="gerryland2-s2" gap />* — identical to Fairfax's, to the basis point.
 On the snapshot rule these two maps are *indistinguishable*.
 
 </v-click>
@@ -659,16 +659,16 @@ clicks: 1
 
 <SwingChart>
 Efficiency gap against a uniform swing, computed by the Lean theory itself rather
-than re-derived for this chart. Crackland v1 is off this scale at
-<Val check="crackland1-s2" gap />.
+than re-derived for this chart. Gerryland v1 is off this scale at
+<Val check="gerryland1-s2" gap />.
 </SwingChart>
 
 <v-click>
 
 Fairfax's gap sawtooths and stays inside the limit across the whole band.
-Crackland v2's runs straight through it —
-*<Val plan="crackland2" :at-swing="-500" />* at a five-point swing toward B,
-*<Val plan="crackland2" :at-swing="500" />* toward A.
+Gerryland v2's runs straight through it —
+*<Val plan="gerryland2" :at-swing="-500" />* at a five-point swing toward B,
+*<Val plan="gerryland2" :at-swing="500" />* toward A.
 
 </v-click>
 
@@ -702,8 +702,8 @@ clicks: 3
 </div>
 <div>
 
-### Crackland v2 — none
-<ShareStrip plan="crackland2" />
+### Gerryland v2 — none
+<ShareStrip plan="gerryland2" />
 
 </div>
 </div>
@@ -711,7 +711,7 @@ clicks: 3
 <v-click>
 
 The shaded strip is the ±5-point band § 5 quantifies over. A district whose bar tip
-falls inside it changes hands somewhere in that range. Fairfax has two; Crackland
+falls inside it changes hands somewhere in that range. Fairfax has two; Gerryland
 v2's closest seat is safe by eleven points.
 
 </v-click>
@@ -917,7 +917,7 @@ clicks: 2
 <div class="cols">
 <div>
 
-<Verdict id="crackland2-s5" />
+<Verdict id="gerryland2-s5" />
 
 </div>
 <div>
@@ -1162,8 +1162,8 @@ labeler — and that is all it can do.
 | | |
 | --- | --- |
 | outcome | `refuted` |
-| failing clause | <code><Val check="crackland1-s2" clause /></code> |
-| obligation digest | <Cid of="crackland1-s2" /> |
+| failing clause | <code><Val check="gerryland1-s2" clause /></code> |
+| obligation digest | <Cid of="gerryland1-s2" /> |
 | axioms | <code><Val check="fairfax-s5" axioms /></code> |
 | sandbox | `host-process (timeout only)` |
 | log | `blob + sha256` |

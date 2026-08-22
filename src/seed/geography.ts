@@ -12,10 +12,10 @@
  * | map           | § 2 (snapshot) | § 5 (durability) |
  * |---------------|----------------|------------------|
  * | Fairfax       | passes         | passes           |
- * | Crackland v1  | fails: efficiencyGap (+18%) | — |
- * | Crackland v2  | passes (−2%)   | fails: safe seats |
+ * | Gerryland v1  | fails: efficiencyGap (+18%) | — |
+ * | Gerryland v2  | passes (−2%)   | fails: safe seats |
  *
- * Crackland v2 is the case the demo exists for. It has *exactly the same*
+ * Gerryland v2 is the case the demo exists for. It has *exactly the same*
  * efficiency gap as Fairfax — −2% in both — and it is built out of safe seats,
  * so a two-point shift in opinion pushes it past the statutory limit while
  * Fairfax absorbs a five-point shift. A snapshot metric cannot tell the two
@@ -136,11 +136,11 @@ function fairfaxVotes(): number[][] {
 }
 
 /* -------------------------------------------------------------------------- */
-/* State B — Crackland                                                        */
+/* State B — Gerryland                                                        */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Crackland's votes are chosen so that two different legal maps over the *same*
+ * Gerryland's votes are chosen so that two different legal maps over the *same*
  * precincts produce opposite results.
  *
  * `TOP`/`BOTTOM` give party A's votes in the top three and bottom three rows of
@@ -149,14 +149,14 @@ function fairfaxVotes(): number[][] {
  * voters, same turnout, same 54% statewide — the map is doing all the work,
  * which is the thing a districting rule is supposed to be about.
  */
-const CRACKLAND_TOP = [2400, 2100, 2400, 2100, 2400, 2100, 1700, 1500, 1400, 1200]
-const CRACKLAND_BOTTOM = [1320, 1620, 1320, 1620, 1320, 1620, 820, 1020, 1120, 1320]
+const GERRYLAND_TOP = [2400, 2100, 2400, 2100, 2400, 2100, 1700, 1500, 1400, 1200]
+const GERRYLAND_BOTTOM = [1320, 1620, 1320, 1620, 1320, 1620, 820, 1020, 1120, 1320]
 
-function cracklandVotes(): number[][] {
+function gerrylandVotes(): number[][] {
   const rows: number[][] = Array.from({ length: ROWS }, () => Array(COLS).fill(0))
   for (let c = 0; c < COLS; c++) {
-    const top = spread(CRACKLAND_TOP[c]!, 3)
-    const bottom = spread(CRACKLAND_BOTTOM[c]!, 3)
+    const top = spread(GERRYLAND_TOP[c]!, 3)
+    const bottom = spread(GERRYLAND_BOTTOM[c]!, 3)
     for (let r = 0; r < 3; r++) rows[r]![c] = top[r]!
     for (let r = 3; r < ROWS; r++) rows[r]![c] = bottom[r - 3]!
   }
@@ -166,7 +166,7 @@ function cracklandVotes(): number[][] {
 /* -------------------------------------------------------------------------- */
 
 const fairfaxPrecincts = precinctsFrom(fairfaxVotes())
-const cracklandPrecincts = precinctsFrom(cracklandVotes())
+const gerrylandPrecincts = precinctsFrom(gerrylandVotes())
 const adjacency = gridAdjacency()
 
 export const FAIRFAX: SeedPlan = {
@@ -179,22 +179,22 @@ export const FAIRFAX: SeedPlan = {
   assignment: columnAssignment(),
 }
 
-export const CRACKLAND_V1: SeedPlan = {
-  rkey: 'crackland-2026',
-  name: 'Crackland 2026 Congressional Plan',
-  jurisdiction: 'State of Crackland',
+export const GERRYLAND_V1: SeedPlan = {
+  rkey: 'gerryland-2026',
+  name: 'Gerryland 2026 Congressional Plan',
+  jurisdiction: 'State of Gerryland',
   districtCount: COLS,
-  precincts: cracklandPrecincts,
+  precincts: gerrylandPrecincts,
   adjacency,
   assignment: blockAssignment(),
 }
 
-export const CRACKLAND_V2: SeedPlan = {
-  rkey: 'crackland-2026-revised',
-  name: 'Crackland 2026 Congressional Plan (Revised)',
-  jurisdiction: 'State of Crackland',
+export const GERRYLAND_V2: SeedPlan = {
+  rkey: 'gerryland-2026-revised',
+  name: 'Gerryland 2026 Congressional Plan (Revised)',
+  jurisdiction: 'State of Gerryland',
   districtCount: COLS,
-  precincts: cracklandPrecincts,
+  precincts: gerrylandPrecincts,
   adjacency,
   assignment: columnAssignment(),
 }

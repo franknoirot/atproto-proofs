@@ -14,7 +14,7 @@ import { gzipSync } from 'node:zlib'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { Network, type Actor, type StrongRef } from '../atp/network.js'
-import { CRACKLAND_V1, CRACKLAND_V2, FAIRFAX, type SeedPlan } from './geography.js'
+import { GERRYLAND_V1, GERRYLAND_V2, FAIRFAX, type SeedPlan } from './geography.js'
 
 /**
  * Fixed keys, so a demo run is reproducible.
@@ -28,7 +28,7 @@ const KEYS = {
   census: '02'.repeat(32),
   elections: '03'.repeat(32),
   fairfax: '04'.repeat(32),
-  crackland: '05'.repeat(32),
+  gerryland: '05'.repeat(32),
   watchdog: '06'.repeat(32),
 }
 
@@ -39,12 +39,12 @@ export type Seeded = {
   net: Network
   fedgov: Actor
   fairfax: Actor
-  crackland: Actor
+  gerryland: Actor
   watchdog: Actor
   theory: StrongRef
   section2: StrongRef
   section5: StrongRef
-  plans: Record<'fairfax' | 'crackland1' | 'crackland2', StrongRef>
+  plans: Record<'fairfax' | 'gerryland1' | 'gerryland2', StrongRef>
 }
 
 /**
@@ -100,7 +100,7 @@ export async function seed(leanDir: string): Promise<Seeded> {
   const census = await net.createActor('census.gov.example', KEYS.census)
   const elections = await net.createActor('eac.gov.example', KEYS.elections)
   const fairfax = await net.createActor('fairfax.gov.example', KEYS.fairfax)
-  const crackland = await net.createActor('crackland.gov.example', KEYS.crackland)
+  const gerryland = await net.createActor('gerryland.gov.example', KEYS.gerryland)
   const watchdog = await net.createActor('watchdog.example', KEYS.watchdog)
 
   /* ---- the datasets a map's numbers come from ---------------------------- */
@@ -309,17 +309,17 @@ export async function seed(leanDir: string): Promise<Seeded> {
       FAIRFAX.rkey,
       planRecord(FAIRFAX, censusSource, returnsSource, T(1)),
     ),
-    crackland1: await crackland.put(
+    gerryland1: await gerryland.put(
       'gov.redistrict.plan',
-      CRACKLAND_V1.rkey,
-      planRecord(CRACKLAND_V1, censusSource, returnsSource, T(1)),
+      GERRYLAND_V1.rkey,
+      planRecord(GERRYLAND_V1, censusSource, returnsSource, T(1)),
     ),
-    crackland2: await crackland.put(
+    gerryland2: await gerryland.put(
       'gov.redistrict.plan',
-      CRACKLAND_V2.rkey,
-      planRecord(CRACKLAND_V2, censusSource, returnsSource, T(3)),
+      GERRYLAND_V2.rkey,
+      planRecord(GERRYLAND_V2, censusSource, returnsSource, T(3)),
     ),
   }
 
-  return { net, fedgov, fairfax, crackland, watchdog, theory, section2, section5, plans }
+  return { net, fedgov, fairfax, gerryland, watchdog, theory, section2, section5, plans }
 }

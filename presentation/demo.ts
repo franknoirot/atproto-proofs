@@ -114,8 +114,8 @@ export const requirement = (key: string) =>
 
 export const PLAN_LABEL: Record<string, string> = {
   fairfax: 'Fairfax',
-  crackland1: 'Crackland v1',
-  crackland2: 'Crackland v2',
+  gerryland1: 'Gerryland v1',
+  gerryland2: 'Gerryland v2',
 }
 
 /* --------------------------------------------------------------- formatting */
@@ -156,5 +156,5 @@ export function leanFill(bp: number): string {
 /** Categorical identity for the two plans compared in the swing chart. */
 export const SWING_SERIES = [
   { key: 'fairfax', label: 'Fairfax', color: 'var(--plan-fairfax)' },
-  { key: 'crackland2', label: 'Crackland v2', color: 'var(--plan-crackland)' },
+  { key: 'gerryland2', label: 'Gerryland v2', color: 'var(--plan-gerryland)' },
 ]

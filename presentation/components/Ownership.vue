@@ -19,7 +19,7 @@ type Member = { key: string; only?: number[]; as?: string; sub?: string }
 
 const COLUMNS: { title: string; members: Member[] }[] = [
   { title: 'writes the rules', members: [{ key: 'fedgov', only: [0, 1, 3] }] },
-  { title: 'must prove compliance', members: [{ key: 'fairfax' }, { key: 'crackland' }] },
+  { title: 'must prove compliance', members: [{ key: 'fairfax' }, { key: 'gerryland' }] },
   {
     title: 'publishes verdicts',
     members: [

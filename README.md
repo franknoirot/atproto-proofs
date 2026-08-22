@@ -37,7 +37,7 @@ Merkle search trees, real secp256k1 signatures on commits and labels.
        seats A 6/10   vote share 54.00%   efficiency gap -2.00%
    → label proof-verified · verdict bafyreidljnk…
 
-3. Crackland submits a packed-and-cracked map
+3. Gerryland submits a packed-and-cracked map
    ✗ refuted     5341 ms
      the plan violates the efficiencyGap clause; no proof of this requirement exists
      failing clause: efficiencyGap
@@ -102,7 +102,7 @@ pnpm present:data    # re-capture the figures from a fresh run
 pnpm present:build   # static site into dist/
 ```
 
-A [Slidev](https://sli.dev) deck — 25 slides that walk the demo, visualise who
+A [Slidev](https://sli.dev) deck — 27 slides that walk the demo, visualise who
 owns what, and end on how to adapt the framework to another regulated domain.
 Arrow keys or space to step; `p` for presenter mode (notes, timer, next-slide
 preview); `o` for an overview; the `table` toggle on each chart for its

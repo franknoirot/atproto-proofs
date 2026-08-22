@@ -1,7 +1,7 @@
 <!--
   Pull a captured value into prose.
 
-  Lets the markdown say `<Val check="crackland1-s2" gap />` instead of hard-coding
+  Lets the markdown say `<Val check="gerryland1-s2" gap />` instead of hard-coding
   "+18.00%", so editing a slide can never put a stale number next to a live chart.
   Add a case here rather than typing a figure into `slides.md`.
 -->
@@ -10,7 +10,7 @@ import { computed } from 'vue'
 import { check, DEMO, pct, plan, shortCid, spct } from '../demo'
 
 const props = defineProps<{
-  /** A check id, e.g. `crackland1-s2`. */
+  /** A check id, e.g. `gerryland1-s2`. */
   check?: string
   /** A plan key, e.g. `fairfax`. */
   plan?: string

@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-22T19:40:29.988Z",
+ "generatedAt": "2026-08-22T21:19:55.883Z",
  "toolchain": "leanprover/lean4:v4.33.1",
  "actors": [
   {
@@ -25,9 +25,9 @@
    ]
   },
   {
-   "key": "crackland",
+   "key": "gerryland",
    "role": "regulated actor",
-   "handle": "crackland.gov.example",
+   "handle": "gerryland.gov.example",
    "did": "did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi",
    "collections": [
     "gov.redistrict.plan",
@@ -1755,14 +1755,14 @@
    ]
   },
   {
-   "key": "crackland1",
-   "owner": "crackland",
+   "key": "gerryland1",
+   "owner": "gerryland",
    "ref": {
-    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/gov.redistrict.plan/crackland-2026",
-    "cid": "bafyreib3v45taehfrtynipsgpd2vxl3xqqkycp5wp5kcq5aljhtzkzu3je"
+    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/gov.redistrict.plan/gerryland-2026",
+    "cid": "bafyreif2e53jy374emqhzjyn73yxwzes3k6vzndqr6ggspteeecbxq2hwa"
    },
-   "name": "Crackland 2026 Congressional Plan",
-   "jurisdiction": "State of Crackland",
+   "name": "Gerryland 2026 Congressional Plan",
+   "jurisdiction": "State of Gerryland",
    "districtCount": 10,
    "cells": [
     {
@@ -3327,14 +3327,14 @@
    ]
   },
   {
-   "key": "crackland2",
-   "owner": "crackland",
+   "key": "gerryland2",
+   "owner": "gerryland",
    "ref": {
-    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/gov.redistrict.plan/crackland-2026-revised",
-    "cid": "bafyreihbd6ulpmx3zlx4hzy5gvjhgmvprzqw7ol5ur6v3wsnjohcvuffte"
+    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/gov.redistrict.plan/gerryland-2026-revised",
+    "cid": "bafyreierlcaqsvqd5q3jwyo6ame3p7vixubyhzaf3l2zli52kmy6gb53v4"
    },
-   "name": "Crackland 2026 Congressional Plan (Revised)",
-   "jurisdiction": "State of Crackland",
+   "name": "Gerryland 2026 Congressional Plan (Revised)",
+   "jurisdiction": "State of Gerryland",
    "districtCount": 10,
    "cells": [
     {
@@ -4913,7 +4913,7 @@
    },
    "verdictRef": {
     "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/144d29131fc583824d2eae08",
-    "cid": "bafyreihxhlvkfi32rympvmxt3hncsrgnefpj4kbg3ydag22zlfdlos3pxa"
+    "cid": "bafyreiei5xzxgdpmlnzqzbgefwr44pax3rlbsgpfgqz3jlmwsq6345k4ie"
    },
    "labelVal": "proof-verified",
    "outcome": "verified",
@@ -4954,7 +4954,7 @@
     "propext"
    ],
    "obligationDigest": "04fb8b21c1c2d5fdf10d7d600c5d94f619472e3d3b60364333e8094800aad696",
-   "durationMs": 23087
+   "durationMs": 18178
   },
   {
    "id": "fairfax-s5",
@@ -4969,7 +4969,7 @@
    },
    "verdictRef": {
     "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/8d1a7803960b1b5412313488",
-    "cid": "bafyreicvl54xnbm3g72c7rs54wwkarv4t3atvyzykyenpfuj6bi4jy6pjy"
+    "cid": "bafyreiecladu62ebhf6xmdtakirnen3q5sqhr2eslm73w4ko3mxoh4l744"
    },
    "labelVal": "proof-verified",
    "outcome": "verified",
@@ -5000,22 +5000,22 @@
     "Quot.sound"
    ],
    "obligationDigest": "ca0c03d06b28c1bec4e8ae938f6606714412fd5614dc8e4d0228da5eaf042aa4",
-   "durationMs": 13015
+   "durationMs": 10044
   },
   {
-   "id": "crackland1-s2",
-   "prover": "crackland.gov.example",
+   "id": "gerryland1-s2",
+   "prover": "gerryland.gov.example",
    "checker": "fda.gov.example",
-   "artifactKey": "crackland1",
+   "artifactKey": "gerryland1",
    "requirementKey": "section2",
    "payload": "by decide",
    "proofRef": {
-    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/crackland-2026--fda-section-2",
-    "cid": "bafyreicvi32hq2b2dvqfudef7bvkj5uhkhxyemlr7uqmglxpyapb2rr3pi"
+    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/gerryland-2026--fda-section-2",
+    "cid": "bafyreiawl2com3nqzxrj3rchvxifjfmrrh43r7vlcezkpzu46euhxfwquu"
    },
    "verdictRef": {
-    "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/ef76d6dc256836cf4481e6db",
-    "cid": "bafyreibs4wqsvy2tmdgtjya36mgqxydtpllpkhqghfpngdxcv4lu6ydtr4"
+    "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/7372140d47d70206c76592a0",
+    "cid": "bafyreibjnon2rvzprs7k4wglnask3pjicqlilm57nds6f4dkgvo2wcrrhu"
    },
    "labelVal": "proof-refuted",
    "outcome": "refuted",
@@ -5053,23 +5053,23 @@
     "worstCountySplit": 1
    },
    "axioms": [],
-   "obligationDigest": "8d768d4c85e4d98069d454f701f8a41c76d24dd6eeee8edf893b8afdacfdb7b5",
-   "durationMs": 8197
+   "obligationDigest": "9d9b5cd682fb8df30e633bb1e004220fd77bb68ea1629270f7c56d2f12cef6c3",
+   "durationMs": 8171
   },
   {
-   "id": "crackland2-s2",
-   "prover": "crackland.gov.example",
+   "id": "gerryland2-s2",
+   "prover": "gerryland.gov.example",
    "checker": "fda.gov.example",
-   "artifactKey": "crackland2",
+   "artifactKey": "gerryland2",
    "requirementKey": "section2",
    "payload": "by decide",
    "proofRef": {
-    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/crackland-2026-revised--fda-section-2",
-    "cid": "bafyreicatrcsqcrore5ioaak34sheco5le4qfrcb5rgkiiy7s77v2rhwry"
+    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/gerryland-2026-revised--fda-section-2",
+    "cid": "bafyreicz6hhpsmo63qpagf4y67z4li52v6mdks3mjo67t4l647tymctzqq"
    },
    "verdictRef": {
-    "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/dc2edf14441a62d2504997f6",
-    "cid": "bafyreid6vqpp5uk2ahixkkbe4pn4czbemrpfrhiv2r4lvxvznqgwzwzeia"
+    "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/ed597c0e4bf627618b998380",
+    "cid": "bafyreibvibpbajohccocbobzn225lvxs5iuks6567rtododiqmx5pmdq64"
    },
    "labelVal": "proof-verified",
    "outcome": "verified",
@@ -5109,23 +5109,23 @@
    "axioms": [
     "propext"
    ],
-   "obligationDigest": "edae6a22cebba98d56f9607644dcfff7e0402096e42d36efccc041b096ebaf1a",
-   "durationMs": 12214
+   "obligationDigest": "e0f234bd66a5a5fc6b88657e559c2632c9d05b63a7349d5afc3d6b057a39c724",
+   "durationMs": 11103
   },
   {
-   "id": "crackland2-s5",
-   "prover": "crackland.gov.example",
+   "id": "gerryland2-s5",
+   "prover": "gerryland.gov.example",
    "checker": "fda.gov.example",
-   "artifactKey": "crackland2",
+   "artifactKey": "gerryland2",
    "requirementKey": "section5",
    "payload": "⟨by decide,\n   Redistrict.swingRobust_of_chain\n     [-150, -149, 350, 351, 500]\n     (by decide) (by decide) (by decide)⟩",
    "proofRef": {
-    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/crackland-2026-revised--fda-section-5",
-    "cid": "bafyreidbvr7bmitt3kwtsujzeri6c47hfxvo2rnh7v4xjkogyztsm2qjxe"
+    "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/gerryland-2026-revised--fda-section-5",
+    "cid": "bafyreibfpzg25qdcy7ujrsm6jnswctvgannweqeehlp66fbhslv5o32wmq"
    },
    "verdictRef": {
-    "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/e9d7dd72641459b28b704eb3",
-    "cid": "bafyreidvd7pvwdi4odstkvh6paxorlqy2ih23rp66buzwq4du4vr3vcr6a"
+    "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/016149f693a1c199c3feed18",
+    "cid": "bafyreicdc52ogqwxl2mwwxt2so3j4z2q7ineotk5mwf4xqr7codpcyeeze"
    },
    "labelVal": "proof-refuted",
    "outcome": "refuted",
@@ -5151,8 +5151,8 @@
     "worstCountySplit": 0
    },
    "axioms": [],
-   "obligationDigest": "3c49a054384ec53a4a0ca9b1bf9ee538a2f336489e0e4a961e86758adae6affc",
-   "durationMs": 10835
+   "obligationDigest": "be9ab8f9e12f84892c9d9d638f871e122c63d31636c6b59ff3898bf9bb6d78bf",
+   "durationMs": 9848
   }
  ],
  "breakpoints": [
@@ -5169,15 +5169,15 @@
   "outcome": "verified",
   "verdictRef": {
    "uri": "at://did:key:zQ3shvo4qdi6h8J1rgWuequSwDYVFd3GejGvL5qNtXYve7V9j/dev.provable.verdict/f0fdcfe5bc764aeecfee36cf",
-   "cid": "bafyreidtzmzmnm6fqq5uvahnd5c3u6jaxgtvzyxosy77mfad57womv22gu"
+   "cid": "bafyreig6zxcy2ak2bj6pto4zgenybdbykxllssesh65b3kh5mgavqoufz4"
   },
   "checker": "watchdog.example"
  },
  "staleness": {
-  "before": "bafyreihbd6ulpmx3zlx4hzy5gvjhgmvprzqw7ol5ur6v3wsnjohcvuffte",
-  "after": "bafyreiflwvrd4mih2jnzwoai56ayagxiesy4ixj76udh6tqzdz2j6cq3ra",
+  "before": "bafyreierlcaqsvqd5q3jwyo6ame3p7vixubyhzaf3l2zli52kmy6gb53v4",
+  "after": "bafyreidovgfg6gtt57q2vhrt7a7pqvnzxmowl7ce45byorbhxplioc5uxy",
   "outcome": "stale",
-  "detail": "stale reference: at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/gov.redistrict.plan/crackland-2026-revised is now bafyreiflwvrd4mih2jnzwoai56ayagxiesy4ixj76udh6tqzdz2j6cq3ra, not bafyreihbd6ulpmx3zlx4hzy5gvjhgmvprzqw7ol5ur6v3wsnjohcvuffte. The record was rewritten after this reference was taken. The proof cites a record that has since been rewritten, so it no longer establishes anything about what is published now."
+  "detail": "stale reference: at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/gov.redistrict.plan/gerryland-2026-revised is now bafyreidovgfg6gtt57q2vhrt7a7pqvnzxmowl7ce45byorbhxplioc5uxy, not bafyreierlcaqsvqd5q3jwyo6ame3p7vixubyhzaf3l2zli52kmy6gb53v4. The record was rewritten after this reference was taken. The proof cites a record that has since been rewritten, so it no longer establishes anything about what is published now."
  },
  "generated": {
   "statement": "-- Generated by the checker. Do not edit; regenerate from the records below.\n--\n--   artifact     at://did:key:zQ3shjMxaVg5ES6ZpCnPTdMRRRAaxUijzYHNRuAScV3UTXePk/gov.redistrict.plan/fairfax-2026\n--                bafyreifzk6khxauaewnmvxugsnp62tixpmvytz6eaxwrqrjjyhzqkhuyte\n--   requirement  at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.requirement/fda-section-2\n--                bafyreibcq2pa6np5xwngmqqox2rtdelcynlf7k4hou5iryyodafivfotzu\n--   theory       at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.theory/redistrict-v1\n--                bafyreibpgzptjbsoe24rhidcwpi5k2n6ednkun6d6dnajxyodxfsmfyibq\n--\n-- Any edit to any of those three records changes its CID, which invalidates\n-- the proof that cites it rather than silently changing what was proved.\n\nimport Redistrict\nimport Provable\n\nset_option maxRecDepth 100000\nset_option maxHeartbeats 1000000\n\nnamespace Obligation\n\n/-- Transliteration of the artifact record, field for field. -/\ndef raw : Redistrict.Codec.Raw :=\n{ districtCount := 10\n  precincts := [\n    { id := \"P000\", county := \"County-A\", population := 1000, votesA := 515, votesB := 485 },\n    { id := \"P001\", county := \"County-B\", population := 1000, votesA := 465, votesB := 535 },\n    { id := \"P002\", county := \"County-C\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P003\", county := \"County-D\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P004\", county := \"County-E\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P005\", county := \"County-F\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P006\", county := \"County-G\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P007\", county := \"County-H\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P008\", county := \"County-I\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P009\", county := \"County-J\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P100\", county := \"County-A\", population := 1000, votesA := 515, votesB := 485 },\n    { id := \"P101\", county := \"County-B\", population := 1000, votesA := 465, votesB := 535 },\n    { id := \"P102\", county := \"County-C\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P103\", county := \"County-D\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P104\", county := \"County-E\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P105\", county := \"County-F\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P106\", county := \"County-G\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P107\", county := \"County-H\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P108\", county := \"County-I\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P109\", county := \"County-J\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P200\", county := \"County-A\", population := 1000, votesA := 515, votesB := 485 },\n    { id := \"P201\", county := \"County-B\", population := 1000, votesA := 465, votesB := 535 },\n    { id := \"P202\", county := \"County-C\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P203\", county := \"County-D\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P204\", county := \"County-E\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P205\", county := \"County-F\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P206\", county := \"County-G\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P207\", county := \"County-H\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P208\", county := \"County-I\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P209\", county := \"County-J\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P300\", county := \"County-A\", population := 1000, votesA := 515, votesB := 485 },\n    { id := \"P301\", county := \"County-B\", population := 1000, votesA := 465, votesB := 535 },\n    { id := \"P302\", county := \"County-C\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P303\", county := \"County-D\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P304\", county := \"County-E\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P305\", county := \"County-F\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P306\", county := \"County-G\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P307\", county := \"County-H\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P308\", county := \"County-I\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P309\", county := \"County-J\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P400\", county := \"County-A\", population := 1000, votesA := 515, votesB := 485 },\n    { id := \"P401\", county := \"County-B\", population := 1000, votesA := 465, votesB := 535 },\n    { id := \"P402\", county := \"County-C\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P403\", county := \"County-D\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P404\", county := \"County-E\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P405\", county := \"County-F\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P406\", county := \"County-G\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P407\", county := \"County-H\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P408\", county := \"County-I\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P409\", county := \"County-J\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P500\", county := \"County-A\", population := 1000, votesA := 515, votesB := 485 },\n    { id := \"P501\", county := \"County-B\", population := 1000, votesA := 465, votesB := 535 },\n    { id := \"P502\", county := \"County-C\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P503\", county := \"County-D\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P504\", county := \"County-E\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P505\", county := \"County-F\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P506\", county := \"County-G\", population := 1000, votesA := 620, votesB := 380 },\n    { id := \"P507\", county := \"County-H\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P508\", county := \"County-I\", population := 1000, votesA := 440, votesB := 560 },\n    { id := \"P509\", county := \"County-J\", population := 1000, votesA := 440, votesB := 560 } ]\n  adjacency := [\n    { a := \"P000\", b := \"P001\" },\n    { a := \"P000\", b := \"P100\" },\n    { a := \"P001\", b := \"P002\" },\n    { a := \"P001\", b := \"P101\" },\n    { a := \"P002\", b := \"P003\" },\n    { a := \"P002\", b := \"P102\" },\n    { a := \"P003\", b := \"P004\" },\n    { a := \"P003\", b := \"P103\" },\n    { a := \"P004\", b := \"P005\" },\n    { a := \"P004\", b := \"P104\" },\n    { a := \"P005\", b := \"P006\" },\n    { a := \"P005\", b := \"P105\" },\n    { a := \"P006\", b := \"P007\" },\n    { a := \"P006\", b := \"P106\" },\n    { a := \"P007\", b := \"P008\" },\n    { a := \"P007\", b := \"P107\" },\n    { a := \"P008\", b := \"P009\" },\n    { a := \"P008\", b := \"P108\" },\n    { a := \"P009\", b := \"P109\" },\n    { a := \"P100\", b := \"P101\" },\n    { a := \"P100\", b := \"P200\" },\n    { a := \"P101\", b := \"P102\" },\n    { a := \"P101\", b := \"P201\" },\n    { a := \"P102\", b := \"P103\" },\n    { a := \"P102\", b := \"P202\" },\n    { a := \"P103\", b := \"P104\" },\n    { a := \"P103\", b := \"P203\" },\n    { a := \"P104\", b := \"P105\" },\n    { a := \"P104\", b := \"P204\" },\n    { a := \"P105\", b := \"P106\" },\n    { a := \"P105\", b := \"P205\" },\n    { a := \"P106\", b := \"P107\" },\n    { a := \"P106\", b := \"P206\" },\n    { a := \"P107\", b := \"P108\" },\n    { a := \"P107\", b := \"P207\" },\n    { a := \"P108\", b := \"P109\" },\n    { a := \"P108\", b := \"P208\" },\n    { a := \"P109\", b := \"P209\" },\n    { a := \"P200\", b := \"P201\" },\n    { a := \"P200\", b := \"P300\" },\n    { a := \"P201\", b := \"P202\" },\n    { a := \"P201\", b := \"P301\" },\n    { a := \"P202\", b := \"P203\" },\n    { a := \"P202\", b := \"P302\" },\n    { a := \"P203\", b := \"P204\" },\n    { a := \"P203\", b := \"P303\" },\n    { a := \"P204\", b := \"P205\" },\n    { a := \"P204\", b := \"P304\" },\n    { a := \"P205\", b := \"P206\" },\n    { a := \"P205\", b := \"P305\" },\n    { a := \"P206\", b := \"P207\" },\n    { a := \"P206\", b := \"P306\" },\n    { a := \"P207\", b := \"P208\" },\n    { a := \"P207\", b := \"P307\" },\n    { a := \"P208\", b := \"P209\" },\n    { a := \"P208\", b := \"P308\" },\n    { a := \"P209\", b := \"P309\" },\n    { a := \"P300\", b := \"P301\" },\n    { a := \"P300\", b := \"P400\" },\n    { a := \"P301\", b := \"P302\" },\n    { a := \"P301\", b := \"P401\" },\n    { a := \"P302\", b := \"P303\" },\n    { a := \"P302\", b := \"P402\" },\n    { a := \"P303\", b := \"P304\" },\n    { a := \"P303\", b := \"P403\" },\n    { a := \"P304\", b := \"P305\" },\n    { a := \"P304\", b := \"P404\" },\n    { a := \"P305\", b := \"P306\" },\n    { a := \"P305\", b := \"P405\" },\n    { a := \"P306\", b := \"P307\" },\n    { a := \"P306\", b := \"P406\" },\n    { a := \"P307\", b := \"P308\" },\n    { a := \"P307\", b := \"P407\" },\n    { a := \"P308\", b := \"P309\" },\n    { a := \"P308\", b := \"P408\" },\n    { a := \"P309\", b := \"P409\" },\n    { a := \"P400\", b := \"P401\" },\n    { a := \"P400\", b := \"P500\" },\n    { a := \"P401\", b := \"P402\" },\n    { a := \"P401\", b := \"P501\" },\n    { a := \"P402\", b := \"P403\" },\n    { a := \"P402\", b := \"P502\" },\n    { a := \"P403\", b := \"P404\" },\n    { a := \"P403\", b := \"P503\" },\n    { a := \"P404\", b := \"P405\" },\n    { a := \"P404\", b := \"P504\" },\n    { a := \"P405\", b := \"P406\" },\n    { a := \"P405\", b := \"P505\" },\n    { a := \"P406\", b := \"P407\" },\n    { a := \"P406\", b := \"P506\" },\n    { a := \"P407\", b := \"P408\" },\n    { a := \"P407\", b := \"P507\" },\n    { a := \"P408\", b := \"P409\" },\n    { a := \"P408\", b := \"P508\" },\n    { a := \"P409\", b := \"P509\" },\n    { a := \"P500\", b := \"P501\" },\n    { a := \"P501\", b := \"P502\" },\n    { a := \"P502\", b := \"P503\" },\n    { a := \"P503\", b := \"P504\" },\n    { a := \"P504\", b := \"P505\" },\n    { a := \"P505\", b := \"P506\" },\n    { a := \"P506\", b := \"P507\" },\n    { a := \"P507\", b := \"P508\" },\n    { a := \"P508\", b := \"P509\" } ]\n  assignment := [\n    { precinct := \"P000\", district := 0 },\n    { precinct := \"P001\", district := 1 },\n    { precinct := \"P002\", district := 2 },\n    { precinct := \"P003\", district := 3 },\n    { precinct := \"P004\", district := 4 },\n    { precinct := \"P005\", district := 5 },\n    { precinct := \"P006\", district := 6 },\n    { precinct := \"P007\", district := 7 },\n    { precinct := \"P008\", district := 8 },\n    { precinct := \"P009\", district := 9 },\n    { precinct := \"P100\", district := 0 },\n    { precinct := \"P101\", district := 1 },\n    { precinct := \"P102\", district := 2 },\n    { precinct := \"P103\", district := 3 },\n    { precinct := \"P104\", district := 4 },\n    { precinct := \"P105\", district := 5 },\n    { precinct := \"P106\", district := 6 },\n    { precinct := \"P107\", district := 7 },\n    { precinct := \"P108\", district := 8 },\n    { precinct := \"P109\", district := 9 },\n    { precinct := \"P200\", district := 0 },\n    { precinct := \"P201\", district := 1 },\n    { precinct := \"P202\", district := 2 },\n    { precinct := \"P203\", district := 3 },\n    { precinct := \"P204\", district := 4 },\n    { precinct := \"P205\", district := 5 },\n    { precinct := \"P206\", district := 6 },\n    { precinct := \"P207\", district := 7 },\n    { precinct := \"P208\", district := 8 },\n    { precinct := \"P209\", district := 9 },\n    { precinct := \"P300\", district := 0 },\n    { precinct := \"P301\", district := 1 },\n    { precinct := \"P302\", district := 2 },\n    { precinct := \"P303\", district := 3 },\n    { precinct := \"P304\", district := 4 },\n    { precinct := \"P305\", district := 5 },\n    { precinct := \"P306\", district := 6 },\n    { precinct := \"P307\", district := 7 },\n    { precinct := \"P308\", district := 8 },\n    { precinct := \"P309\", district := 9 },\n    { precinct := \"P400\", district := 0 },\n    { precinct := \"P401\", district := 1 },\n    { precinct := \"P402\", district := 2 },\n    { precinct := \"P403\", district := 3 },\n    { precinct := \"P404\", district := 4 },\n    { precinct := \"P405\", district := 5 },\n    { precinct := \"P406\", district := 6 },\n    { precinct := \"P407\", district := 7 },\n    { precinct := \"P408\", district := 8 },\n    { precinct := \"P409\", district := 9 },\n    { precinct := \"P500\", district := 0 },\n    { precinct := \"P501\", district := 1 },\n    { precinct := \"P502\", district := 2 },\n    { precinct := \"P503\", district := 3 },\n    { precinct := \"P504\", district := 4 },\n    { precinct := \"P505\", district := 5 },\n    { precinct := \"P506\", district := 6 },\n    { precinct := \"P507\", district := 7 },\n    { precinct := \"P508\", district := 8 },\n    { precinct := \"P509\", district := 9 } ]\n}\n\n/-- The plan those bytes denote, per the decoder named in the theory record.\nDecoding lives in the theory, not here, so that two checkers cannot disagree\nabout what a record means. -/\ndef plan : Redistrict.Plan := Redistrict.Codec.decodePlanD raw\n\n/-- The obligation. This is the proposition the prover must establish, and it is\nderived from the requirement and the artifact rather than supplied.\n\nReducible, so that a tier-1 requirement can be discharged by `decide` without\nthe prover having to unfold a checker-internal name. Reducibility costs nothing\nhere: the protection against substitution is that this declaration is *imported*\nby the proof module, so redefining it is a duplicate-declaration error, and the\nsignature that mentions it was elaborated before any prover text was read. -/\nabbrev stmt : Prop := Redistrict.FairDistrictingAct.section2 plan\n\nend Obligation\n",
@@ -5207,22 +5207,22 @@
   },
   {
    "src": "did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2",
-   "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/crackland-2026--fda-section-2",
-   "cid": "bafyreicvi32hq2b2dvqfudef7bvkj5uhkhxyemlr7uqmglxpyapb2rr3pi",
+   "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/gerryland-2026--fda-section-2",
+   "cid": "bafyreiawl2com3nqzxrj3rchvxifjfmrrh43r7vlcezkpzu46euhxfwquu",
    "val": "proof-refuted",
    "cts": "2026-01-07T12:00:00.000Z"
   },
   {
    "src": "did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2",
-   "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/crackland-2026-revised--fda-section-2",
-   "cid": "bafyreicatrcsqcrore5ioaak34sheco5le4qfrcb5rgkiiy7s77v2rhwry",
+   "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/gerryland-2026-revised--fda-section-2",
+   "cid": "bafyreicz6hhpsmo63qpagf4y67z4li52v6mdks3mjo67t4l647tymctzqq",
    "val": "proof-verified",
    "cts": "2026-01-09T12:00:00.000Z"
   },
   {
    "src": "did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2",
-   "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/crackland-2026-revised--fda-section-5",
-   "cid": "bafyreidbvr7bmitt3kwtsujzeri6c47hfxvo2rnh7v4xjkogyztsm2qjxe",
+   "uri": "at://did:key:zQ3shmHbSYMDjbn39JXWvhLUGf9ggNztXFAm4iVnDLyd7rGSi/dev.provable.proof/gerryland-2026-revised--fda-section-5",
+   "cid": "bafyreibfpzg25qdcy7ujrsm6jnswctvgannweqeehlp66fbhslv5o32wmq",
    "val": "proof-refuted",
    "cts": "2026-01-09T12:00:00.000Z"
   },

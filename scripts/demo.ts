@@ -8,15 +8,15 @@
  * The story it tells, in order:
  *
  *   1. Fairfax proves both requirements and is certified.
- *   2. Crackland's first map is refuted on one named clause — a state can see
+ *   2. Gerryland's first map is refuted on one named clause — a state can see
  *      exactly what to fix.
- *   3. Crackland redraws. The new map passes § 2 with the *same* efficiency gap
+ *   3. Gerryland redraws. The new map passes § 2 with the *same* efficiency gap
  *      as Fairfax's, and fails § 5, because it is built of safe seats. This is
  *      the case the durability requirement exists for and the one a snapshot
  *      metric cannot see.
  *   4. An unaffiliated watchdog re-checks Fairfax's proof and gets a byte-
  *      identical obligation. The verdict was a computation, not an assertion.
- *   5. Crackland edits a published map. Its verified proof goes stale, because
+ *   5. Gerryland edits a published map. Its verified proof goes stale, because
  *      the proof was bound to a hash rather than to a name.
  */
 
@@ -112,13 +112,13 @@ async function main() {
 
   heading(1, 'The regulator publishes a theory and two requirements')
   const s = await seed(LEAN_DIR)
-  const { net, fedgov, fairfax, crackland, watchdog } = s
+  const { net, fedgov, fairfax, gerryland, watchdog } = s
   published('dev.provable.theory', s.theory)
   published('dev.provable.requirement §2', s.section2)
   published('dev.provable.requirement §5', s.section5)
   console.log(dim(`   fedgov    ${fedgov.did}`))
   console.log(dim(`   fairfax   ${fairfax.did}`))
-  console.log(dim(`   crackland ${crackland.did}`))
+  console.log(dim(`   gerryland ${gerryland.did}`))
 
   const T = (n: number) => new Date(Date.UTC(2026, 0, 5 + n, 12, 0, 0)).toISOString()
 
@@ -169,8 +169,8 @@ async function main() {
     )
   }
 
-  heading(3, 'Crackland submits a packed-and-cracked map')
-  await attempt(crackland, fedgov, s.plans.crackland1, s.section2, SECTION2_PAYLOAD, T(2),
+  heading(3, 'Gerryland submits a packed-and-cracked map')
+  await attempt(gerryland, fedgov, s.plans.gerryland1, s.section2, SECTION2_PAYLOAD, T(2),
     'Contiguous, population-equal, county-respecting.')
   console.log(
     dim(
@@ -179,8 +179,8 @@ async function main() {
     ),
   )
 
-  heading(4, 'Crackland redraws — and § 2 no longer sees the problem')
-  await attempt(crackland, fedgov, s.plans.crackland2, s.section2, SECTION2_PAYLOAD, T(4),
+  heading(4, 'Gerryland redraws — and § 2 no longer sees the problem')
+  await attempt(gerryland, fedgov, s.plans.gerryland2, s.section2, SECTION2_PAYLOAD, T(4),
     'Revised plan. Efficiency gap now well inside the limit.')
   console.log(
     dim(
@@ -188,7 +188,7 @@ async function main() {
         '     two maps are indistinguishable.',
     ),
   )
-  await attempt(crackland, fedgov, s.plans.crackland2, s.section5, SECTION5_PAYLOAD, T(4),
+  await attempt(gerryland, fedgov, s.plans.gerryland2, s.section5, SECTION5_PAYLOAD, T(4),
     'Attempting the same breakpoint certificate Fairfax used.')
   console.log(
     dim(
@@ -220,22 +220,22 @@ async function main() {
     ),
   )
 
-  heading(6, 'Crackland edits a published map')
-  const edited = { ...(await net.resolveUri(s.plans.crackland2.uri)).value }
+  heading(6, 'Gerryland edits a published map')
+  const edited = { ...(await net.resolveUri(s.plans.gerryland2.uri)).value }
   const precincts = (edited.precincts as Record<string, unknown>[]).map((p, i) =>
     i === 0 ? { ...p, population: 1001 } : p,
   )
-  const newRef = await crackland.put(
+  const newRef = await gerryland.put(
     'gov.redistrict.plan',
-    s.plans.crackland2.uri.split('/').pop()!,
+    s.plans.gerryland2.uri.split('/').pop()!,
     { ...edited, precincts },
   )
   console.log(`   one precinct's population 1000 → 1001`)
-  console.log(`   ${dim('was')} ${short(s.plans.crackland2.cid)}   ${dim('now')} ${short(newRef.cid)}`)
+  console.log(`   ${dim('was')} ${short(s.plans.gerryland2.cid)}   ${dim('now')} ${short(newRef.cid)}`)
   const stale = await checkProof(net, env, {
-    uri: `at://${crackland.did}/dev.provable.proof/${rkeyFor(s.plans.crackland2, s.section2)}`,
+    uri: `at://${gerryland.did}/dev.provable.proof/${rkeyFor(s.plans.gerryland2, s.section2)}`,
     cid: (await net.resolveUri(
-      `at://${crackland.did}/dev.provable.proof/${rkeyFor(s.plans.crackland2, s.section2)}`,
+      `at://${gerryland.did}/dev.provable.proof/${rkeyFor(s.plans.gerryland2, s.section2)}`,
     )).cid,
   })
   verdictLine(stale)
@@ -249,8 +249,8 @@ async function main() {
   heading(7, 'Where the labels ended up')
   for (const [name, ref] of [
     ['fairfax 2026', s.plans.fairfax],
-    ['crackland 2026', s.plans.crackland1],
-    ['crackland 2026 revised', s.plans.crackland2],
+    ['gerryland 2026', s.plans.gerryland1],
+    ['gerryland 2026 revised', s.plans.gerryland2],
   ] as const) {
     const labels = net.labelsFor(ref)
     console.log(`   ${name.padEnd(24)} ${labels.length ? green(labels.join(', ')) : dim('none')}`)

@@ -37,7 +37,7 @@ beforeAll(async () => {
 
 /** Publish a proof record as the given state and check it. */
 async function submit(
-  who: 'fairfax' | 'crackland',
+  who: 'fairfax' | 'gerryland',
   rkey: string,
   fields: Record<string, unknown>,
 ) {
@@ -138,9 +138,9 @@ describe('substituting the statement', () => {
    * the imported one.
    */
   it('cannot redefine the obligation', async () => {
-    const { verdict } = await submit('crackland', 'attack-shadow', {
+    const { verdict } = await submit('gerryland', 'attack-shadow', {
       requirement: s.section2,
-      artifact: s.plans.crackland1,
+      artifact: s.plans.gerryland1,
       payload: 'trivial',
       lemmas: 'def stmt : Prop := True',
     })
@@ -150,11 +150,11 @@ describe('substituting the statement', () => {
 
   it('cannot swap in a different artifact than the one proved about', async () => {
     // A proof of § 2 that would succeed for Fairfax, submitted against
-    // Crackland's map. The obligation is generated from the *artifact* CID, so
-    // the goal is Crackland's goal and the proof fails.
-    const { verdict } = await submit('crackland', 'attack-artifact-swap', {
+    // Gerryland's map. The obligation is generated from the *artifact* CID, so
+    // the goal is Gerryland's goal and the proof fails.
+    const { verdict } = await submit('gerryland', 'attack-artifact-swap', {
       requirement: s.section2,
-      artifact: s.plans.crackland1,
+      artifact: s.plans.gerryland1,
       payload: 'by decide',
     })
     expect(verdict.outcome).toBe('refuted')
@@ -169,9 +169,9 @@ describe('substituting the statement', () => {
       ...(await s.net.resolve(s.section2)).value,
       leanProp: 'Redistrict.FairDistrictingAct.section2 Obligation.plan ∨ True; def evil',
     })
-    const { verdict } = await submit('crackland', 'attack-injection', {
+    const { verdict } = await submit('gerryland', 'attack-injection', {
       requirement: bad,
-      artifact: s.plans.crackland1,
+      artifact: s.plans.gerryland1,
       payload: 'by decide',
     })
     expect(verdict.outcome).toBe('malformed')
@@ -204,10 +204,10 @@ describe('binding to specific versions', () => {
 
   it('refuses a proof that cites a different theory than its requirement', async () => {
     const stale: StrongRef = { uri: s.theory.uri, cid: s.section2.cid }
-    const ref = await s.crackland.put('dev.provable.proof', 'attack-theory', {
+    const ref = await s.gerryland.put('dev.provable.proof', 'attack-theory', {
       $type: 'dev.provable.proof',
       requirement: s.section2,
-      artifact: s.plans.crackland1,
+      artifact: s.plans.gerryland1,
       theory: stale,
       toolchain: 'leanprover/lean4:v4.33.1',
       payload: 'by decide',
@@ -220,13 +220,13 @@ describe('binding to specific versions', () => {
   })
 
   it('refuses an artifact of the wrong type', async () => {
-    const notAPlan = await s.crackland.put('gov.redistrict.datasource', 'not-a-plan', {
+    const notAPlan = await s.gerryland.put('gov.redistrict.datasource', 'not-a-plan', {
       $type: 'gov.redistrict.datasource',
       kind: 'census',
       title: 'not a districting plan',
       publishedAt: '2026-01-07T12:00:00Z',
     })
-    const { verdict } = await submit('crackland', 'attack-wrong-type', {
+    const { verdict } = await submit('gerryland', 'attack-wrong-type', {
       requirement: s.section2,
       artifact: notAPlan,
       payload: 'by decide',

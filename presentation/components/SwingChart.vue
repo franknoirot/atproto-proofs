@@ -79,7 +79,7 @@ const readout = computed(() => {
 const rows = computed(() =>
   plan('fairfax').swing
     .filter((d) => d.s % 100 === 0)
-    .map((d) => ({ s: d.s, f: d, c: plan('crackland2').swing.find((x) => x.s === d.s)! })),
+    .map((d) => ({ s: d.s, f: d, c: plan('gerryland2').swing.find((x) => x.s === d.s)! })),
 )
 
 function track(ev: MouseEvent) {
@@ -113,7 +113,7 @@ const over = (v: number) => Math.abs(v) > LIMIT
 
     <table v-if="showTable">
       <thead>
-        <tr><th>swing</th><th>Fairfax gap</th><th>seats A</th><th>Crackland v2 gap</th><th>seats A</th></tr>
+        <tr><th>swing</th><th>Fairfax gap</th><th>seats A</th><th>Gerryland v2 gap</th><th>seats A</th></tr>
       </thead>
       <tbody>
         <tr v-for="r in rows" :key="r.s">

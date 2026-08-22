@@ -54,7 +54,7 @@ did:key:…fedgov            regulator, and one labeler among possible others
   dev.provable.verdict     what a check found — the evidence behind a label
   app.bsky.labeler.service declares the proof-* label values
 
-did:key:…fairfax  /  …crackland          regulated actors
+did:key:…fairfax  /  …gerryland          regulated actors
   gov.redistrict.plan      the artifact under test
   dev.provable.proof       a justification bound to (requirement CID, artifact CID)
 
@@ -244,7 +244,7 @@ the bound, but never confirmed.
 § 5 exists because § 2 is gameable. A map can sit at −2% on the day it is drawn
 and pass 8% on a five-point shift in opinion, and a rule that only constrains the
 reference election does not see the difference. In the demo, Fairfax and
-Crackland's revised map have *identical* efficiency gaps of −2.00%; § 2 cannot
+Gerryland's revised map have *identical* efficiency gaps of −2.00%; § 2 cannot
 tell them apart at all.
 
 ### What the theorem turns out to say
@@ -353,18 +353,18 @@ have a 54% statewide vote share. Only the districting differs.
 | map | § 2 | § 5 |
 |---|---|---|
 | **Fairfax** | passes, gap −2.00% | passes |
-| **Crackland v1** | **refuted** on `efficiencyGap`, gap +18.00% | — |
-| **Crackland v2** | passes, gap −2.00% | **refuted** on `swingRobustness` |
+| **Gerryland v1** | **refuted** on `efficiencyGap`, gap +18.00% | — |
+| **Gerryland v2** | passes, gap −2.00% | **refuted** on `swingRobustness` |
 
-Crackland v1 clears every structural clause and is refuted on exactly one named
+Gerryland v1 clears every structural clause and is refuted on exactly one named
 clause — which is what a state needs in order to know what to change.
 
-Crackland v2 is the case the demo exists for. Same voters as v1, redrawn: the gap
+Gerryland v2 is the case the demo exists for. Same voters as v1, redrawn: the gap
 is now identical to Fairfax's, so § 2 sees two indistinguishable maps. But every
 seat is safe by eleven points, so nothing changes hands inside the band and the
 gap drifts to −12.00% at a five-point swing toward B and +8.00% toward A.
 
-The two Crackland maps share precinct data exactly; only the assignment differs.
+The two Gerryland maps share precinct data exactly; only the assignment differs.
 If the votes differed too, the comparison would prove nothing about maps.
 
 ---

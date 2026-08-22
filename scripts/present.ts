@@ -16,8 +16,8 @@ import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { seed } from '../src/seed/publish.js'
 import {
-  CRACKLAND_V1,
-  CRACKLAND_V2,
+  GERRYLAND_V1,
+  GERRYLAND_V2,
   FAIRFAX,
   FAIRFAX_SWING_BREAKPOINTS,
   type SeedPlan,
@@ -177,11 +177,11 @@ async function main() {
     'section5', s.section5, SECTION5_PAYLOAD, T(2))
   await net.label(s.fedgov, s.plans.fairfax, 'districting-certified', { cts: T(2) })
 
-  await attempt(s.crackland, s.fedgov, 'crackland1-s2', 'crackland1', s.plans.crackland1,
+  await attempt(s.gerryland, s.fedgov, 'gerryland1-s2', 'gerryland1', s.plans.gerryland1,
     'section2', s.section2, SECTION2_PAYLOAD, T(2))
-  await attempt(s.crackland, s.fedgov, 'crackland2-s2', 'crackland2', s.plans.crackland2,
+  await attempt(s.gerryland, s.fedgov, 'gerryland2-s2', 'gerryland2', s.plans.gerryland2,
     'section2', s.section2, SECTION2_PAYLOAD, T(4))
-  await attempt(s.crackland, s.fedgov, 'crackland2-s5', 'crackland2', s.plans.crackland2,
+  await attempt(s.gerryland, s.fedgov, 'gerryland2-s5', 'gerryland2', s.plans.gerryland2,
     'section5', s.section5, SECTION5_PAYLOAD, T(4))
 
   // An unaffiliated party repeats the check and publishes its own verdict.
@@ -193,23 +193,23 @@ async function main() {
   )
 
   // A published map is edited after certification.
-  const before = s.plans.crackland2
+  const before = s.plans.gerryland2
   const current = (await net.resolveUri(before.uri)).value
   const precincts = (current.precincts as Record<string, unknown>[]).map((p, i) =>
     i === 0 ? { ...p, population: 1001 } : p,
   )
-  const after = await s.crackland.put('gov.redistrict.plan', 'crackland-2026-revised', {
+  const after = await s.gerryland.put('gov.redistrict.plan', 'gerryland-2026-revised', {
     ...current,
     precincts,
   })
-  const staleProof = `at://${s.crackland.did}/dev.provable.proof/crackland-2026-revised--fda-section-2`
+  const staleProof = `at://${s.gerryland.did}/dev.provable.proof/gerryland-2026-revised--fda-section-2`
   const staleVerdict = await checkProof(net, env, {
     uri: staleProof,
     cid: (await net.resolveUri(staleProof)).cid,
   })
   console.log(`  after edit: ${staleVerdict.outcome}`)
   // Put the map back, so the exported record graph matches the certified state.
-  await s.crackland.put('gov.redistrict.plan', 'crackland-2026-revised', current)
+  await s.gerryland.put('gov.redistrict.plan', 'gerryland-2026-revised', current)
 
   // Real generated modules, for the slide about statement substitution.
   const inputs = {
@@ -226,8 +226,8 @@ async function main() {
   console.log('  asking the theory for swing curves…')
   const planRecords = {
     fairfax: (await net.resolve(s.plans.fairfax)).value,
-    crackland1: (await net.resolve(s.plans.crackland1)).value,
-    crackland2: (await net.resolve(s.plans.crackland2)).value,
+    gerryland1: (await net.resolve(s.plans.gerryland1)).value,
+    gerryland2: (await net.resolve(s.plans.gerryland2)).value,
   }
   const { shares, curves } = await askTheory(env, planRecords)
 
@@ -242,7 +242,7 @@ async function main() {
           'app.bsky.labeler.service'] },
       { key: 'fairfax', role: 'regulated actor', handle: s.fairfax.handle, did: s.fairfax.did,
         collections: ['gov.redistrict.plan', 'dev.provable.proof'] },
-      { key: 'crackland', role: 'regulated actor', handle: s.crackland.handle, did: s.crackland.did,
+      { key: 'gerryland', role: 'regulated actor', handle: s.gerryland.handle, did: s.gerryland.did,
         collections: ['gov.redistrict.plan', 'dev.provable.proof'] },
       { key: 'watchdog', role: 'independent checker', handle: s.watchdog.handle, did: s.watchdog.did,
         collections: ['dev.provable.verdict'] },
@@ -260,12 +260,12 @@ async function main() {
       { key: 'fairfax', owner: 'fairfax', ref: s.plans.fairfax, name: FAIRFAX.name,
         jurisdiction: FAIRFAX.jurisdiction, districtCount: FAIRFAX.districtCount,
         cells: planGrid(FAIRFAX), sharesBp: shares.fairfax, swing: curves.fairfax },
-      { key: 'crackland1', owner: 'crackland', ref: s.plans.crackland1, name: CRACKLAND_V1.name,
-        jurisdiction: CRACKLAND_V1.jurisdiction, districtCount: CRACKLAND_V1.districtCount,
-        cells: planGrid(CRACKLAND_V1), sharesBp: shares.crackland1, swing: curves.crackland1 },
-      { key: 'crackland2', owner: 'crackland', ref: s.plans.crackland2, name: CRACKLAND_V2.name,
-        jurisdiction: CRACKLAND_V2.jurisdiction, districtCount: CRACKLAND_V2.districtCount,
-        cells: planGrid(CRACKLAND_V2), sharesBp: shares.crackland2, swing: curves.crackland2 },
+      { key: 'gerryland1', owner: 'gerryland', ref: s.plans.gerryland1, name: GERRYLAND_V1.name,
+        jurisdiction: GERRYLAND_V1.jurisdiction, districtCount: GERRYLAND_V1.districtCount,
+        cells: planGrid(GERRYLAND_V1), sharesBp: shares.gerryland1, swing: curves.gerryland1 },
+      { key: 'gerryland2', owner: 'gerryland', ref: s.plans.gerryland2, name: GERRYLAND_V2.name,
+        jurisdiction: GERRYLAND_V2.jurisdiction, districtCount: GERRYLAND_V2.districtCount,
+        cells: planGrid(GERRYLAND_V2), sharesBp: shares.gerryland2, swing: curves.gerryland2 },
     ],
     checks,
     breakpoints: [-500, ...FAIRFAX_SWING_BREAKPOINTS],
