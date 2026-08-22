@@ -102,11 +102,12 @@ pnpm present:data    # re-capture the figures from a fresh run
 pnpm present:build   # static site into dist/
 ```
 
-A [Slidev](https://sli.dev) deck — 27 slides that walk the demo, visualise who
-owns what, and end on how to adapt the framework to another regulated domain.
-Arrow keys or space to step; `p` for presenter mode (notes, timer, next-slide
-preview); `o` for an overview; the `table` toggle on each chart for its
-WCAG-clean twin.
+A [Slidev](https://sli.dev) deck written for an atproto meetup — 32 slides that
+open on the moderation shape everyone in the room already knows, explain what an
+embedded DSL buys you and why Lean, lay out who can audit what at which layer,
+and only then work the redistricting example. Arrow keys or space to step; `p`
+for presenter mode (notes, timer, next-slide preview); `o` for an overview; the
+`table` toggle on each chart for its WCAG-clean twin.
 
 **All the prose is in [`presentation/slides.md`](presentation/slides.md)** —
 one markdown file, slides separated by `---`, `<v-click>` for reveals, and an

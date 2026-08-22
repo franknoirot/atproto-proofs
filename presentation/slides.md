@@ -1,9 +1,9 @@
 ---
 theme: none
-title: Proof-carrying regulation on atproto
+title: Proofs are just records
 info: |
-  A regulator publishes machine-checkable requirements. Regulated actors publish
-  machine-checkable proofs. Anyone re-runs the check.
+  An atproto meetup talk. Publish a mathematical claim as a record, publish a
+  proof of it as another record, and let anyone label the result.
 class: text-left intro
 transition: none
 mdc: false
@@ -27,10 +27,15 @@ All the prose lives in this file. Slides are separated by `---` on its own line.
   $clicks                  how many presses have happened on this slide
   clicks: 5                in a slide's frontmatter, to reserve extra presses
 
+Leave `clicks:` off unless a *component* is driven by `$clicks`. Slidev counts
+<v-click> elements for you, and an explicit number is a cap rather than a
+minimum — set it too low and the last reveals silently never fire.
+`test/slides.test.ts` fails on that and a few neighbouring mistakes.
+
 Presenter notes are the HTML comment at the very end of each slide. Press `p`
 in the browser for presenter mode (notes, timer, next-slide preview).
 
-Two settings in the frontmatter above are worth knowing about:
+Two headmatter settings are worth knowing about:
 
   mdc: false        Load-bearing. MDC's inline-attribute syntax renders through a
                     synchronous path that cannot await syntax highlighting, so
@@ -49,142 +54,186 @@ so editing prose cannot leave a stale number beside a live chart.
   pnpm present         dev server, hot-reloads as you edit
   pnpm present:data    re-capture from a fresh run
   pnpm present:build   static site into dist/
+
+ROUGH SHAPE, if you are cutting for time:
+  1–5    atproto framing. Don't cut.
+  6–11   the eDSL and the layers of auditability. The heart of the talk.
+  12–21  the worked example. Slides 13 and 21 are the most skippable.
+  22–28  the trust model. Slide 23 is the one people remember.
+  29–32  generalisation and close.
 ================================================================================
 -->
 
-<div class="kicker">a demo</div>
+<div class="kicker">an atproto meetup talk</div>
 
-# Proof-carrying regulation<br>on atproto
+# Proofs are just records
 
 <p class="lead">
-A regulator publishes machine-checkable requirements. Regulated actors publish
-machine-checkable proofs that their artifacts satisfy them. Anyone re-runs the
-check.
+And verdicts are just labels. The rest of this is about what becomes possible once
+you notice that.
 </p>
 
 <p class="muted">
-Requirements in a Lean&nbsp;4 DSL · artifacts and proofs as atproto records ·
-verdicts as labels
+Everything on these slides came out of a real run · <Val toolchain /> ·
+<Val count="repos" /> repos · <Val count="labels" /> signed labels
 </p>
 
-<div class="cid" style="margin-top:2rem">
-every figure in this deck was captured from a real run · <Val toolchain /> ·
-<Val count="repos" /> repositories · <Val count="labels" /> signed labels
-</div>
-
 <!--
-The domain is redistricting, but the domain is not the point — it is a worked
-example chosen because the rules are numeric, contested, and public. The last two
-slides are about what it takes to move this to another domain.
+Open light. This room knows atproto far better than it knows theorem provers, so
+the first five minutes are about a shape they already have opinions on. Lean does
+not show up until slide 8.
 
-**Everything here is real.** The CIDs, verdicts, axiom sets and generated Lean
-were captured from an actual run by `pnpm present:data`. Nothing is illustrative.
+Nothing here is illustrative. Every CID, verdict, axiom set and curve was captured
+from an actual run by `pnpm present:data` — including the numbers on this slide.
 -->
 
 ---
 
-<div class="kicker">the problem</div>
+<div class="kicker">the shape you already know</div>
 
-	## Compliance is asserted. It is almost never demonstrated.
+## Someone publishes. Someone else labels. You choose who to believe.
 
-<div class="cols">
-<div>
+<div class="cols-3">
 <v-click>
-<div class="card tag warn">
+<div class="card">
 
-### Today
+### 1 · a record
 
-A regulator publishes a rule in prose. A regulated actor files a report saying it
-complies. Maybe an agency audits a sample.
+Lands in the author's repo. Content-addressed, signed, and nobody else can touch
+it.
 
-Everything downstream is *trust in an institution*. A journalist who doubts the
-finding has no way to check it — there is nothing to re-run.
+</div>
+</v-click>
+
+<v-click>
+<div class="card">
+
+### 2 · a label
+
+Someone *else* says something about that record, from their own repo, pinned to
+the exact version they looked at.
+
+</div>
+</v-click>
+
+<v-click>
+<div class="card">
+
+### 3 · your choice
+
+You subscribe to the labelers you find credible. Two can disagree, and the
+protocol has no opinion about which is right.
 
 </div>
 </v-click>
 </div>
 
-<div>
 <v-click>
-<div class="card tag good">
 
-### Here
+That is moderation. It is also, it turns out, a rather good shape for
+**regulation**.
 
-The rule is a machine-checkable proposition. The filing is a proof. The finding is
-*a computation over three content hashes*.
-
-Anyone who doubts it fetches the same three hashes, runs the same checker, and gets
-the same answer — or publishes a contradiction.
-
-</div>
 </v-click>
-</div>
-</div>
 
 <v-click>
 
-Formal verification alone does not need a protocol. A state could publish a Lean
-file and an agency could run it. What the protocol adds is that the rule, the
-artifact and the proof are all *content-addressed records with verifiable
-authorship, held in repositories their authors control* — which is what turns a
-verdict from an assertion into something reproducible.
+<p class="muted">
+Swap the record for a claim about the world, make the label mean <em>we checked
+the maths</em>, and this same three-party structure gives you something that is
+genuinely hard to build any other way.
+</p>
 
 </v-click>
 
 <!--
-Resist the urge to sell formal methods here. The interesting claim is not "proofs
-are rigorous" — everyone knows that. It is that **content addressing changes what
-a verdict is**. Without it you still have an agency saying "we checked"; with it
-you have a computation anyone can repeat.
+If you have ever explained to someone why stackable moderation beats one company's
+opinion, you have already given half of this talk. Say that out loud — it lands.
 
-If someone asks "why not just an API?" — because an API's answer is still the
-agency's word. The whole value is that the inputs are named by hash so a third
-party can disagree *specifically*.
+The move: keep the topology, change what is inside the record. Nothing about the
+protocol needs to change to support this, which is the whole reason it is worth
+doing here rather than as somebody's SaaS.
 -->
 
 ---
 
-<div class="kicker">the actors</div>
+<div class="kicker">the cast</div>
 
-## Six repositories. Nobody writes into anyone else's.
+## Six repos. Nobody writes into anyone else's.
 
 <Ownership />
 
 <v-click>
 
-There is no shared database. Every collection is written by exactly one
-repository, and no actor can write into another's — the regulator cannot edit a
-state's map, a state cannot edit the rule it is measured against, and a verdict
-lives in the checker's own repository because it is *the checker's speech about
-someone else's record*.
+The worked example is redistricting. A federal agency publishes what a districting
+plan *is* and what it means for one not to be gerrymandered. States publish their
+maps and proofs that the maps comply. Anyone re-runs the check.
 
 </v-click>
 
 <v-click>
 
-The regulator appears twice because it wears two hats: it writes the rules, and it
-runs a checker. *The second hat is not exclusive to it.* The watchdog has no
-standing and no permission, and publishes verdicts by exactly the same mechanism.
-
-</v-click>
-
-<v-click>
-
-The data authorities along the bottom are the least technical part of the diagram
-and the most important. A proof certifies that *the published numbers* satisfy a
-rule. It says nothing about whether those numbers are true — so where they came
-from is an explicit, attributable citation rather than an assumption.
+The regulator appears twice on purpose: it writes the rules, and it runs a
+checker. *Only the first of those is exclusive to it.* The watchdog has no
+standing, no accreditation and no API key, and publishes verdicts by exactly the
+same mechanism.
 
 </v-click>
 
 <!--
-Point at the boxes as you go. The ownership story is the part people find
-surprising: there is no shared database and no privileged writer.
+Point at the boxes. What people find surprising is that there is no shared
+database and no privileged writer — which is only surprising if you have spent
+time with compliance systems, where a central authority is the entire design.
 
-**Watchdog** is the one to dwell on. It has no standing, no accreditation, no
-permission. It publishes verdicts by the same mechanism the regulator does.
-Whether anyone believes it is a social question, not a protocol question — and
-that is the right place for that question to live.
+The data authorities along the bottom get their own slide much later. For now just
+note they exist and that the states *cite* them.
+-->
+
+---
+
+<div class="kicker">why bother with a protocol</div>
+
+## Four things you get for free that are otherwise expensive
+
+<div class="cols">
+<v-clicks>
+
+- **One writer per collection.** The regulator cannot quietly edit a state's map.
+  A state cannot edit the rule it is measured against. Not enforced by policy —
+  there is simply nowhere to write.
+
+- **`strongRef` pins the version.** Every citation is URI *and* CID. Edit a
+  certified map and the certification stops applying. No revocation list, no
+  invalidation job, no cron. The hash moved and the reference no longer resolves
+  to what it named.
+
+- **Labelers stack.** The regulator runs a checker because someone should. A
+  newspaper can run one. You can run one. Readers pick, and the protocol stays
+  out of it.
+
+- **The firehose is the work queue.** A checker subscribes to
+  `com.atproto.sync.subscribeRepos`, sees a `dev.provable.proof` commit go past,
+  and checks it. No submission portal, no registration, no rate-limit form.
+
+</v-clicks>
+</div>
+
+<v-click>
+
+<p class="muted">
+None of this needs new protocol machinery. It is repos, lexicons, strongRefs and
+labels doing what they already do.
+</p>
+
+</v-click>
+
+<!--
+This is the "why not just build an API" slide, and it is worth being blunt: an
+API's answer is still the agency's word. Content addressing is what turns a
+finding into something a stranger can reproduce, or contradict *specifically*.
+
+The firehose point usually gets a nod. Compliance systems normally have a
+submission portal with a queue behind it. Here the queue is a public log anyone
+can also read.
 -->
 
 ---
@@ -193,46 +242,238 @@ that is the right place for that question to live.
 clicks: 6
 ---
 
-<div class="kicker">the artifacts</div>
+<div class="kicker">the lexicons</div>
 
-## Six record types, and every edge is a hash
+## Five record types and a label
 
 <RecordGraph :step="$clicks + 1" />
 
-References are `strongRef` — URI *and* CID — never a bare URI. That single choice
-does most of the work: amend a requirement and every proof against the old one is
-mechanically detectable as stale; edit a certified map and the certification stops
-applying, without anyone having to notice the edit.
+<div class="cols">
+<div>
+
+<p class="small">
+Nothing exotic. <code>dev.provable.theory</code> carries the meaning of the rules,
+<code>dev.provable.requirement</code> carries a rule,
+<code>gov.redistrict.plan</code> is the thing being regulated,
+<code>dev.provable.proof</code> is the filing, and
+<code>dev.provable.verdict</code> is what a checker found.
+</p>
+
+</div>
+<div>
 
 <v-click at="6">
 
 <p class="muted">
 Note what is <em>absent</em> from <code>dev.provable.proof</code>: there is no
-field for the theorem statement. That omission is the load-bearing design
-decision, and we will come back to why.
+field for the theorem statement. That omission is doing more work than anything
+else in the schema, and we come back to it.
+</p>
+
+</v-click>
+
+</div>
+</div>
+
+<!--
+Build it one edge at a time: theory → requirement → plan → datasource → proof →
+verdict and label.
+
+Every arrow is a strongRef. Say the versioning line here rather than earlier: this
+is not a feature anyone designed, it is what content addressing already gives you.
+
+Leave the missing-statement-field hook hanging. It pays off on slide 23.
+-->
+
+---
+clicks: 4
+---
+
+<div class="kicker">the idea this talk is actually about</div>
+
+## Three audiences. One stack. Stop wherever you like.
+
+<AuditLayers :step="$clicks" />
+
+<v-click at="4">
+
+<p class="muted" style="margin-top:0.9rem">
+You use Bluesky without ever verifying an MST inclusion proof. The proof is there,
+it is checkable, and somebody does check it — but your experience does not depend
+on you being that person. <em>That</em> is the property worth copying.
 </p>
 
 </v-click>
 
 <!--
-Build this up one edge at a time. The order matters: theory → requirement → plan →
-datasource → proof → verdict/label.
+The centre of the talk. If a listener remembers one slide, make it this one.
 
-The line to land: **versioning is not a feature bolted on, it is what content
-addressing already gives you.** There is no "invalidate the proofs" job to run.
-The hash moves and the references simply no longer resolve to what they pointed at.
+The failure mode of every "formal methods for public policy" pitch is demanding
+that everybody become a logician. The alternative is not dumbing it down; it is
+layering it, so each audience gets a real artifact rather than a summary of one.
+
+The Bluesky analogy does a lot of work — use it. Nobody in this room verifies MSTs
+by hand, and nobody thinks that makes the guarantee fake.
 -->
 
 ---
 
-<div class="kicker">the rules</div>
+<div class="kicker">the tooling half</div>
 
-## The published text *is* the compiled source
+## What is an embedded DSL, and why would you want one
 
 <div class="cols">
 <div>
 
-### What the record carries
+<v-click>
+
+### A DSL is a small language for one job
+
+<p class="small">
+SQL for queries. Regex for patterns. CSS for layout. <strong>Lexicon</strong> for
+record shapes — you already write DSLs, you just call them schemas.
+</p>
+
+</v-click>
+
+<v-click>
+
+### Embedded means it lives inside a host
+
+<p class="small">
+No separate parser, compiler, formatter, editor plugin or Stack Overflow tag. You
+inherit the host language's tooling, and here the tooling worth inheriting is a
+<em>proof checker</em>.
+</p>
+
+</v-click>
+
+</div>
+<div>
+
+<v-click>
+
+<div class="card tag warn">
+
+### "We built a DSL" is normally a warning sign
+
+<p class="small">
+It usually means a new grammar, a new implementation and a new class of bug
+nobody else will ever find. The redeeming feature of an <em>embedded</em> DSL is
+that you did not write a compiler, so you cannot have got one subtly wrong.
+</p>
+
+<p class="small">
+What you write is surface syntax that expands into the host's own terms. The thing
+being checked is the host's, not yours.
+</p>
+
+</div>
+
+</v-click>
+
+</div>
+</div>
+
+<!--
+Pitch this at someone who writes TypeScript and lexicons, not at someone who has
+used Coq.
+
+The lexicon comparison is the one to lean on: declarative, narrow, read by tooling
+rather than executed. An eDSL is that, plus it expands into a real language
+underneath.
+
+If asked "why not JSON rules with an interpreter" — because then you have written
+an interpreter, and the interesting question becomes who checks *it*.
+-->
+
+---
+
+<div class="kicker">why this host language</div>
+
+## Lean is two things at once
+
+<div class="cols">
+<div>
+
+<v-click>
+
+### A proof checker with a small kernel
+
+<p class="small">
+Give it a claim and an argument and it tells you whether the argument establishes
+the claim. It cannot be talked into it, it does not get tired, and it does not
+care who filed the proof.
+</p>
+
+<p class="small">
+The part that has to be trusted is a few thousand lines, and it has been
+reimplemented from scratch by people trying to catch it out.
+</p>
+
+</v-click>
+
+<v-click>
+
+### A macro system
+
+<p class="small">
+You can define what a claim <em>looks like</em>. Not a comment above the claim, not
+a docstring beside it — the surface syntax of the claim itself.
+</p>
+
+</v-click>
+
+</div>
+<div>
+
+<v-click>
+
+<div class="card tag good">
+
+### Put those together
+
+<p class="small">
+The rule reads like a rule <em>and</em> is the exact object the kernel checks.
+</p>
+
+<p class="small">
+Most attempts to formalise a regulation produce two artifacts: the one everyone
+argues about, and the formalisation nobody reads. They drift, and the drift is
+invisible until it matters.
+</p>
+
+<p class="small">
+An embedded DSL gives you <strong>one artifact</strong>. There is no second
+document to get out of step.
+</p>
+
+</div>
+
+</v-click>
+
+</div>
+</div>
+
+<!--
+Do not oversell rigour — this room does not need convincing that maths is rigorous.
+Sell the *combination*. A theorem prover alone gives an unreadable artifact; nice
+syntax alone gives a readable artifact nobody checks. The interesting claim is that
+both objects can be the same object.
+
+If someone asks why not Coq, Isabelle, Agda, F* — any of them could work. Lean's
+macro system is unusually pleasant and the community is large. It is a taste call,
+not a technical necessity, and say so.
+-->
+
+---
+
+<div class="kicker">layer one · anyone</div>
+
+## The rule, as published
+
+<div class="cols">
+<div>
 
 ```lean
 requirement section2 titled "Fair Districting Act § 2"
@@ -245,8 +486,9 @@ requirement section2 titled "Fair Districting Act § 2"
 ```
 
 <p class="small">
-Field <code>statement</code> of <code>dev.provable.requirement/fda-section-2</code><br>
-<Cid of="section2" :chars="24" />
+The <code>statement</code> field of
+<code>dev.provable.requirement/fda-section-2</code><br>
+<Cid of="section2" :chars="30" />
 </p>
 
 </div>
@@ -254,109 +496,132 @@ Field <code>statement</code> of <code>dev.provable.requirement/fda-section-2</co
 <div>
 <v-click>
 
-### Why that matters
+<p>
+Nobody has ever read a statute for pleasure. People do read a bulleted list.
+</p>
 
-This is not a paraphrase of a formal rule sitting somewhere else. It is the same
-text the theory package compiles — a Lean&nbsp;4 DSL whose surface syntax is the
-legal text.
+<p>
+And this is not a friendly paraphrase sitting next to the real thing. It is the
+<em>same text</em> the theory package compiles. Check that the record's
+<code>statement</code> matches the theory's source and you have checked everything
+at this layer — there is no third artifact.
+</p>
 
-The usual failure mode of "formalise the regulation" projects is two artifacts
-that drift: the words everyone argues about, and the formalisation nobody reads.
-Here there is *no second artifact*. A reader who checks that the record's
-`statement` matches the theory's source has checked everything.
+</v-click>
 
-Elaborating it also emits a per-clause evaluator, so a refutation can name *which
-clause* failed. Same source, so the names in a verdict cannot fall out of step
-with the rule.
+<v-click>
+
+<p class="muted">
+Elaborating it also emits a per-clause evaluator, so a refutation can name
+<em>which clause</em> failed rather than reporting that a conjunction did. Same
+source, so the names in a verdict cannot drift from the names in the rule.
+</p>
 
 </v-click>
 </div>
 </div>
 
 <!--
-Read the requirement out loud. It should sound like a rule, not like code — that
-is the entire test of the DSL.
+Read it out loud. That is the whole acceptance test for the DSL: if it sounds like
+code, it has failed.
 
-Two implementation details worth mentioning only if asked: every English word is a
-*non-reserved* token, because a plain atom would make `plan` and `gap` unusable as
-identifiers in every downstream file; and the `·` bullet is there because a syntax
-category cannot begin with a non-reserved word. It also happens to look like legal
-text.
+Two implementation notes, only if asked. Every English word is a *non-reserved*
+token, because a plain atom would make `plan` and `gap` unusable as identifiers in
+every file downstream. And the `·` bullet is there because a syntax category
+cannot begin with a non-reserved word — that it also looks like legal drafting was
+luck.
 -->
 
 ---
 
-<div class="kicker">the hard part nobody expects</div>
+<div class="kicker">layer two · domain experts</div>
 
-## A proof is about a Lean value. An artifact is bytes.
+## What the words actually mean
 
-If those two can drift apart, a proof certifies nothing in particular. Something
-has to fix the correspondence — and *who* fixes it decides whether two honest
-checkers can disagree.
+<Vocabulary expand="efficiency gap is at most" />
 
-<div class="cols">
-<div>
 <v-click>
-<div class="card tag bad">
 
-### If the checker owns the decode
+That table is not documentation. It is the `vocabulary` field of the published
+`dev.provable.theory` record — the theory ships its own glossary, on the wire,
+pinned by CID.
 
-Two honest checkers reach opposite verdicts about the same CID and neither is
-wrong, because nothing published says which reading is correct.
-
-</div>
 </v-click>
-</div>
 
-<div>
 <v-click>
-<div class="card tag good">
 
-### So the theory owns it
+<p class="muted">
+So auditing what a rule <em>means</em> does not require reading Lean. An election
+lawyer can check that "efficiency gap" points at the Stephanopoulos–McGhee
+definition rather than something adjacent, and take the argument from there.
+</p>
 
-```json
-{ "lexicon":  "gov.redistrict.plan",
-  "leanType": "Redistrict.Plan",
-  "decoder":  "Redistrict.Codec.decodePlan" }
+</v-click>
+
+<!--
+This is the layer nobody builds, and it is the one that decides whether a scheme
+like this is legitimate or merely impressive.
+
+The substantive point: the fight over a rule like this will be about definitions,
+not about proofs. Publishing the definitions as a first-class record is how you
+make that fight happen in public rather than in an appendix.
+-->
+
+---
+
+<div class="kicker">layer three · the stubborn</div>
+
+## What the kernel says
+
+```
+'Obligation.proof' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
-</div>
-</v-click>
-</div>
-</div>
-
 <v-click>
 
-All three are needed. The lexicon alone does not fix a representation; the Lean
-type alone does not fix which records are eligible. The checker's remaining share
-is a *transliteration* — field for field, no reordering, no defaulting, no
-decisions.
+Three axioms. Lean's standard three. **No `sorryAx`** — no holes — and nothing the
+prover declared for themselves.
 
 </v-click>
 
 <v-click>
 
-One consequence worth stating: the decoder is *total*. A record that does not
-decode becomes a plan with no precincts, which fails the well-formedness clause
-every requirement opens with. So a malformed artifact cannot be certified — not by
-checker etiquette, but because *the obligation is false*. Submitting garbage means
-having to prove something untrue.
+You do not have to read the proof. You have to believe the kernel accepted it, and
+that the kernel is the kernel. Both are checkable by someone who is not you, which
+is the entire point of having layers.
+
+</v-click>
+
+<v-click>
+
+<div class="card tag warn">
+
+<p class="small">
+<code>#print axioms</code> reports to stdout, and a checker built on scraping
+stdout <em>fails open</em>: change the message format and an unproved theorem
+sails through. So this project turns the audit into a build failure —
+<code>#assert_axioms</code> runs the same query and exits nonzero.
+</p>
+
+</div>
 
 </v-click>
 
 <!--
-This is the slide that separates a demo from a design. Most "put proofs on a
-ledger" proposals never address it, and it is where they quietly fail.
+The axiom line is the most compressed piece of evidence in the system. It fits in
+a tweet and it rules out the entire category of "the proof has a hole in it".
 
-The total-decoder trick is worth pausing on. The naive move is for the checker to
-reject undecodable records. That works until a checker forgets. Making the
-obligation *false* instead means the property is enforced by the mathematics
-rather than by everyone remembering to check.
+The fails-open point generalises well past Lean, and people nod at it: any
+verification step whose failure mode is silence is not a verification step.
+
+There is one rung above this — replaying the whole environment through a clean
+kernel with lean4checker — which this project does not do. Say so if asked;
+DESIGN.md § 5 says so too.
 -->
 
 ---
 
-<div class="kicker">the artifacts under test</div>
+<div class="kicker">so let us actually try it</div>
 
 ## Two states, three maps, identical geography
 
@@ -388,10 +653,10 @@ rather than by everyone remembering to check.
 
 <v-click>
 
-Sixty precincts of a thousand voters each, ten districts of six. Population
-equality and contiguity never distinguish these maps, and all three give party A
-*<Val check="fairfax-s2" voteShare />* of the statewide vote. The districting is
-the only variable — which is what a districting rule is supposed to be about.
+Sixty precincts of a thousand voters, ten districts of six. Population equality and
+contiguity never separate these maps, and all three give party A
+*<Val check="fairfax-s2" voteShare />* of the statewide vote. The districting is the
+only variable, which is what a districting rule is supposed to be about.
 
 </v-click>
 
@@ -399,97 +664,42 @@ the only variable — which is what a districting rule is supposed to be about.
 
 <p class="muted">
 The two Gerryland maps share precinct data exactly — the fills are identical and
-<em>only the white boundaries differ</em>. If the votes differed too, comparing
-them would prove nothing about maps.
+<em>only the white boundaries differ</em>. Same voters, redrawn.
 </p>
 
 </v-click>
 
 <!--
-Let people look. The middle map is visibly different — four dark-blue blocks and
-six orange ones, which is textbook packing and cracking.
+Redistricting is a good demo domain because the rules are numeric, the stakes are
+real, and everybody already has an opinion. It is not the point of the project —
+slide 29 is about moving this elsewhere.
 
-The right-hand map is the one to flag as suspicious-looking-but-innocent: neat
-columns, nothing obviously wrong. Hold that thought.
+Let them look. The middle map is four dark blocks and six orange ones, which is
+packing and cracking drawn as data. The right-hand one looks tidy and innocent.
+Hold that thought.
 -->
 
 ---
 
-<div class="kicker">the artifacts under test</div>
+<div class="kicker">the same three maps, as numbers</div>
 
-## The same three maps, as numbers
+## District by district
 
 <SharesTable :plans="['fairfax', 'gerryland1', 'gerryland2']" />
 
 <!--
-The table-view twin, here as its own slide so you can jump to it when someone
-asks. Diamonds mark the seats that change hands inside the ±5-point band —
-Fairfax has two, Gerryland v2 has none, and that single difference is the whole
-back half of the talk.
+The table-view twin, on its own slide so you can jump to it when somebody asks.
+
+The diamonds mark seats that change hands inside the ±5-point band. Fairfax has
+two, Gerryland v2 has none, and that single difference is the entire back half of
+the example. Skippable if you are short of time.
 -->
 
 ---
 
-<div class="kicker">step 1 — the regulator</div>
+<div class="kicker">a state files</div>
 
-## The theory and the rules go on the wire
-
-| record | rkey | cid |
-| --- | --- | --- |
-| `dev.provable.theory` | `redistrict-v1` | <Cid of="theory" :chars="22" /> |
-| `dev.provable.requirement` | `fda-section-2` | <Cid of="section2" :chars="22" /> |
-| `dev.provable.requirement` | `fda-section-5` | <Cid of="section5" :chars="22" /> |
-| `gov.redistrict.plan` | `fairfax-2026` | <Cid of="fairfax" :chars="22" /> |
-| `gov.redistrict.plan` | `gerryland-2026` | <Cid of="gerryland1" :chars="22" /> |
-| `gov.redistrict.plan` | `gerryland-2026-revised` | <Cid of="gerryland2" :chars="22" /> |
-
-<div class="cols" style="margin-top:1.2rem">
-<div>
-<v-click>
-<div class="card">
-
-### The theory travels in-band
-
-<p class="small">
-The Lean package is a blob on the theory record, with a digest. Verification
-depends on the record and nothing else — no package registry has to stay online,
-or stay honest, for someone to reproduce a verdict in ten years.
-</p>
-
-</div>
-</v-click>
-</div>
-
-<div>
-<v-click>
-<div class="card">
-
-### The toolchain is pinned
-
-<p class="small">
-A checker that cannot honour the pinned Lean release must decline rather than
-substitute a nearby version. Reporting <em>verified</em> from a different prover
-would be a claim about a proof nobody checked.
-</p>
-
-</div>
-</v-click>
-</div>
-</div>
-
-<!--
-Skim the table — the point is just that these are real records with real hashes,
-in six different repositories.
-
-The in-band theory blob is a small decision with a long tail. Ten years is not
-hypothetical for a districting map; they last a decade by construction.
--->
-
----
-
-<div class="kicker">step 2 — a state complies</div>
-
-## § 2 is decidable, so the proof is one tactic
+## § 2 is decidable, so the whole proof is one tactic
 
 <div class="cols">
 <div>
@@ -507,35 +717,35 @@ by decide
 
 ### Be honest about what this is
 
-Every clause of § 2 is a computation, so the kernel is doing arithmetic, not
-mathematics. A tier-1 proof is a *recomputation certificate*.
+Every clause of § 2 is a computation, so the kernel is doing arithmetic rather than
+mathematics. A proof at this tier is a **recomputation certificate**.
 
-That is still worth having — it is exact, it is reproducible by anyone, and it
-localises which criterion a map violates. But it does not need a proof assistant,
-and pretending otherwise would be the wrong sales pitch.
+That is worth having — exact, reproducible by anyone, and it localises which
+criterion a map broke. But it does not need a theorem prover, and claiming
+otherwise is how you lose the first competent person in the room.
+
+</v-click>
 
 <v-click>
 
-The interesting requirement is the one that *cannot* be a computation. That is
-§ 5, and it is next.
+<p class="muted">
+The requirement that <em>cannot</em> be a computation is § 5, and it is coming.
+</p>
 
-</v-click>
 </v-click>
 </div>
 </div>
 
 <!--
-Don't oversell tier 1. If you claim a proof assistant is needed to check five
-inequalities, the first competent person in the room stops believing you.
+Do not oversell tier one. If you claim a proof assistant is needed to check five
+inequalities, you have handed the sceptic their opening.
 
-The axiom line matters: `propext` only. No `sorryAx`, no native evaluation. We
-will see in a few slides why that line is checked by a build failure rather than
-read by eye.
+The axiom line is the thing to point at: propext only.
 -->
 
 ---
 
-<div class="kicker">step 3 — a state does not comply</div>
+<div class="kicker">a state files badly</div>
 
 ## Refuted on exactly one named clause
 
@@ -552,7 +762,7 @@ read by eye.
 
 <v-click>
 
-The map clears *every* structural clause. It is contiguous, population-equal and
+The map clears *every* structural clause — contiguous, population-equal,
 county-respecting. Four districts packed at 75% and six cracked below 50% put the
 efficiency gap at *<Val check="gerryland1-s2" gap />*.
 
@@ -561,8 +771,8 @@ efficiency gap at *<Val check="gerryland1-s2" gap />*.
 <v-click>
 
 Naming the clause is what makes this actionable. "The conjunction failed" tells a
-state nothing; "your efficiency gap is 18%" tells it what to change — and tells
-the public what the objection actually is.
+state nothing. "Your efficiency gap is 18%" tells it what to change, and tells the
+public what the objection actually is.
 
 </v-click>
 
@@ -571,15 +781,15 @@ the public what the objection actually is.
 
 <!--
 The bar chart is the tell: four bars far right, six far left, nothing near the
-middle. That is packing and cracking drawn as data.
+middle.
 
-The per-clause report comes from the same DSL source as the rule itself, so the
-clause names in the verdict cannot drift from the clause names in the statute.
+The clause names come from the same DSL source as the rule, so a verdict cannot
+name a clause the statute does not have.
 -->
 
 ---
 
-<div class="kicker">step 4 — the twist</div>
+<div class="kicker">the twist</div>
 
 ## The revised map passes § 2 — with Fairfax's exact efficiency gap
 
@@ -611,31 +821,31 @@ gap <Val check="gerryland2-s2" gap /> · <Val check="gerryland2-s2" seats /> sea
 
 <v-click>
 
-Same voters as before, redrawn. The gap is now
-*<Val check="gerryland2-s2" gap />* — identical to Fairfax's, to the basis point.
-On the snapshot rule these two maps are *indistinguishable*.
+Same voters, redrawn. The gap is now *<Val check="gerryland2-s2" gap />* —
+identical to Fairfax's, to the basis point. On the snapshot rule these two maps
+are *indistinguishable*.
 
 </v-click>
 
 <v-click>
 
-A rule that stops here has been satisfied. Whether it has been *complied with* is
-a different question.
+A rule that stops here has been satisfied. Whether it has been *complied with* is a
+different question.
 
 </v-click>
 
 <!--
-This is the hinge of the whole demo. Slow down.
+This is the hinge. Slow down.
 
-Two maps, same statewide vote, same seat count, same efficiency gap to the basis
-point. Any metric-based rule that measures the reference election alone certifies
-both. Ask the room what they would do next — the honest answer is "add more
-metrics", and the next slide is why that is not enough.
+Same statewide vote, same seat count, same efficiency gap to the basis point. Any
+rule that measures the reference election alone certifies both. Ask the room what
+they would do next — the honest answer is "add more metrics", and the next slide
+is why that is not enough.
 -->
 
 ---
 
-<div class="kicker">step 5 — the difference</div>
+<div class="kicker">what § 2 cannot see</div>
 
 ## What happens when opinion moves
 
@@ -647,24 +857,22 @@ than re-derived for this chart. Gerryland v1 is off this scale at
 
 <v-click>
 
-Fairfax's gap sawtooths and stays inside the limit across the whole band.
-Gerryland v2's runs straight through it —
-*<Val plan="gerryland2" :at-swing="-500" />* at a five-point swing toward B,
-*<Val plan="gerryland2" :at-swing="500" />* toward A.
+Fairfax sawtooths and stays inside the limit across the whole band. Gerryland v2
+runs straight through it — *<Val plan="gerryland2" :at-swing="-500" />* at a
+five-point swing toward B, *<Val plan="gerryland2" :at-swing="500" />* toward A.
 
 </v-click>
 
 <!--
-Let the picture do the work before you explain it. Hover along the lines to call
-out values; the `table` toggle in the legend has the numbers.
+Let the picture work before explaining it. Hover along the lines for values; the
+`table` toggle in the legend has the numbers.
 
-The sawtooth is seats changing hands. Each near-vertical drop in the green line is
-one district flipping, which pushes the gap back the other way. The purple line
-has no drops at all, because nothing in that map ever changes hands inside the
-band.
+Each near-vertical drop in the green line is a seat changing hands, which pushes
+the gap back the other way. The purple line has no drops at all, because nothing
+in that map ever changes hands inside the band.
 
-Both curves have the same slope everywhere: **the gap moves at exactly twice the
-swing** between seat changes. That is a theorem, not an observation from the chart.
+Both curves have the same slope everywhere: the gap moves at exactly twice the
+swing between seat changes. That is a theorem, not an eyeball reading.
 -->
 
 ---
@@ -709,20 +917,20 @@ where seats actually change hands.
 
 *A durability requirement turns out to be a responsiveness requirement* — and the
 maps it rejects are the ones built out of safe seats. That is not what you would
-guess from reading the words, and it is the kind of thing formalising a rule is
-good for.
+guess from reading the words, and it is exactly the kind of thing formalising a
+rule is good for.
 
 </v-click>
 
 <!--
-This is the most interesting result in the project and it was not the plan. The
-requirement was written as "the gap stays bounded under swing", which sounds like
-a stability condition. Proving it showed that stability is only achievable through
+The most interesting result in the project, and it was not the plan. The
+requirement was drafted as "the gap stays bounded under swing", which sounds like a
+stability condition. Proving it showed stability is only reachable through
 responsiveness.
 
 If someone objects that competitive districts are a policy choice rather than a
 legal requirement — yes, exactly. The formalisation surfaced a policy consequence
-the drafter did not write down. That is an argument *for* formalising, not against.
+the drafter did not write down. That is an argument *for* formalising.
 -->
 
 ---
@@ -789,15 +997,13 @@ settle all 1001 swings in it.
 
 <!--
 This is the answer to "couldn't you just check every swing?" At ±5 points you
-could, if slowly. At ±50 you could not, and the certificate is the same length.
+could, slowly. At ±50 you could not, and the certificate is the same length.
 
-Walk the three cards in order and point at the chart for each. The green line is
-the argument drawn out: two straight climbs, two drops where a seat changes hands,
-and rings only at the ends of each climb.
+Walk the three cards and point at the chart for each. The green line is the
+argument drawn out.
 
-Worth saying out loud: this is not an approximation or a sampling argument. The
-middle of a stretch is not spot-checked, it is *proved* — the theorem is what
-licenses skipping it.
+Say out loud that this is not sampling. The middle of a stretch is not
+spot-checked, it is *proved* — the theorem is what licenses skipping it.
 -->
 
 ---
@@ -838,9 +1044,9 @@ licenses skipping it.
 
 <p class="small">
 −150 and −149 look redundant. They are not. A stretch has to have no jump inside
-it, so the list stops just before each seat change and restarts just after.
-Swings are counted in whole hundredths of a point, so "just before" and "just
-after" are exact values, not an approximation.
+it, so the list stops just before each seat change and restarts just after. Swings
+are counted in whole hundredths of a point, so "just before" and "just after" are
+exact values, not an approximation.
 </p>
 
 </div>
@@ -873,18 +1079,16 @@ division is what makes this shape work outside a demo.
 </div>
 
 <!--
-If there is one slide to remember for adapting this to another domain, it is this
-one: **regulators publish lemmas, regulated actors supply certificates.**
+If there is one slide to remember for adapting this elsewhere, it is this one:
+**regulators publish lemmas, regulated actors supply certificates.**
 
-The hard mathematics is done once, by the party that wrote the rule and has both
-the expertise and the standing to be believed. Each filer contributes something
-cheap and specific to their own situation. A scheme that asked every regulated
-actor to produce original mathematics would never get off the ground.
+A scheme that asked every regulated actor to produce original mathematics would
+never get off the ground. This one asks them for a list.
 -->
 
 ---
 
-<div class="kicker">step 6 — the verdict § 2 could not reach</div>
+<div class="kicker">the verdict § 2 could not reach</div>
 
 ## The same certificate, on the map that cannot support it
 
@@ -899,10 +1103,9 @@ actor to produce original mathematics would never get off the ground.
 
 ### Three-way, on purpose
 
-Note the clause status. A tier-1 clause is decidable, so evaluation settles it
-either way. A tier-2 clause quantifies over an unbounded range: evaluation can
-*refute* it by exhibiting a swing that breaks the bound, but it can never confirm
-it.
+A tier-1 clause is decidable, so evaluation settles it either way. A tier-2 clause
+covers an unbounded range: evaluation can *refute* it by exhibiting a swing that
+breaks the bound, but it can never confirm it.
 
 So the checker reports `holds`, `refuted`, or `undecided` — never a guess.
 Collapsing `undecided` into `refuted` would accuse every unproved map of a
@@ -922,11 +1125,80 @@ Fairfax's § 5 verdict is <em>verified</em> with its swing clause reported
 </div>
 
 <!--
-The three-way status is a small thing that people notice and like. Most compliance
-tooling has two states and lies in one direction or the other.
+Most compliance tooling has two states and lies in one direction or the other. The
+three-way status is a small thing people notice and like.
 
-Contrast the two § 5 verdicts explicitly: same clause, same evaluator, one
-*refuted* by a counterexample and one *undecided* until a proof arrived.
+Contrast the two § 5 verdicts explicitly: same clause, same evaluator, one refuted
+by a counterexample and one undecided until a proof arrived.
+-->
+
+---
+
+<div class="kicker">the hard part nobody expects</div>
+
+## A proof is about a Lean value. A record is bytes.
+
+If those two can drift apart, a proof certifies nothing in particular. Something has
+to fix the correspondence — and *who* fixes it decides whether two honest checkers
+can disagree.
+
+<div class="cols">
+<div>
+<v-click>
+<div class="card tag bad">
+
+### If the checker owns the decode
+
+Two honest checkers reach opposite verdicts about the same CID and neither is
+wrong, because nothing published says which reading is correct.
+
+</div>
+</v-click>
+</div>
+
+<div>
+<v-click>
+<div class="card tag good">
+
+### So the theory owns it
+
+```json
+{ "lexicon":  "gov.redistrict.plan",
+  "leanType": "Redistrict.Plan",
+  "decoder":  "Redistrict.Codec.decodePlan" }
+```
+
+</div>
+</v-click>
+</div>
+</div>
+
+<v-click>
+
+All three are needed. The lexicon alone does not fix a representation; the Lean
+type alone does not fix which records are eligible. The checker's remaining share
+is a *transliteration* — field for field, no reordering, no defaulting, no
+decisions.
+
+</v-click>
+
+<v-click>
+
+One consequence worth stating: the decoder is *total*. A record that does not
+decode becomes a plan with no precincts, which fails the well-formedness clause
+every requirement opens with. So a malformed artifact cannot be certified — not by
+checker etiquette, but because *the obligation is false*.
+
+</v-click>
+
+<!--
+This is the slide that separates a demo from a design. Most "put proofs on a
+ledger" proposals never address it, and it is where they quietly fail.
+
+The total-decoder trick is worth pausing on. The naive move is to have the checker
+reject undecodable records, which works until a checker forgets. Making the
+obligation *false* instead enforces the property with mathematics rather than with
+everybody remembering.
 -->
 
 ---
@@ -951,9 +1223,8 @@ from the party being regulated has this hole, and it is not fixable downstream.
 
 <v-click>
 
-So the proof record has no statement field. The checker derives the obligation
-from the requirement CID and the artifact CID and *writes the signature line
-itself*:
+So the proof record has no statement field. The checker derives the obligation from
+the requirement CID and the artifact CID and *writes the signature line itself*:
 
 </v-click>
 
@@ -1010,13 +1281,13 @@ by decide
 </div>
 
 <!--
-Ask the room how they would attack the system before revealing this. Someone
-usually gets it.
+Ask the room how they would attack this before revealing it. Someone usually gets
+there.
 
-Show that the statement module is compiled to a `.olean` *before* the prover's
-text is elaborated at all. The prover cannot redefine `Obligation.stmt` because it
-is already declared in an imported module — that is a duplicate-declaration error
-— and the signature the checker wrote still refers to the imported one. Both fire;
+The statement module is compiled to a `.olean` *before* the prover's text is
+elaborated at all. The prover cannot redefine `Obligation.stmt`, because it is
+already declared in an imported module — that is a duplicate-declaration error —
+and the signature the checker wrote still refers to the imported one. Both fire;
 either would do.
 -->
 
@@ -1038,13 +1309,12 @@ either would do.
 <v-click>
 <div class="card tag good">
 
-### Why the audit is a build failure
+### Each is tested with the others routed around
 
 <p class="small">
-<code>#print axioms</code> reports to stdout, and a checker built on scraping
-stdout <em>fails open</em>: change the format, drop the output, mis-parse a name,
-and an unproved theorem sails through. <code>#assert_axioms</code> runs the same
-query and exits nonzero.
+The axiom test deliberately <em>bypasses</em> the screen and drives Lean directly.
+A suite that only ever exercised the cheapest defence would keep passing after the
+expensive one was deleted.
 </p>
 
 </div>
@@ -1055,12 +1325,13 @@ query and exits nonzero.
 <v-click>
 <div class="card tag warn">
 
-### The screen is not what keeps this sound
+### What is not defended
 
 <p class="small">
-Anything that would be unsound if it slipped past the denylist is a design bug. So
-the axiom test deliberately <em>bypasses</em> the screen and drives Lean directly —
-a suite that only tested the denylist would pass with the audit deleted.
+Elaborating a stranger's Lean is running their code. This checker enforces a
+timeout and nothing else — no filesystem sandbox, no network isolation. Every
+verdict says so in its <code>checker.sandbox</code> field rather than letting a
+reader assume otherwise.
 </p>
 
 </div>
@@ -1072,28 +1343,26 @@ a suite that only tested the denylist would pass with the audit deleted.
 
 <p class="muted">
 Also covered: artifact swapping, injection through the requirement's
-<code>leanProp</code> field, a toolchain the theory does not name, an artifact of
-the wrong type, post-hoc mutation of a certified map, and a swing certificate that
-does not span its band. 49 tests, all green.
+<code>leanProp</code> field, an unrecognised toolchain, a wrong-typed artifact,
+post-hoc mutation of a certified map, and a swing certificate that does not span
+its band. 49 tests, all green.
 </p>
 
 </v-click>
 
 <!--
-The point of this slide is methodological, not technical: **each defence is tested
-with the others routed around**. Layered defences rot silently when the cheapest
-one always fires first.
+The methodological point matters more than any individual defence: layered defences
+rot silently when the cheapest one always fires first.
 
-If asked what is *not* defended: elaborating a stranger's Lean is running their
-code. The checker enforces a timeout and nothing else. Every verdict says so in
-its `checker.sandbox` field rather than letting a reader assume otherwise.
+If you want to hand someone a single file that argues this project is serious, hand
+them test/adversarial.test.ts.
 -->
 
 ---
 
-<div class="kicker">the output</div>
+<div class="kicker">back to labels</div>
 
-## A label cannot carry evidence, so two records
+## A label cannot carry evidence, so: two records
 
 <div class="cols">
 <div>
@@ -1113,8 +1382,8 @@ its `checker.sandbox` field rather than letting a reader assume otherwise.
 
 <p class="small">
 The spec constrains <code>val</code> to a bare kebab-case token of at most 128
-bytes. No fields. No structure. It propagates cheaply to everyone subscribed to a
-labeler — and that is all it can do.
+bytes. No fields, no structure. It propagates cheaply to everyone subscribed to a
+labeler, and that is all it can do.
 </p>
 
 </div>
@@ -1130,9 +1399,9 @@ labeler — and that is all it can do.
 | | |
 | --- | --- |
 | outcome | `refuted` |
-| failing clause | <code><Val check="gerryland1-s2" clause /></code> |
+| failing clause | `<Val check="gerryland1-s2" clause />` |
 | obligation digest | <Cid of="gerryland1-s2" /> |
-| axioms | <code><Val check="fairfax-s5" axioms /></code> |
+| axioms | `<Val check="fairfax-s5" axioms />` |
 | sandbox | `host-process (timeout only)` |
 | log | `blob + sha256` |
 
@@ -1145,23 +1414,21 @@ labeler — and that is all it can do.
 
 The label's subject is the proof's URI *and* CID, so rewriting the proof drops the
 label rather than following the edit to text nobody checked. And the verdict lives
-in the *checker's* repository, because a verdict is the checker's speech about
-someone else's record.
+in the *checker's* repo, because a verdict is the checker's speech about someone
+else's record.
 
 </v-click>
 
 <!--
-The 128-byte constraint is a genuine protocol limit, and working with it rather
-than around it produced a better design: a cheap index that propagates plus a rich
-receipt that doesn't.
+Working with the 128-byte constraint rather than around it produced a better
+design: a cheap index that propagates, plus a rich receipt that does not.
 
-`obligationDigest` is the field to point at — it is what makes two independent
-verdicts comparable, and it sets up the next slide.
+`obligationDigest` is the field to point at — it sets up the next slide.
 -->
 
 ---
 
-<div class="kicker">step 7 — the payoff</div>
+<div class="kicker">the payoff</div>
 
 ## An unaffiliated party re-checks and agrees
 
@@ -1177,35 +1444,34 @@ Identical, byte for byte. Two parties with nothing in common demonstrably checke
 <v-click>
 
 The watchdog has no standing, no accreditation and no permission. It read three
-CIDs and published its own verdict into its own repository. A reader compares
-sources rather than trusting one — and if the two digests had *differed*, that
-would itself be the finding: a bug, or a disagreement about decoding, and either
-is worth knowing about.
+CIDs and published its own verdict into its own repo. A reader compares sources
+rather than trusting one — and if the digests had *differed*, that would itself be
+the finding: a bug, or a disagreement about decoding, and either is worth knowing
+about.
 
 </v-click>
 
 <v-click>
 
 <p class="muted">
-This is the slide that justifies the protocol. Every other property — the DSL, the
-theorem, the axiom audit — could live inside one agency's pipeline. This one
-cannot.
+This is the slide that justifies the protocol. The DSL, the theorem, the axiom
+audit — all of those could live inside one agency's pipeline. This one cannot.
 </p>
 
 </v-click>
 
 <!--
-Land this hard. It is the answer to "why not just build this as an internal tool".
+Land it. This is the answer to "why not build it as an internal tool".
 
-The failure case is as interesting as the success case: differing digests would
-mean the two checkers disagree about what the record *means*, and the design makes
-that disagreement visible and specific instead of leaving two conflicting verdicts
-with no way to tell why.
+The failure case is as interesting as the success: differing digests mean the two
+checkers disagree about what the record *means*, and the design makes that
+disagreement specific rather than leaving two conflicting verdicts with no way to
+tell why.
 -->
 
 ---
 
-<div class="kicker">step 8 — versioning for free</div>
+<div class="kicker">versioning, for free</div>
 
 ## One number changes. The certification stops applying.
 
@@ -1217,18 +1483,17 @@ certified.
 <v-click>
 
 The proof still elaborates. It is simply no longer about anything that is
-published. Nobody had to notice the edit, and no invalidation job had to run — the
+published. Nobody had to notice the edit and no invalidation job had to run — the
 reference was a hash, and the hash moved.
 
 </v-click>
 
 <v-click>
 
-The same mechanism handles the regulator's side. Amend a requirement and every
-proof against the old CID becomes detectably stale rather than silently
-reinterpreted as a proof of the new rule. `proof-stale` is a distinct label from
-`proof-refuted`, because "this is out of date" and "this is a violation" are
-different accusations.
+Same mechanism on the regulator's side. Amend a requirement and every proof against
+the old CID becomes detectably stale rather than silently reinterpreted as a proof
+of the new rule. `proof-stale` is a distinct label from `proof-refuted`, because
+"this is out of date" and "this is a violation" are different accusations.
 
 </v-click>
 
@@ -1264,7 +1529,7 @@ touch can prove contiguity of a map that is not contiguous.
 <v-click>
 <div class="card tag warn">
 
-### This is not a gap to close by better proving
+### Not a gap to close by better proving
 
 <p class="small">
 It is where formal methods stop. Every system of this kind has this boundary; most
@@ -1294,16 +1559,15 @@ assumption becomes attributable and localised instead of buried.
 </div>
 
 <!--
-Do not skip this slide, and do not rush it. In a room of skeptics it buys more
-credibility than any of the technical slides.
+Do not skip this and do not rush it. In a room of sceptics it buys more credibility
+than any of the technical slides.
 
-The framing to use: the system does not eliminate trust, it *relocates* it — from
-"trust that the agency checked" to "trust that the census is honest". The second is
-a much smaller, much more scrutinised surface, and it is now named in the record.
+The framing: the system does not eliminate trust, it *relocates* it — from "trust
+that the agency checked" to "trust that the census is honest". The second is a much
+smaller, much more scrutinised surface, and it is now named in the record.
 
-Whether those authorities are credible is a question for humans. The point is that
-the question is now askable, and points somewhere specific. Adjacency should get
-the same treatment — a `geometrySource` is the obvious next field.
+Adjacency should get the same treatment. A `geometrySource` is the obvious next
+field and it does not exist yet.
 -->
 
 ---
@@ -1329,29 +1593,26 @@ layout: default
 <v-click>
 
 The shape recurs because the underlying problem does: a snapshot rule is gameable,
-the honest rule quantifies over a space too large to enumerate, and the regulator
-is the only party with both the expertise and the standing to carry the general
+the honest rule covers more cases than anyone can enumerate, and the regulator is
+the only party with both the expertise and the standing to carry the general
 argument.
 
 </v-click>
 
 <!--
 Pick whichever column the room cares about and walk it top to bottom. The
-redistricting column is there as the worked example, not the destination.
+redistricting column is the worked example, not the destination.
 
-The row to dwell on is the last two. **Regulators publish lemmas; regulated actors
-supply certificates.** That division is what makes this scale — the hard
-mathematics is done once, by the party writing the rule, and each filer contributes
-something cheap and specific to their own situation.
+The last two rows are the ones to dwell on. Regulators publish lemmas; regulated
+actors supply certificates.
 
-The emissions column is the most immediately plausible: envelope-based permits
-already work this way informally, with the "proof" being a spreadsheet nobody
-re-runs.
+Emissions is the most immediately plausible: envelope-based permits already work
+this way informally, with the "proof" being a spreadsheet nobody re-runs.
 -->
 
 ---
 
-<div class="kicker">before you try it</div>
+<div class="kicker">before you try it at home</div>
 
 ## What has to be true — and when this is the wrong tool
 
@@ -1364,8 +1625,8 @@ re-runs.
 
 - The artifact can be *published as data*, not as a PDF.
 - There is a numeric core people already argue about.
-- At least one obligation quantifies over something you cannot enumerate —
-  otherwise a dashboard is cheaper and just as good.
+- At least one obligation covers more cases than you can enumerate — otherwise a
+  dashboard is cheaper and just as good.
 - The regulator can carry the general lemma.
 - Someone other than the regulator has a motive to re-check. Without that, the
   protocol is doing no work.
@@ -1383,8 +1644,8 @@ re-runs.
 - The hard part is whether the *inputs* are honest. Proof does not help; audit
   does.
 - The rule turns on a judgement call — "reasonable", "material", "in good faith".
-  Formalising these does not make them precise, it just moves the argument to
-  whoever wrote the formalisation.
+  Formalising these does not make them precise, it moves the argument to whoever
+  wrote the formalisation, and hides it there.
 - The artifact is a narrative.
 - Nobody can be compelled to publish. A voluntary scheme selects for the
   compliant.
@@ -1398,19 +1659,17 @@ re-runs.
 
 The temptation is to formalise the whole statute. Resist it. The value is
 concentrated in the few clauses that are *numeric, contested, and currently
-unverifiable* — and a system that covers those honestly is worth more than one that
+unverifiable*, and a system that covers those honestly is worth more than one that
 claims to cover everything.
 
 </v-click>
 
 <!--
-The "doesn't fit" column is the one that earns trust. Anyone who has watched a
-formal-methods pitch has seen someone claim a technique generalises to everything.
+The "doesn't fit" column is the one that earns trust. Anyone who has sat through a
+formal-methods pitch has heard someone claim the technique generalises to
+everything.
 
-The judgement-call point is the deepest objection and worth conceding fully:
-formalising "reasonable" does not make it precise, it relocates the discretion to
-whoever chose the formalisation — and hides it, which is worse than leaving it in
-the open.
+The judgement-call point is the deepest objection and worth conceding fully.
 -->
 
 ---
@@ -1421,27 +1680,22 @@ the open.
 
 <v-clicks>
 
-- **Content addressing changes what a verdict is.** Three CIDs and a checker
-  anyone can run turns "the agency says so" into a computation you can repeat or
-  contradict.
-- **The prover must never supply the statement.** Every other defence is
-  secondary; a system without this one is producing labels, not findings.
-- **Publish the decoder with the rule.** Otherwise two honest checkers can
-  disagree about what a record means and neither is wrong.
-- **Regulators publish lemmas; regulated actors supply certificates.** That
-  division is what makes the check-every-case obligations tractable at scale.
+- **The moderation shape generalises.** Record, label, subscriber choice — it works
+  just as well when the record is a claim and the label means "we checked".
+- **Layer the auditability.** The public reads a rule, experts audit what the words
+  mean, the stubborn check the axioms. Nobody has to understand all of it.
+- **An embedded DSL means one artifact.** The text everyone argues about and the
+  thing the kernel checks are the same object, so they cannot drift.
+- **The prover must never supply the statement.** Every other defence is secondary;
+  without this one you are producing labels, not findings.
 - **Say what the proof does not cover.** The trust boundary belongs in the record
   graph, not in a footnote.
 
 </v-clicks>
 
 <!--
-If you only keep one line: **a verdict here is not an authority's assertion, it is
-a computation with named inputs.** Everything else is in service of making that
-true.
-
-Offer the adversarial test file to anyone who wants to poke at the trust model —
-it is the most convincing artifact in the repository.
+If you only keep one line: a verdict here is not an authority's assertion, it is a
+computation with named inputs. Everything else serves making that true.
 -->
 
 ---
@@ -1493,9 +1747,8 @@ pnpm present              # this deck
 ### The interesting bits
 
 <ul>
-<li><code>lean/Redistrict/Swing.lean</code> — the durability theorem and the
-  certificate.</li>
 <li><code>lean/Redistrict/Dsl.lean</code> — the requirement language.</li>
+<li><code>lean/Redistrict/Swing.lean</code> — the durability theorem.</li>
 <li><code>presentation/slides.md</code> — this talk.</li>
 </ul>
 
@@ -1509,7 +1762,7 @@ pnpm present              # this deck
 
 <p class="muted" style="margin-top:0.6rem">
 Everything you have just seen was produced by that code —
-<Val count="repos" /> repositories, <Val count="labels" /> signed labels,
+<Val count="repos" /> repos, <Val count="labels" /> signed labels,
 <Val toolchain />. Clone it and the CIDs come out the same.
 </p>
 
@@ -1519,13 +1772,10 @@ Everything you have just seen was produced by that code —
 The last thing on screen should be the thing you want someone to act on, so this
 slide is the link and nothing else.
 
-If you are asked what to look at first: DESIGN.md for the argument, the
-adversarial tests for whether to believe it. The tests are the honest answer to
-"how do you know the checker can't be fooled" — each defence is tested with the
-others routed around.
+If asked what to read first: DESIGN.md for the argument, the adversarial tests for
+whether to believe it.
 
-The reproducibility line is worth saying out loud. Keys and timestamps are
-seeded, so a clone regenerates the same DIDs and the same content hashes. The
-CIDs on these slides are not decoration; they are checkable.
+The reproducibility line is worth saying out loud. Keys and timestamps are seeded,
+so a clone regenerates the same DIDs and the same content hashes. The CIDs on these
+slides are checkable, not decoration.
 -->
-

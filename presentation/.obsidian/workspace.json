@@ -184,5 +184,18 @@
     }
   },
   "active": "8bb717d7aacea982",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "dist/_redirects",
+    "dist/404.html",
+    "dist/assets/slidev/utils-8jtj8fzl.js",
+    "dist/assets/slidev/shortcuts-CfGj1ZLB.js",
+    "dist/assets/slidev/presenter-BECs4hCK.js",
+    "dist/assets/slidev/play-Bf2Qd_zC.js",
+    "dist/assets/slidev/overview-BZLllUe_.js",
+    "dist/assets/slidev/notes-edit-BD5hkkmm.js",
+    "dist/assets/slidev/notes-5Fx2l4Lp.js",
+    "dist/assets/slidev/md-DOqUWUem.js",
+    "dist/assets/slidev/env-BszG6FfJ.js",
+    "dist/assets/logo-BYkHSa_O.png"
+  ]
 }
