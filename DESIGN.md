@@ -376,6 +376,8 @@ cd lean && lake build     # the regulator's theory
 pnpm install
 pnpm demo                 # the full story, ~60s
 pnpm test                 # metrics + adversarial suite
+pnpm present              # the slide deck (Slidev; prose in presentation/slides.md)
+pnpm present:data         # re-capture the deck's figures from a fresh run
 ```
 
 `pnpm demo` runs offline. There is no server and no HTTP, but records are

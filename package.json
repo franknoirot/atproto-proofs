@@ -6,10 +6,13 @@
   "description": "Proof-carrying regulation on atproto: a regulator publishes machine-checkable requirements, regulated actors publish Lean proofs, anyone can re-run the check.",
   "scripts": {
     "demo": "tsx scripts/demo.ts",
+    "present": "slidev presentation/slides.md --open",
+    "present:data": "tsx scripts/present.ts",
+    "present:build": "slidev build presentation/slides.md --out dist --base ./",
+    "present:pdf": "slidev export presentation/slides.md --output presentation/deck.pdf",
     "lean:build": "cd lean && lake build",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
-    "present": "tsx scripts/present.ts"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@atproto/common": "^0.4.11",
@@ -20,9 +23,18 @@
     "multiformats": "^13.3.2"
   },
   "devDependencies": {
+    "@slidev/cli": "^52.19.1",
+    "@slidev/theme-default": "^0.25.0",
     "@types/node": "^22.13.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "vue": "^3.5.41"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "cbor-extract"
+    ]
   }
 }
