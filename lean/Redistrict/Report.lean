@@ -64,6 +64,32 @@ def popDevBp (p : Plan) : Nat :=
 def worstCountySplit (p : Plan) : Nat :=
   (List.range p.countyCount).foldl (init := 0) fun worst c => max worst (p.countySplits c)
 
+/-- Party A's share of the two-party vote in each district, in basis points. -/
+def districtSharesBp (p : Plan) : List Int :=
+  p.tallies.map fun dt => if dt.t == 0 then 0 else (10000 * dt.a) / dt.t
+
+/-- The efficiency gap sampled across a band of uniform swings, as JSON.
+
+Exists so that a chart of the gap against the swing is drawn from the theory's
+own arithmetic rather than from a second implementation in the presentation
+layer. A picture that disagreed with the obligation would be worse than no
+picture. -/
+def swingCurveJson (p : Plan) (lo hi step : Int) : String :=
+  let rec go (s : Int) (fuel : Nat) (acc : List String) : List String :=
+    match fuel with
+    | 0 => acc.reverse
+    | fuel + 1 =>
+        if s > hi then acc.reverse
+        else
+          let swung := p.tallies.map (Tally.swing s)
+          let d := egDen swung
+          let gap := if d == 0 then 0 else (10000 * egNum swung) / d
+          let seats := swung.foldl (init := 0) fun n dt => if dt.winsA then n + 1 else n
+          go (s + step) fuel
+            (("{\"s\":" ++ toString s ++ ",\"egBp\":" ++ toString gap ++
+              ",\"seatsA\":" ++ toString seats ++ "}") :: acc)
+  "[" ++ String.intercalate "," (go lo 100000 []) ++ "]"
+
 /-- Everything a verdict quotes about a plan, as JSON. -/
 def summaryJson (p : Plan) : String :=
   "{\"districts\":" ++ toString p.districtCount ++

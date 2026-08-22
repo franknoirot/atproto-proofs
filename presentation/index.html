@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof-carrying regulation on atproto</title>
+<style>
+/* ------------------------------------------------------------------ tokens */
+/* Values from the data-viz reference palette, dark column. The deck renders
+   only in dark, so the light steps are omitted rather than left unused. */
+:root {
+  --plane:        #0d0d0d;
+  --surface:      #1a1a19;
+  --surface-2:    #222221;
+  --ink:          #ffffff;
+  --ink-2:        #c3c2b7;
+  --ink-muted:    #898781;
+  --grid:         #2c2c2a;
+  --axis:         #383835;
+  --hairline:     rgba(255,255,255,0.10);
+
+  /* Categorical identity — plans, in the swing chart. Validated all-pairs on
+     the dark surface: CVD ΔE 17.3, normal-vision ΔE 24.6. */
+  --plan-fairfax:   #199e70;   /* aqua,   slot 3 */
+  --plan-crackland: #9085e9;   /* violet, slot 7 */
+
+  /* Diverging — party lean. blue <-> orange: warm/cool poles, neutral gray
+     midpoint. Deliberately NOT red/blue, which would import a specific party
+     mapping into what are abstract parties A and B. */
+  --lean-a-strong: #86b6ef;
+  --lean-a:        #3987e5;
+  --even:          #383835;
+  --lean-b:        #d95926;
+  --lean-b-strong: #f0a06a;
+
+  --good:     #0ca30c;
+  --critical: #d03b3b;
+  --warning:  #fab219;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; height: 100%;
+  background: var(--plane); color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ layout */
+#deck { height: 100%; display: flex; flex-direction: column; }
+
+#stage {
+  flex: 1; min-height: 0; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3.2vh 4vw 1vh;
+}
+
+.slide {
+  width: 100%; max-width: 1180px; max-height: 100%;
+  overflow-y: auto; overflow-x: hidden;
+  scrollbar-width: thin; scrollbar-color: var(--axis) transparent;
+}
+.slide::-webkit-scrollbar { width: 6px; }
+.slide::-webkit-scrollbar-thumb { background: var(--axis); border-radius: 3px; }
+
+.kicker {
+  font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 0.9rem; font-weight: 600;
+}
+h1 { font-size: clamp(1.9rem, 3.4vw, 3rem); line-height: 1.1; margin: 0 0 1.1rem; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.4rem, 2.3vw, 2.05rem); line-height: 1.15; margin: 0 0 1.1rem; letter-spacing: -0.015em; font-weight: 650; }
+h3 { font-size: 1rem; margin: 0 0 0.5rem; color: var(--ink-2); font-weight: 650; }
+p  { font-size: clamp(0.95rem, 1.28vw, 1.14rem); line-height: 1.55; color: var(--ink-2); margin: 0 0 0.85rem; max-width: 68ch; }
+p.lead { font-size: clamp(1.05rem, 1.5vw, 1.32rem); color: var(--ink); }
+strong { color: var(--ink); font-weight: 650; }
+em { font-style: normal; color: var(--ink); font-weight: 650; }
+a { color: var(--lean-a); }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 2.2rem; align-items: start; }
+.cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; align-items: start; }
+.tight p { margin-bottom: 0.5rem; }
+
+/* --------------------------------------------------------------- fragments */
+[data-frag] { opacity: 0.12; transition: opacity 220ms ease, transform 220ms ease; }
+[data-frag].on { opacity: 1; }
+[data-frag].lift { transform: translateY(4px); }
+[data-frag].lift.on { transform: none; }
+
+/* ------------------------------------------------------------------ pieces */
+.card {
+  background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: 10px; padding: 1rem 1.15rem;
+}
+.card.tag { border-left: 3px solid var(--axis); }
+.card.good   { border-left-color: var(--good); }
+.card.bad    { border-left-color: var(--critical); }
+.card.warn   { border-left-color: var(--warning); }
+
+code, .mono { font-family: var(--mono); font-size: 0.86em; }
+.cid { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-muted); }
+.did { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-muted); word-break: break-all; }
+
+pre {
+  background: var(--surface); border: 1px solid var(--hairline); border-radius: 8px;
+  padding: 0.85rem 1rem; overflow-x: auto; margin: 0 0 0.85rem;
+  font-family: var(--mono); font-size: 0.79rem; line-height: 1.5; color: var(--ink-2);
+  scrollbar-width: thin;
+}
+pre .k  { color: var(--lean-a); }        /* keyword / structural */
+pre .s  { color: var(--plan-fairfax); }  /* string */
+pre .c  { color: var(--ink-muted); }     /* comment */
+pre .hl { color: var(--ink); font-weight: 650; }
+pre .bad { color: var(--critical); }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { text-align: left; padding: 0.42rem 0.7rem; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { color: var(--ink-muted); font-weight: 600; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); }
+
+ul { margin: 0 0 0.85rem; padding-left: 1.15rem; }
+li { font-size: clamp(0.92rem, 1.2vw, 1.06rem); line-height: 1.55; color: var(--ink-2); margin-bottom: 0.42rem; }
+li::marker { color: var(--ink-muted); }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--mono); font-size: 0.75rem; padding: 0.18rem 0.55rem;
+  border-radius: 999px; border: 1px solid var(--hairline); color: var(--ink-2);
+  white-space: nowrap;
+}
+.pill.ok   { color: var(--good);     border-color: color-mix(in srgb, var(--good) 45%, transparent); }
+.pill.no   { color: var(--critical); border-color: color-mix(in srgb, var(--critical) 45%, transparent); }
+.pill.hold { color: var(--warning);  border-color: color-mix(in srgb, var(--warning) 45%, transparent); }
+
+.status { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; }
+.status .glyph { font-family: var(--mono); }
+.s-ok   { color: var(--good); }
+.s-no   { color: var(--critical); }
+.s-hold { color: var(--warning); }
+
+figure { margin: 0 0 0.7rem; }
+figcaption { font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.5rem; line-height: 1.45; max-width: 76ch; }
+
+svg { display: block; max-width: 100%; height: auto; }
+svg text { font-family: var(--sans); }
+.tick { font-size: 11px; fill: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.axlabel { font-size: 11px; fill: var(--ink-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.dlabel { font-size: 12px; font-weight: 650; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; font-size: 0.82rem; color: var(--ink-2); margin-bottom: 0.6rem; }
+.legend .item { display: inline-flex; align-items: center; gap: 0.45rem; }
+.legend .swatch { width: 14px; height: 3px; border-radius: 2px; }
+.legend .swatch.box { height: 12px; width: 12px; border-radius: 3px; }
+
+/* ------------------------------------------------------------------ chrome */
+#bar {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 1rem;
+  padding: 0.5rem 1.2rem; border-top: 1px solid var(--grid);
+  font-size: 0.72rem; color: var(--ink-muted); background: var(--plane);
+}
+#progress { flex: 1; height: 2px; background: var(--grid); border-radius: 1px; overflow: hidden; }
+#progress > i { display: block; height: 100%; background: var(--ink-muted); transition: width 200ms ease; }
+#counter { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+#hint { opacity: 0.75; }
+
+#notes {
+  display: none; flex: 0 0 auto; max-height: 34vh; overflow-y: auto;
+  padding: 0.9rem 1.4rem; border-top: 1px solid var(--grid);
+  background: var(--surface); font-size: 0.88rem; line-height: 1.55; color: var(--ink-2);
+}
+#notes.on { display: block; }
+#notes h4 { margin: 0 0 0.45rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
+#notes p { font-size: 0.88rem; max-width: 90ch; margin-bottom: 0.55rem; }
+#notes strong { color: var(--ink); }
+
+#overview {
+  position: fixed; inset: 0; background: var(--plane); z-index: 20;
+  display: none; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.7rem; padding: 1.4rem; overflow-y: auto; align-content: start;
+}
+#overview.on { display: grid; }
+#overview button {
+  text-align: left; background: var(--surface); border: 1px solid var(--hairline);
+  color: var(--ink-2); border-radius: 8px; padding: 0.7rem 0.8rem; cursor: pointer;
+  font-family: inherit; font-size: 0.8rem; line-height: 1.35;
+}
+#overview button:hover, #overview button.cur { border-color: var(--ink-muted); color: var(--ink); }
+#overview button .n { font-family: var(--mono); color: var(--ink-muted); margin-right: 0.45rem; }
+
+#help {
+  position: fixed; inset: 0; background: rgba(13,13,13,0.94); z-index: 30;
+  display: none; align-items: center; justify-content: center;
+}
+#help.on { display: flex; }
+#help .panel { background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; padding: 1.6rem 2rem; }
+#help kbd {
+  font-family: var(--mono); font-size: 0.78rem; background: var(--surface-2);
+  border: 1px solid var(--hairline); border-radius: 4px; padding: 0.1rem 0.4rem; color: var(--ink);
+}
+#help td { border: none; padding: 0.3rem 0.9rem 0.3rem 0; }
+
+/* tooltip for the swing chart */
+#tip {
+  position: fixed; pointer-events: none; z-index: 40; display: none;
+  background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 7px;
+  padding: 0.5rem 0.65rem; font-size: 0.78rem; color: var(--ink-2);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.5);
+}
+#tip .row { display: flex; align-items: center; gap: 0.45rem; white-space: nowrap; }
+#tip .sw { width: 10px; height: 3px; border-radius: 2px; }
+#tip b { color: var(--ink); font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+
+<div id="deck">
+  <div id="stage"><div class="slide" id="slide"></div></div>
+  <div id="notes"><h4>Presenter notes</h4><div id="notes-body"></div></div>
+  <div id="bar">
+    <span id="counter">1 / 1</span>
+    <div id="progress"><i style="width:0%"></i></div>
+    <span id="hint">→ next · <b>n</b> notes · <b>t</b> table · <b>o</b> overview · <b>?</b> keys</span>
+  </div>
+</div>
+
+<div id="overview"></div>
+<div id="help">
+  <div class="panel">
+    <table>
+      <tr><td><kbd>→</kbd> <kbd>space</kbd> <kbd>↓</kbd></td><td>next step or slide</td></tr>
+      <tr><td><kbd>←</kbd> <kbd>↑</kbd></td><td>back</td></tr>
+      <tr><td><kbd>home</kbd> <kbd>end</kbd></td><td>first / last slide</td></tr>
+      <tr><td><kbd>n</kbd></td><td>presenter notes</td></tr>
+      <tr><td><kbd>t</kbd></td><td>table view of this slide's chart</td></tr>
+      <tr><td><kbd>o</kbd></td><td>slide overview</td></tr>
+      <tr><td><kbd>f</kbd></td><td>fullscreen</td></tr>
+      <tr><td><kbd>esc</kbd></td><td>close overlay</td></tr>
+    </table>
+  </div>
+</div>
+
+<div id="tip"></div>
+
+<script src="data.js"></script>
+<script src="deck.js"></script>
+</body>
+</html>

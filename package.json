@@ -6,10 +6,10 @@
   "description": "Proof-carrying regulation on atproto: a regulator publishes machine-checkable requirements, regulated actors publish Lean proofs, anyone can re-run the check.",
   "scripts": {
     "demo": "tsx scripts/demo.ts",
-    "check": "tsx scripts/check.ts",
     "lean:build": "cd lean && lake build",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "present": "tsx scripts/present.ts"
   },
   "dependencies": {
     "@atproto/common": "^0.4.11",
