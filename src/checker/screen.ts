@@ -1,7 +1,7 @@
 /**
  * Lexical screening of a prover payload.
  *
- * This is defence in depth and nothing more. The guarantees that actually hold
+ * This is defense in depth and nothing more. The guarantees that actually hold
  * are structural: the checker writes the theorem's signature, so the prover
  * cannot choose what is proved; `Obligation.stmt` is imported, so it cannot be
  * shadowed; and `#assert_axioms` audits the finished proof against the kernel's
@@ -13,7 +13,7 @@
  * of kernel time later, with a message about axioms rather than about `sorry`.
  * Rejecting it at the door produces a better verdict for the same outcome. It is
  * also cheap insurance against metaprogramming reaching past the splice point in
- * ways the structural defences were not designed for.
+ * ways the structural defenses were not designed for.
  *
  * Screening must never be the *only* thing standing between a payload and a
  * `verified` label. Anything that would be unsound if it slipped past this file

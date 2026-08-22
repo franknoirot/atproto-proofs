@@ -11,7 +11,7 @@ the source this module compiles — there is no second version.
 
 **§ 2** is a snapshot rule: it constrains the map as drawn against the reference
 election. Every clause is decidable, so a proof of § 2 is a recomputation
-certificate. That is worth having — it is exact, reproducible, and localises
+certificate. That is worth having — it is exact, reproducible, and localizes
 which criterion a map violates — but it does not need a proof assistant.
 
 **§ 5** is a durability rule, and it is not decidable by evaluation. It

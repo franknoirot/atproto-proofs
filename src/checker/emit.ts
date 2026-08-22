@@ -3,7 +3,7 @@
  *
  * This is the checker's entire share of the decode, and it is deliberately
  * mechanical: field for field, string for string, integer for integer, with no
- * reordering, no defaulting, and no interpretation. Everything with a judgement
+ * reordering, no defaulting, and no interpretation. Everything with a judgment
  * in it — how precincts are numbered, how counties are indexed, what makes a
  * plan malformed — lives in `Redistrict.Codec` inside the regulator's theory,
  * where it is kernel-checked as part of the obligation.

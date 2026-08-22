@@ -134,7 +134,7 @@ export const spct = (bp: number) =>
 export const cellShareBp = (cell: Cell) =>
   Math.round((10000 * cell.votesA) / (cell.votesA + cell.votesB))
 
-/* ------------------------------------------------------------------- colour */
+/* ------------------------------------------------------------------- color */
 
 /**
  * Diverging fill for party lean, midpoint 50%.
@@ -142,7 +142,7 @@ export const cellShareBp = (cell: Cell) =>
  * Blue ↔ orange rather than blue ↔ red: warm/cool poles read as opposite, and
  * red/blue would import a specific party mapping onto what are abstract parties.
  * Validated against the dark surface — the cross-arm pairs a reader must never
- * confuse clear ΔE 18–32 under simulated colour-vision deficiency.
+ * confuse clear ΔE 18–32 under simulated color-vision deficiency.
  */
 export function leanFill(bp: number): string {
   const d = bp - 5000

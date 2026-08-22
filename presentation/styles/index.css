@@ -1,6 +1,6 @@
 /* Deck styling.
  *
- * Colour values are the data-viz reference palette's dark column. The deck
+ * Color values are the data-viz reference palette's dark column. The deck
  * renders only in dark, so the light steps are omitted rather than left unused.
  * Everything is referenced by role, so re-theming means editing this block and
  * nothing else. */
@@ -220,7 +220,7 @@ html { color-scheme: dark; }
    air or it reads as another row. */
 .domains { margin-bottom: 1.1rem; }
 
-/* The title slide is the one place vertical centring reads better than the
+/* The title slide is the one place vertical centering reads better than the
    consistent top alignment everywhere else. */
 .slidev-layout.intro { display: flex; flex-direction: column; justify-content: center; }
 

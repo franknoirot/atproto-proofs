@@ -1,7 +1,7 @@
 <!--
   The table-view twin for the district maps and share strips.
 
-  Every chart on a continuous or colour-coded scale needs a WCAG-clean
+  Every chart on a continuous or color-coded scale needs a WCAG-clean
   equivalent, and this doubles as the answer to "what is district 7 actually at?"
 -->
 <script setup lang="ts">

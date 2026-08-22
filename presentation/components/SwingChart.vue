@@ -187,7 +187,7 @@ const over = (v: number) => Math.abs(v) > LIMIT
       />
 
       <!-- Hover layer. The hit area is the whole plot, far bigger than any mark;
-           values are also direct-labelled at the line ends and in the table. -->
+           values are also direct-labeled at the line ends and in the table. -->
       <rect
         :x="M.l" :y="M.t" :width="geom.pw" :height="geom.ph" fill="transparent"
         @mousemove="track" @mouseleave="hover = null"

@@ -141,7 +141,7 @@ private def thresholdBp : TSyntax `rdThreshold → CommandElabM Nat
         throwErrorAt stx
           "threshold is finer than one basis point; basis points cannot represent it exactly"
       return m * (10 ^ (2 - e))
-  | stx => throwErrorAt stx "unrecognised threshold"
+  | stx => throwErrorAt stx "unrecognized threshold"
 
 /-- What one clause contributes: its machine name, the proposition it asserts,
 and how far evaluation alone can get with it.
@@ -181,7 +181,7 @@ private def clauseInfo (p : Ident) : TSyntax `rdClause → CommandElabM ClauseSp
       return { name := "swingRobustness"
                prop := ← `(SwingRobust $p $band $lim)
                probe := ← `(swingProbe $p $band $lim) }
-  | stx => throwErrorAt stx "unrecognised requirement clause"
+  | stx => throwErrorAt stx "unrecognized requirement clause"
 
 /-- Declare a requirement.
 

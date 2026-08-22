@@ -10,7 +10,7 @@
  * Several attacks are stopped by more than one mechanism. Where that is so, the
  * test checks each mechanism *on its own*, by routing around the earlier ones —
  * otherwise the suite would pass on the strength of the cheap lexical screen
- * while the structural defences quietly rotted.
+ * while the structural defenses quietly rotted.
  */
 
 import { resolve } from 'node:path'
@@ -52,7 +52,7 @@ async function submit(
 }
 
 describe('the lexical screen', () => {
-  // Defence in depth only. It exists so a hopeless payload fails fast with a
+  // Defense in depth only. It exists so a hopeless payload fails fast with a
   // legible message; the guarantees are tested separately below.
   it.each([
     ['a hole', 'by sorry'],

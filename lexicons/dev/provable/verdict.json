@@ -36,12 +36,12 @@
               "timeout",
               "unsupported"
             ],
-            "description": "verified: kernel accepted and the axiom set was clean. refuted: the obligation was well-formed and the payload did not discharge it. malformed: the payload was rejected before the kernel saw it. stale: a referenced record no longer hashes to its pinned CID. timeout: resource limits hit, which is not evidence either way. unsupported: the checker could not honour the pinned toolchain and declined rather than guessing."
+            "description": "verified: kernel accepted and the axiom set was clean. refuted: the obligation was well-formed and the payload did not discharge it. malformed: the payload was rejected before the kernel saw it. stale: a referenced record no longer hashes to its pinned CID. timeout: resource limits hit, which is not evidence either way. unsupported: the checker could not honor the pinned toolchain and declined rather than guessing."
           },
           "failedClause": {
             "type": "string",
             "maxLength": 64,
-            "description": "Which named conjunct of the requirement went unproved, when that can be localised. The difference between a refutation a legislator can act on and one they cannot."
+            "description": "Which named conjunct of the requirement went unproved, when that can be localized. The difference between a refutation a legislator can act on and one they cannot."
           },
           "axioms": {
             "type": "array",
@@ -60,7 +60,7 @@
             "type": "blob",
             "accept": ["text/plain"],
             "maxSize": 4194304,
-            "description": "Full build output. Attached rather than summarised, because a refutation nobody can inspect is just an assertion."
+            "description": "Full build output. Attached rather than summarized, because a refutation nobody can inspect is just an assertion."
           },
           "logDigest": { "type": "string", "maxLength": 128 },
           "checkedAt": { "type": "string", "format": "datetime" }

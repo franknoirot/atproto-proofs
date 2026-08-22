@@ -164,7 +164,7 @@ async function main() {
   if (fairfax5.result.outcome === 'verified') {
     await net.label(fedgov, s.plans.fairfax, 'districting-certified', { cts: T(2) })
     console.log(
-      `   ${green('✓')} plan labelled ${bold('districting-certified')} ` +
+      `   ${green('✓')} plan labeled ${bold('districting-certified')} ` +
         dim('(derived: every requirement in force has a verified proof)'),
     )
   }

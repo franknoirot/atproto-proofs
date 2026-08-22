@@ -192,7 +192,7 @@ export class Network {
    *
    * Subjects are given as strong references, not bare URIs, so the label is
    * pinned to the exact bytes it was issued about. Editing the subject changes
-   * its CID and the label simply stops applying — which is the behaviour you
+   * its CID and the label simply stops applying — which is the behavior you
    * want when the subject is a proof and the label says `proof-verified`.
    */
   async label(

@@ -81,7 +81,7 @@ because the gap moves at twice the swing between seat changes, durability is onl
 achievable when seats actually change hands. A durability rule is a
 *responsiveness* rule, and the maps it rejects are those built of safe seats.
 
-## The part that makes it not theatre
+## The part that makes it not theater
 
 There is no field in `dev.provable.proof` for the theorem statement. A prover who
 could write the statement would write `def NotGerrymandered _ := True` and prove
@@ -89,7 +89,7 @@ it in one line. The checker derives the obligation from the requirement CID and
 the artifact CID, writes the signature itself, and admits the prover's text only
 where it can be a justification.
 
-`test/adversarial.test.ts` attacks each defence separately — statement
+`test/adversarial.test.ts` attacks each defense separately — statement
 shadowing, artifact swapping, holes, native evaluation, injection via
 `leanProp`, post-hoc mutation of a certified map, and a swing certificate that
 does not span its band.

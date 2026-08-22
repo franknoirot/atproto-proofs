@@ -96,7 +96,7 @@ type alone does not fix which records are eligible.
 
 The checker's remaining share is a transliteration — `src/checker/emit.ts`,
 field for field, string for string, with no reordering and no defaulting. Every
-judgement (how precincts are numbered, how counties are indexed, what makes a
+judgment (how precincts are numbered, how counties are indexed, what makes a
 plan malformed) is in `lean/Redistrict/Codec.lean`, where it is kernel-checked as
 part of the obligation.
 
@@ -131,7 +131,7 @@ plan lexicon carries `censusSource` and `returnsSource` strongRefs to records
 published by separate authorities. The honest-input assumption becomes an
 attributable edge in the record graph. Whether those authorities are credible is
 a question for humans; the point is that the question is now askable, and
-localised, instead of buried.
+localized, instead of buried.
 
 The same applies to adjacency. Requiring a `geometrySource` alongside the other
 two would be the obvious next move.
@@ -153,7 +153,7 @@ but because nobody checked what was proved.
 
 So the prover supplies only a justification. The checker derives the statement
 from the requirement CID and the artifact CID and writes the signature line
-itself. Four defences, tested individually in `test/adversarial.test.ts`:
+itself. Four defenses, tested individually in `test/adversarial.test.ts`:
 
 1. **The statement is in its own module,** compiled before any prover text is
    elaborated. `Obligation.Statement` contains the transliterated record, the
@@ -171,7 +171,7 @@ itself. Four defences, tested individually in `test/adversarial.test.ts`:
    introduce, and rejects anything a prover declared with `axiom`.
 
 4. **A lexical screen** (`src/checker/screen.ts`) rejects the obvious cases
-   before elaboration. This is defence in depth and is explicitly *not* what
+   before elaboration. This is defense in depth and is explicitly *not* what
    keeps the system sound — anything that would be unsound if it slipped past the
    screen is a design bug. What it buys is a fast, legible failure instead of one
    phrased in terms of axioms several seconds later.
@@ -227,7 +227,7 @@ or a disagreement about decoding, and either is worth knowing about.
 
 **§ 2** is a snapshot rule: well-formedness, contiguity, population deviation,
 efficiency gap, county splits. Every clause is decidable, so a proof of § 2 is a
-recomputation certificate. Worth having — exact, reproducible, and it localises
+recomputation certificate. Worth having — exact, reproducible, and it localizes
 which criterion a map violates — but it does not need a proof assistant.
 
 **§ 5** is a durability rule:
@@ -258,7 +258,7 @@ changing hands pushes the gap back the other way.
 
 A durability requirement is therefore a *responsiveness* requirement, and the
 maps it rejects are those built out of safe seats. That is not what one would
-guess from reading the words, and it is the kind of thing formalising a rule is
+guess from reading the words, and it is the kind of thing formalizing a rule is
 good for.
 
 ### How the quantifier becomes finite
@@ -291,7 +291,7 @@ the band barely lengthens it — two entries per seat that changes hands, so at
 most 22 on a ten-district map however wide the band gets — against a sweep that
 grows without bound.
 
-**The division of labour is the point.** `swingRobust_of_chain` is general
+**The division of labor is the point.** `swingRobust_of_chain` is general
 mathematics, written once, by the party that wrote the rule, and published in the
 theory package. Each state contributes a breakpoint list and three `by decide`s
 about its own map. That is plausibly how proof-carrying regulation would work at

@@ -28,7 +28,7 @@
           "toolchain": {
             "type": "string",
             "maxLength": 64,
-            "description": "Exact proof assistant release, e.g. 'leanprover/lean4:v4.33.1'. A checker that cannot honour this string must refuse to issue a verdict rather than substitute a nearby version."
+            "description": "Exact proof assistant release, e.g. 'leanprover/lean4:v4.33.1'. A checker that cannot honor this string must refuse to issue a verdict rather than substitute a nearby version."
           },
           "rootModule": {
             "type": "string",

@@ -47,7 +47,7 @@ export type Verdict = {
   outcome: Outcome
   /** Why, in one line, for a human. */
   detail: string
-  /** Which named clause of the requirement went unproved, when localisable. */
+  /** Which named clause of the requirement went unproved, when localizable. */
   failedClause?: string
   clauses: ClauseResult[]
   /** Reporting figures computed by the theory, not by the checker. */
@@ -145,7 +145,7 @@ export async function checkProof(
     )
   }
 
-  // 5. The pinned toolchain must be one this checker can honour. Declining is
+  // 5. The pinned toolchain must be one this checker can honor. Declining is
   //    the right answer; substituting a nearby version and reporting `verified`
   //    would be a claim about a proof nobody checked.
   const theoryToolchain = (theory.value as Record<string, unknown>).toolchain as string
@@ -164,7 +164,7 @@ export async function checkProof(
     )
   }
 
-  // 6. Screen the payload. Defence in depth; see screen.ts on why this is not
+  // 6. Screen the payload. Defense in depth; see screen.ts on why this is not
   //    the thing keeping the system sound.
   const payload = String(proof.payload ?? '')
   const lemmas = proof.lemmas ? String(proof.lemmas) : undefined

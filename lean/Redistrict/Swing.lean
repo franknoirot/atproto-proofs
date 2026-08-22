@@ -197,7 +197,7 @@ def lastOf : Int → List Int → Int
   | b, [] => b
   | _, b' :: rest => lastOf b' rest
 
-/-- A chain never runs backwards, so its span is a genuine interval. -/
+/-- A chain never runs backward, so its span is a genuine interval. -/
 theorem head_le_lastOf {T : List Tally} {bp : Int} :
     ∀ (b : Int) (bs : List Int), chainB T bp b bs = true → b ≤ lastOf b bs := by
   intro b bs

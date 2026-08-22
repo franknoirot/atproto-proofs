@@ -7,13 +7,13 @@
  * prover's text only in positions where it can be a justification and nothing
  * else.
  *
- * Without that rule, everything downstream is theatre. A prover free to write
+ * Without that rule, everything downstream is theater. A prover free to write
  * the statement writes `def NotGerrymandered (_ : Plan) := True` and proves it
  * in one line, and every label the system issues is worthless — not because the
  * proof was wrong, but because nobody checked what was proved.
  *
  * The statement therefore lives in its own module, compiled before the prover's
- * text is elaborated at all. That gives two independent defences against
+ * text is elaborated at all. That gives two independent defenses against
  * substitution: the prover cannot redefine `Obligation.stmt` because it is
  * already declared in an imported module, and the signature that mentions it was
  * written and elaborated where the prover's text does not reach.

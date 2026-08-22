@@ -4,7 +4,7 @@
   Fill carries party lean on the diverging scale; district identity is carried by
   boundary strokes rather than a tenth categorical hue — that is how districting
   maps are actually read, and ten distinct fills could not survive a
-  colour-vision check.
+  color-vision check.
 
   Precincts inside one district are butted together with only a hairline between
   them, so a district reads as one shape. The usual 2px gap between fills is

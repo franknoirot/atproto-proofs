@@ -14,7 +14,7 @@ about the same CID without either being wrong. So the decode lives here, in the
 regulator's theory package, named by the `decoder` field of the published
 `dev.provable.theory` record. The checker's remaining job is a transliteration:
 DRISL/CBOR into the `Raw` structure below, field for field, with no decisions in
-it. Everything with a judgement call — how precincts are ordered, how counties
+it. Everything with a judgment call — how precincts are ordered, how counties
 are numbered, what counts as a malformed plan — is in Lean and is kernel-checked
 along with the rest of the obligation.
 

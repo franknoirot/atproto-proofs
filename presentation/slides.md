@@ -42,8 +42,8 @@ Two headmatter settings are worth knowing about:
                     turning it on breaks the build on every slide with inline code.
   aspectRatio       16/9 suits a projector. A browser window is usually taller —
                     16/10 fills a MacBook screen exactly. Either way the margin
-                    around the slide is painted the same colour as the slide, so
-                    a mismatch is invisible rather than a grey band.
+                    around the slide is painted the same color as the slide, so
+                    a mismatch is invisible rather than a gray band.
 
 Figures are Vue components in `components/`. They read `data.json`, which
 `pnpm present:data` writes from a real demo run — so the CIDs, verdicts, axiom
@@ -60,17 +60,16 @@ ROUGH SHAPE, if you are cutting for time:
   6–11   the eDSL and the layers of auditability. The heart of the talk.
   12–21  the worked example. Slides 13 and 21 are the most skippable.
   22–28  the trust model. Slide 23 is the one people remember.
-  29–32  generalisation and close.
+  29–32  generalization and close.
 ================================================================================
 -->
 
 <div class="kicker">an atproto meetup talk</div>
 
-# Proofs are just records
+# Lean proofs on the atproto for regulation
 
 <p class="lead">
-And verdicts are just labels. The rest of this is about what becomes possible once
-you notice that.
+Regulators publish proofs that regulated actors must submit evidence for, and the public can check each party's work.
 </p>
 
 <p class="muted">
@@ -139,7 +138,7 @@ That is moderation. It is also, it turns out, a rather good shape for
 
 <p class="muted">
 Swap the record for a claim about the world, make the label mean <em>we checked
-the maths</em>, and this same three-party structure gives you something that is
+the math</em>, and this same three-party structure gives you something that is
 genuinely hard to build any other way.
 </p>
 
@@ -306,7 +305,7 @@ on you being that person. <em>That</em> is the property worth copying.
 </v-click>
 
 <!--
-The centre of the talk. If a listener remembers one slide, make it this one.
+The center of the talk. If a listener remembers one slide, make it this one.
 
 The failure mode of every "formal methods for public policy" pitch is demanding
 that everybody become a logician. The alternative is not dumbing it down; it is
@@ -438,8 +437,8 @@ The rule reads like a rule <em>and</em> is the exact object the kernel checks.
 </p>
 
 <p class="small">
-Most attempts to formalise a regulation produce two artifacts: the one everyone
-argues about, and the formalisation nobody reads. They drift, and the drift is
+Most attempts to formalize a regulation produce two artifacts: the one everyone
+argues about, and the formalization nobody reads. They drift, and the drift is
 invisible until it matters.
 </p>
 
@@ -456,7 +455,7 @@ document to get out of step.
 </div>
 
 <!--
-Do not oversell rigour — this room does not need convincing that maths is rigorous.
+Do not oversell rigor — this room does not need convincing that math is rigorous.
 Sell the *combination*. A theorem prover alone gives an unreadable artifact; nice
 syntax alone gives a readable artifact nobody checks. The interesting claim is that
 both objects can be the same object.
@@ -611,7 +610,7 @@ sails through. So this project turns the audit into a build failure —
 The axiom line is the most compressed piece of evidence in the system. It fits in
 a tweet and it rules out the entire category of "the proof has a hole in it".
 
-The fails-open point generalises well past Lean, and people nod at it: any
+The fails-open point generalizes well past Lean, and people nod at it: any
 verification step whose failure mode is silence is not a verification step.
 
 There is one rung above this — replaying the whole environment through a clean
@@ -720,7 +719,7 @@ by decide
 Every clause of § 2 is a computation, so the kernel is doing arithmetic rather than
 mathematics. A proof at this tier is a **recomputation certificate**.
 
-That is worth having — exact, reproducible by anyone, and it localises which
+That is worth having — exact, reproducible by anyone, and it localizes which
 criterion a map broke. But it does not need a theorem prover, and claiming
 otherwise is how you lose the first competent person in the room.
 
@@ -738,7 +737,7 @@ The requirement that <em>cannot</em> be a computation is § 5, and it is coming.
 
 <!--
 Do not oversell tier one. If you claim a proof assistant is needed to check five
-inequalities, you have handed the sceptic their opening.
+inequalities, you have handed the skeptic their opening.
 
 The axiom line is the thing to point at: propext only.
 -->
@@ -917,7 +916,7 @@ where seats actually change hands.
 
 *A durability requirement turns out to be a responsiveness requirement* — and the
 maps it rejects are the ones built out of safe seats. That is not what you would
-guess from reading the words, and it is exactly the kind of thing formalising a
+guess from reading the words, and it is exactly the kind of thing formalizing a
 rule is good for.
 
 </v-click>
@@ -929,8 +928,8 @@ stability condition. Proving it showed stability is only reachable through
 responsiveness.
 
 If someone objects that competitive districts are a policy choice rather than a
-legal requirement — yes, exactly. The formalisation surfaced a policy consequence
-the drafter did not write down. That is an argument *for* formalising.
+legal requirement — yes, exactly. The formalization surfaced a policy consequence
+the drafter did not write down. That is an argument *for* formalizing.
 -->
 
 ---
@@ -1203,7 +1202,7 @@ everybody remembering.
 
 ---
 
-<div class="kicker">the part that makes it not theatre</div>
+<div class="kicker">the part that makes it not theater</div>
 
 ## What stops a state from proving something easier?
 
@@ -1295,14 +1294,14 @@ either would do.
 
 <div class="kicker">and how we know</div>
 
-## Four defences, tested one at a time
+## Four defenses, tested one at a time
 
-| defence | stops | tested by |
+| defense | stops | tested by |
 | --- | --- | --- |
 | **Separate statement module**<br><span class="cid">compiled before any prover text</span> | choosing what to prove | `cannot redefine the obligation` |
 | **Import, not inclusion**<br><span class="cid">redefinition is a duplicate declaration</span> | shadowing the statement | `cannot redefine the obligation` |
 | **`#assert_axioms`**<br><span class="cid">audit turned into a build failure</span> | holes, native evaluation, new axioms | `fails the build when the proof is a hole` |
-| **Lexical screen**<br><span class="cid">defence in depth only</span> | nothing on its own | `9 rejection cases` |
+| **Lexical screen**<br><span class="cid">defense in depth only</span> | nothing on its own | `9 rejection cases` |
 
 <div class="cols" style="margin-top:1.1rem">
 <div>
@@ -1313,7 +1312,7 @@ either would do.
 
 <p class="small">
 The axiom test deliberately <em>bypasses</em> the screen and drives Lean directly.
-A suite that only ever exercised the cheapest defence would keep passing after the
+A suite that only ever exercised the cheapest defense would keep passing after the
 expensive one was deleted.
 </p>
 
@@ -1343,7 +1342,7 @@ reader assume otherwise.
 
 <p class="muted">
 Also covered: artifact swapping, injection through the requirement's
-<code>leanProp</code> field, an unrecognised toolchain, a wrong-typed artifact,
+<code>leanProp</code> field, an unrecognized toolchain, a wrong-typed artifact,
 post-hoc mutation of a certified map, and a swing certificate that does not span
 its band. 49 tests, all green.
 </p>
@@ -1351,7 +1350,7 @@ its band. 49 tests, all green.
 </v-click>
 
 <!--
-The methodological point matters more than any individual defence: layered defences
+The methodological point matters more than any individual defense: layered defenses
 rot silently when the cheapest one always fires first.
 
 If you want to hand someone a single file that argues this project is serious, hand
@@ -1498,7 +1497,7 @@ of the new rule. `proof-stale` is a distinct label from `proof-refuted`, because
 </v-click>
 
 <!--
-Emphasise that *nothing was invalidated*. There is no revocation list and no
+Emphasize that *nothing was invalidated*. There is no revocation list and no
 background job. This falls out of using strongRefs everywhere, which cost nothing.
 
 The stale/refuted distinction is a small fairness point that matters in a
@@ -1550,7 +1549,7 @@ it does.
 <p class="small">
 The plan lexicon requires <code>censusSource</code> and <code>returnsSource</code>
 strongRefs to records from <em>separate authorities</em>. The honest-input
-assumption becomes attributable and localised instead of buried.
+assumption becomes attributable and localized instead of buried.
 </p>
 
 </div>
@@ -1559,7 +1558,7 @@ assumption becomes attributable and localised instead of buried.
 </div>
 
 <!--
-Do not skip this and do not rush it. In a room of sceptics it buys more credibility
+Do not skip this and do not rush it. In a room of skeptics it buys more credibility
 than any of the technical slides.
 
 The framing: the system does not eliminate trust, it *relocates* it — from "trust
@@ -1583,10 +1582,10 @@ layout: default
 | slot | redistricting | emissions permits | bank capital | clinical trials |
 | --- | --- | --- | --- | --- |
 | **artifact**<br><span class="cid">lexicon + Lean type + decoder</span> | districting plan | facility & process inventory | position-level balance sheet | protocol + analysis plan |
-| **tier-1 clauses**<br><span class="cid">settled by arithmetic</span> | contiguity, population equality, county splits, efficiency gap | mass balance closes, every source reported, totals under cap | capital ratios, concentration and leverage limits | registered endpoints match analysed ones, no post-hoc outcomes |
+| **tier-1 clauses**<br><span class="cid">settled by arithmetic</span> | contiguity, population equality, county splits, efficiency gap | mass balance closes, every source reported, totals under cap | capital ratios, concentration and leverage limits | registered endpoints match analyzed ones, no post-hoc outcomes |
 | **tier-2 obligation**<br><span class="cid">covers more cases than you can check</span> | gap stays bounded under **every** swing in a band | emissions stay under cap across **every** operating profile in the permitted envelope | solvency holds under **every** scenario in a stress family | type-I error stays under α across **every** stopping rule the trial could have used |
 | **regulator's lemma**<br><span class="cid">published once, in the theory</span> | the gap climbs at a steady rate between seat changes | emissions only rise with load, within the envelope | a combined stress is no worse than its parts added up | sequential-testing bound |
-| **actor's certificate**<br><span class="cid">cheap, per-artifact</span> | the swings where a seat changes hands | the vertices of the operating envelope | the binding scenario per exposure class | the realised interim analyses |
+| **actor's certificate**<br><span class="cid">cheap, per-artifact</span> | the swings where a seat changes hands | the vertices of the operating envelope | the binding scenario per exposure class | the realized interim analyses |
 
 </div>
 
@@ -1643,9 +1642,9 @@ this way informally, with the "proof" being a spreadsheet nobody re-runs.
 
 - The hard part is whether the *inputs* are honest. Proof does not help; audit
   does.
-- The rule turns on a judgement call — "reasonable", "material", "in good faith".
-  Formalising these does not make them precise, it moves the argument to whoever
-  wrote the formalisation, and hides it there.
+- The rule turns on a judgment call — "reasonable", "material", "in good faith".
+  Formalizing these does not make them precise, it moves the argument to whoever
+  wrote the formalization, and hides it there.
 - The artifact is a narrative.
 - Nobody can be compelled to publish. A voluntary scheme selects for the
   compliant.
@@ -1657,7 +1656,7 @@ this way informally, with the "proof" being a spreadsheet nobody re-runs.
 
 <v-click>
 
-The temptation is to formalise the whole statute. Resist it. The value is
+The temptation is to formalize the whole statute. Resist it. The value is
 concentrated in the few clauses that are *numeric, contested, and currently
 unverifiable*, and a system that covers those honestly is worth more than one that
 claims to cover everything.
@@ -1666,10 +1665,10 @@ claims to cover everything.
 
 <!--
 The "doesn't fit" column is the one that earns trust. Anyone who has sat through a
-formal-methods pitch has heard someone claim the technique generalises to
+formal-methods pitch has heard someone claim the technique generalizes to
 everything.
 
-The judgement-call point is the deepest objection and worth conceding fully.
+The judgment-call point is the deepest objection and worth conceding fully.
 -->
 
 ---
@@ -1680,13 +1679,13 @@ The judgement-call point is the deepest objection and worth conceding fully.
 
 <v-clicks>
 
-- **The moderation shape generalises.** Record, label, subscriber choice — it works
+- **The moderation shape generalizes.** Record, label, subscriber choice — it works
   just as well when the record is a claim and the label means "we checked".
 - **Layer the auditability.** The public reads a rule, experts audit what the words
   mean, the stubborn check the axioms. Nobody has to understand all of it.
 - **An embedded DSL means one artifact.** The text everyone argues about and the
   thing the kernel checks are the same object, so they cannot drift.
-- **The prover must never supply the statement.** Every other defence is secondary;
+- **The prover must never supply the statement.** Every other defense is secondary;
   without this one you are producing labels, not findings.
 - **Say what the proof does not cover.** The trust boundary belongs in the record
   graph, not in a footnote.
@@ -1736,7 +1735,7 @@ pnpm present              # this deck
 
 <ul>
 <li><code>DESIGN.md</code> — the architecture, the binding problem, the four
-  defences, and §§ 4 and 11 on what this does <em>not</em> do.</li>
+  defenses, and §§ 4 and 11 on what this does <em>not</em> do.</li>
 <li><code>test/adversarial.test.ts</code> — the trust model, attacked. The most
   convincing file in the repository.</li>
 </ul>
