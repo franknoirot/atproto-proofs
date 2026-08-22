@@ -1476,40 +1476,6 @@ the open.
 
 </v-clicks>
 
-<div class="cols" style="margin-top:1.4rem">
-<div>
-<div class="card">
-
-### Run it
-
-```bash
-cd lean && lake build
-pnpm install
-pnpm demo      # the full story, ~60s
-pnpm test      # 44 tests, incl. adversarial
-pnpm present   # this deck
-```
-
-</div>
-</div>
-<div>
-<div class="card">
-
-### Read it
-
-<p class="small">
-<code>DESIGN.md</code> — architecture, the binding problem, the four defences, and
-§§ 4 and 11 on what this does not do and where it is incomplete.
-</p>
-<p class="small">
-<code>lean/Redistrict/Swing.lean</code> — the durability theorem and the
-certificate.
-</p>
-
-</div>
-</div>
-</div>
-
 <!--
 If you only keep one line: **a verdict here is not an authority's assertion, it is
 a computation with named inputs.** Everything else is in service of making that
@@ -1518,3 +1484,90 @@ true.
 Offer the adversarial test file to anyone who wants to poke at the trust model —
 it is the most convincing artifact in the repository.
 -->
+
+---
+layout: default
+clicks: 1
+---
+
+<div class="kicker">take it with you</div>
+
+## All of it is on GitHub
+
+<div class="repo-slide">
+<div class="qr">
+
+<QrCode data="https://github.com/franknoirot/atproto-proofs" :size="290" />
+
+</div>
+
+<div>
+
+<div class="card">
+
+### Run it
+
+```bash
+cd lean && lake build     # the regulator's theory
+pnpm install
+pnpm demo                 # the full story, ~60s
+pnpm test                 # 44 tests, incl. the adversarial suite
+pnpm present              # this deck
+```
+
+</div>
+
+<div class="cols" style="margin-top:0.9rem">
+<div>
+
+### Start here
+
+<ul>
+<li><code>DESIGN.md</code> — the architecture, the binding problem, the four
+  defences, and §§ 4 and 11 on what this does <em>not</em> do.</li>
+<li><code>test/adversarial.test.ts</code> — the trust model, attacked. The most
+  convincing file in the repository.</li>
+</ul>
+
+</div>
+<div>
+
+### The interesting bits
+
+<ul>
+<li><code>lean/Redistrict/Swing.lean</code> — the durability theorem and the
+  certificate.</li>
+<li><code>lean/Redistrict/Dsl.lean</code> — the requirement language.</li>
+<li><code>presentation/slides.md</code> — this talk.</li>
+</ul>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<v-click>
+
+<p class="muted" style="margin-top:0.6rem">
+Everything you have just seen was produced by that code —
+<Val count="repos" /> repositories, <Val count="labels" /> signed labels,
+<Val toolchain />. Clone it and the CIDs come out the same.
+</p>
+
+</v-click>
+
+<!--
+The last thing on screen should be the thing you want someone to act on, so this
+slide is the link and nothing else.
+
+If you are asked what to look at first: DESIGN.md for the argument, the
+adversarial tests for whether to believe it. The tests are the honest answer to
+"how do you know the checker can't be fooled" — each defence is tested with the
+others routed around.
+
+The reproducibility line is worth saying out loud. Keys and timestamps are
+seeded, so a clone regenerates the same DIDs and the same content hashes. The
+CIDs on these slides are not decoration; they are checkable.
+-->
+

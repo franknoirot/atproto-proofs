@@ -250,3 +250,10 @@ html { color-scheme: dark; }
      - size text with a class, never with `font-size` — a stylesheet rule beats
        a presentation attribute, and Slidev sets a font on the slide that SVG
        text inherits, so an attribute silently renders at slide body size. */
+
+/* The closing slide: a QR big enough to scan from the back of a room, with the
+   pointers beside it rather than under it. */
+.repo-slide { display: grid; grid-template-columns: max-content 1fr; gap: 2rem; align-items: start; }
+.repo-slide .qr { padding: 0.5rem 0 0; }
+.repo-slide h3 { margin-top: 0; }
+.repo-slide li { font-size: 0.9rem; margin-bottom: 0.3rem; }
