@@ -30,9 +30,15 @@ All the prose lives in this file. Slides are separated by `---` on its own line.
 Presenter notes are the HTML comment at the very end of each slide. Press `p`
 in the browser for presenter mode (notes, timer, next-slide preview).
 
-`mdc: false` above is load-bearing: MDC's inline-attribute syntax renders through
-a synchronous path that cannot await syntax highlighting, so turning it on breaks
-the build on every slide with inline code. Use plain HTML attributes instead.
+Two settings in the frontmatter above are worth knowing about:
+
+  mdc: false        Load-bearing. MDC's inline-attribute syntax renders through a
+                    synchronous path that cannot await syntax highlighting, so
+                    turning it on breaks the build on every slide with inline code.
+  aspectRatio       16/9 suits a projector. A browser window is usually taller —
+                    16/10 fills a MacBook screen exactly. Either way the margin
+                    around the slide is painted the same colour as the slide, so
+                    a mismatch is invisible rather than a grey band.
 
 Figures are Vue components in `components/`. They read `data.json`, which
 `pnpm present:data` writes from a real demo run — so the CIDs, verdicts, axiom

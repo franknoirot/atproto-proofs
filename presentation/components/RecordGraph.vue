@@ -52,7 +52,7 @@ const edges = computed(() =>
       on: props.step >= at,
       d: `M${x1} ${y1} C ${x1 - 36} ${y1}, ${x2 + 36} ${y2}, ${x2} ${y2}`,
       lx: (x1 + x2) / 2,
-      ly: (y1 + y2) / 2 - 4,
+      ly: (y1 + y2) / 2 - 8,
     }
   }),
 )
@@ -68,27 +68,50 @@ const size = { w: 4 * BW + 3 * GX, h: 3 * (BH + GY) }
   >
     <defs>
       <marker id="rg-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
-        <path d="M0 0 L8 4 L0 8 z" fill="var(--lean-a)" />
+        <path d="M0 0 L8 4 L0 8 z" style="fill: var(--lean-a)" />
       </marker>
     </defs>
 
+    <!-- Edges carry the build: they appear as each is introduced.
+
+         Fill, stroke and opacity go through `style`, never through presentation
+         attributes. Slidev enables UnoCSS attributify mode, which reads bare
+         attributes as utility classes — so `opacity="1"` is parsed as the
+         utility `opacity-1`, meaning *one percent*, and the edges vanish
+         instead of drawing. See the note in styles/index.css. -->
     <g v-for="(e, i) in edges" :key="i">
       <path
-        :d="e.d" fill="none" :stroke="e.on ? 'var(--lean-a)' : 'var(--axis)'" stroke-width="1.5"
-        :marker-end="e.on ? 'url(#rg-arrow)' : undefined" :opacity="e.on ? 1 : 0.35"
+        :d="e.d" stroke-width="1.5"
+        :marker-end="e.on ? 'url(#rg-arrow)' : undefined"
+        :style="{
+          fill: 'none',
+          stroke: e.on ? 'var(--lean-a)' : 'var(--axis)',
+          opacity: e.on ? 1 : 0.3,
+        }"
       />
-      <text :x="e.lx" :y="e.ly" text-anchor="middle" class="tick" :opacity="e.on ? 1 : 0.3">
-        {{ e.field }}
-      </text>
+      <text
+        :x="e.lx" :y="e.ly" text-anchor="middle" class="tick"
+        :style="{ opacity: e.on ? 1 : 0.25 }"
+      >{{ e.field }}</text>
     </g>
 
-    <g v-for="n in nodes" :key="n.id" :opacity="n.on ? 1 : 0.25">
-      <rect :x="n.x" :y="n.y" :width="BW" :height="BH" rx="8"
-        fill="var(--surface)" :stroke="n.on ? 'var(--ink-muted)' : 'var(--axis)'" />
-      <text :x="n.x + 12" :y="n.y + 21" fill="var(--ink)" font-size="11.5" font-family="var(--mono)">
-        {{ n.label }}
-      </text>
-      <text :x="n.x + 12" :y="n.y + 38" class="tick" font-size="10">{{ n.who }}</text>
+    <!-- Nodes stay legible from the first frame. Dimming an un-introduced box to
+         near-invisibility on a dark surface makes the slide look broken before
+         the first press; the build is carried by the edges and by which boxes
+         are brightened, not by whether the shape of the graph is readable. -->
+    <g v-for="n in nodes" :key="n.id">
+      <rect
+        :x="n.x" :y="n.y" :width="BW" :height="BH" rx="8" fill="var(--surface)"
+        :stroke="n.on ? 'var(--ink-muted)' : 'var(--axis)'"
+      />
+      <text
+        :x="n.x + 12" :y="n.y + 21" class="svg-node"
+        :fill="n.on ? 'var(--ink)' : 'var(--ink-muted)'"
+      >{{ n.label }}</text>
+      <text
+        :x="n.x + 12" :y="n.y + 38" class="svg-node-sub"
+        :fill="n.on ? 'var(--ink-muted)' : 'var(--ink-faint)'"
+      >{{ n.who }}</text>
     </g>
   </svg>
 </template>

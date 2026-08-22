@@ -122,7 +122,7 @@ const over = (v: number) => Math.abs(v) > LIMIT
       <!-- The legal band. Shaded region plus solid hairline edges, never dashed. -->
       <rect
         :x="M.l" :y="geom.Y(LIMIT)" :width="geom.pw"
-        :height="geom.Y(-LIMIT) - geom.Y(LIMIT)" fill="var(--ink)" opacity="0.06"
+        :height="geom.Y(-LIMIT) - geom.Y(LIMIT)" style="fill: var(--ink); opacity: 0.06"
       />
       <line
         v-for="e in [LIMIT, -LIMIT]" :key="e"

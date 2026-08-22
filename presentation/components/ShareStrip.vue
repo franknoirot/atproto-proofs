@@ -55,7 +55,7 @@ const model = computed(() => {
     <g transform="translate(30,0)">
       <rect
         :x="model.bandL" y="0" :width="model.bandR - model.bandL" :height="model.h"
-        fill="var(--lean-a)" opacity="0.09"
+        style="fill: var(--lean-a); opacity: 0.09"
       />
       <line :x1="model.mid" y1="0" :x2="model.mid" :y2="model.h" stroke="var(--axis)" stroke-width="1" />
       <template v-for="(b, i) in model.bars" :key="i">

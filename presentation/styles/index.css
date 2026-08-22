@@ -14,6 +14,7 @@
   --ink-muted:    #898781;
   --grid:         #2c2c2a;
   --axis:         #383835;
+  --ink-faint:    #6a6963;   /* legible but clearly secondary, for un-built diagram labels */
   --hairline:     rgba(255,255,255,0.10);
 
   /* Categorical identity — the two plans in the swing chart. Validated
@@ -194,10 +195,22 @@ svg text { font-family: var(--sans); }
 }
 .slidev-layout pre code { font-size: inherit !important; }
 
-/* Letterboxing around a 16:9 slide in a differently-shaped window. Without this
-   the bars render white and the deck flashes on every slide change. */
-html, body, #app, #page-root, #slide-container { background: var(--plane) !important; }
+/* Two separate surfaces have to be painted, and missing either shows a lighter
+   band that reads as a rendering bug:
+     - the slide itself, which is auto-height by default and so leaves the rest
+       of the 16:9 canvas showing whatever is behind it;
+     - the letterbox around the canvas, when the window is not 16:9.
+   Chrome paints an unstyled dark-scheme canvas at #121212, which is close enough
+   to the deck's #0d0d0d to look like a mistake rather than a choice. */
+html, body, #app, #page-root, #slide-container, .slidev-slide-container,
+#slide-content, .slidev-slide-content {
+  background: var(--plane) !important;
+}
+:root { --slidev-slide-container-background: var(--plane); }
 html { color-scheme: dark; }
+
+/* Fill the canvas. Without this the layout is only as tall as its content. */
+.slidev-layout { min-height: 100%; }
 
 /* The matrix runs to the bottom of its container; the sentence after it needs
    air or it reads as another row. */
@@ -205,4 +218,31 @@ html { color-scheme: dark; }
 
 /* The title slide is the one place vertical centring reads better than the
    consistent top alignment everywhere else. */
-.slidev-layout.intro { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.slidev-layout.intro { display: flex; flex-direction: column; justify-content: center; }
+
+/* ------------------------------------------------------- svg text sizing
+
+   SVG `font-size` / `font-family` presentation attributes lose to *any*
+   stylesheet rule, and Slidev sets a font on the slide that SVG text inherits.
+   So every label in a figure is sized by a class here rather than by an
+   attribute on the element — an attribute silently renders at slide body size,
+   which is roughly 3x too big and overlaps everything. */
+.svg-name     { font-size: 13.5px; font-weight: 650; }
+.svg-name-sm  { font-size: 12.5px; font-weight: 650; }
+.svg-sub      { font-size: 10.5px; }
+.svg-coll     { font-size: 10.5px; font-family: var(--mono); }
+.svg-node     { font-size: 11.5px; font-family: var(--mono); }
+.svg-node-sub { font-size: 10px; }
+
+/* ------------------------------------------------- a note on SVG attributes
+
+   Slidev enables UnoCSS attributify mode, which reads bare HTML attributes as
+   utility classes. That is fine for prose and lethal in SVG: `opacity="1"` is
+   read as the utility `opacity-1`, which means *one percent*, so the element
+   renders invisibly with nothing in the DOM to suggest why.
+
+   Two rules for the figure components, both of which cost a bug to learn:
+     - set fill, stroke and opacity through `style`, never as attributes;
+     - size text with a class, never with `font-size` — a stylesheet rule beats
+       a presentation attribute, and Slidev sets a font on the slide that SVG
+       text inherits, so an attribute silently renders at slide body size. */

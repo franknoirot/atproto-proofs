@@ -49,7 +49,8 @@ const model = computed(() => {
     const a = actor(k)
     return { x: i * (BW + GX), handle: a.handle, collection: a.collections[0]! }
   })
-  return { cols, dy, data, w: 3 * BW + 2 * GX, h: dy + 82 }
+  // +2 so the right-hand column's 1px stroke is not half-clipped by the viewBox.
+  return { cols, dy, data, w: 3 * BW + 2 * GX + 2, h: dy + 82 }
 })
 </script>
 
@@ -63,14 +64,13 @@ const model = computed(() => {
       <g v-for="m in col.members" :key="m.handle + m.sub">
         <rect :x="m.x" :y="m.y" :width="BW" :height="m.h" rx="9"
           fill="var(--surface)" stroke="var(--ink-muted)" stroke-width="1" />
-        <text :x="m.x + PADX" :y="m.y + 24" fill="var(--ink)" font-size="13.5" font-weight="650">
+        <text :x="m.x + PADX" :y="m.y + 24" fill="var(--ink)" class="svg-name">
           {{ m.handle }}
         </text>
-        <text :x="m.x + PADX" :y="m.y + 40" class="tick" font-size="10.5">{{ m.sub }}</text>
+        <text :x="m.x + PADX" :y="m.y + 40" class="tick svg-sub">{{ m.sub }}</text>
         <text
           v-for="(c, i) in m.collections" :key="c"
-          :x="m.x + PADX" :y="m.y + 60 + i * 15"
-          fill="var(--ink-2)" font-size="10.5" font-family="var(--mono)"
+          :x="m.x + PADX" :y="m.y + 60 + i * 15" fill="var(--ink-2)" class="svg-coll"
         >{{ c }}</text>
       </g>
     </g>
@@ -82,10 +82,10 @@ const model = computed(() => {
     <g v-for="d in model.data" :key="d.handle">
       <rect :x="d.x" :y="model.dy + 22" :width="BW" height="52" rx="9"
         fill="var(--surface)" stroke="var(--axis)" stroke-width="1" />
-      <text :x="d.x + PADX" :y="model.dy + 44" fill="var(--ink-2)" font-size="12.5" font-weight="650">
+      <text :x="d.x + PADX" :y="model.dy + 44" fill="var(--ink-2)" class="svg-name-sm">
         {{ d.handle }}
       </text>
-      <text :x="d.x + PADX" :y="model.dy + 62" fill="var(--ink-muted)" font-size="10.5" font-family="var(--mono)">
+      <text :x="d.x + PADX" :y="model.dy + 62" fill="var(--ink-muted)" class="svg-coll">
         {{ d.collection }}
       </text>
     </g>
