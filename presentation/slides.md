@@ -82,12 +82,10 @@ were captured from an actual run by `pnpm present:data`. Nothing is illustrative
 -->
 
 ---
-clicks: 3
----
 
 <div class="kicker">the problem</div>
 
-## Compliance is asserted. It is almost never demonstrated.
+	## Compliance is asserted. It is almost never demonstrated.
 
 <div class="cols">
 <div>
@@ -145,8 +143,6 @@ party can disagree *specifically*.
 -->
 
 ---
-clicks: 3
----
 
 <div class="kicker">the actors</div>
 
@@ -192,6 +188,8 @@ that is the right place for that question to live.
 -->
 
 ---
+# Explicit, and must stay: RecordGraph is driven by $clicks, so the build length
+# is not derivable from the markup the way a run of <v-click> is.
 clicks: 6
 ---
 
@@ -225,8 +223,6 @@ addressing already gives you.** There is no "invalidate the proofs" job to run.
 The hash moves and the references simply no longer resolve to what they pointed at.
 -->
 
----
-clicks: 1
 ---
 
 <div class="kicker">the rules</div>
@@ -288,8 +284,6 @@ category cannot begin with a non-reserved word. It also happens to look like leg
 text.
 -->
 
----
-clicks: 4
 ---
 
 <div class="kicker">the hard part nobody expects</div>
@@ -360,8 +354,6 @@ obligation *false* instead means the property is enforced by the mathematics
 rather than by everyone remembering to check.
 -->
 
----
-clicks: 2
 ---
 
 <div class="kicker">the artifacts under test</div>
@@ -437,8 +429,6 @@ back half of the talk.
 -->
 
 ---
-clicks: 2
----
 
 <div class="kicker">step 1 — the regulator</div>
 
@@ -496,8 +486,6 @@ hypothetical for a districting map; they last a decade by construction.
 -->
 
 ---
-clicks: 2
----
 
 <div class="kicker">step 2 — a state complies</div>
 
@@ -546,8 +534,6 @@ read by eye.
 -->
 
 ---
-clicks: 2
----
 
 <div class="kicker">step 3 — a state does not comply</div>
 
@@ -591,8 +577,6 @@ The per-clause report comes from the same DSL source as the rule itself, so the
 clause names in the verdict cannot drift from the clause names in the statute.
 -->
 
----
-clicks: 2
 ---
 
 <div class="kicker">step 4 — the twist</div>
@@ -650,8 +634,6 @@ metrics", and the next slide is why that is not enough.
 -->
 
 ---
-clicks: 1
----
 
 <div class="kicker">step 5 — the difference</div>
 
@@ -685,8 +667,6 @@ Both curves have the same slope everywhere: **the gap moves at exactly twice the
 swing** between seat changes. That is a theorem, not an observation from the chart.
 -->
 
----
-clicks: 3
 ---
 
 <div class="kicker">why</div>
@@ -745,8 +725,6 @@ legal requirement — yes, exactly. The formalisation surfaced a policy conseque
 the drafter did not write down. That is an argument *for* formalising, not against.
 -->
 
----
-clicks: 4
 ---
 
 <div class="kicker">the certificate</div>
@@ -822,8 +800,6 @@ middle of a stretch is not spot-checked, it is *proved* — the theorem is what
 licenses skipping it.
 -->
 
----
-clicks: 3
 ---
 
 <div class="kicker">who does what</div>
@@ -907,8 +883,6 @@ actor to produce original mathematics would never get off the ground.
 -->
 
 ---
-clicks: 2
----
 
 <div class="kicker">step 6 — the verdict § 2 could not reach</div>
 
@@ -955,8 +929,6 @@ Contrast the two § 5 verdicts explicitly: same clause, same evaluator, one
 *refuted* by a counterexample and one *undecided* until a proof arrived.
 -->
 
----
-clicks: 3
 ---
 
 <div class="kicker">the part that makes it not theatre</div>
@@ -1049,8 +1021,6 @@ either would do.
 -->
 
 ---
-clicks: 3
----
 
 <div class="kicker">and how we know</div>
 
@@ -1104,7 +1074,7 @@ a suite that only tested the denylist would pass with the audit deleted.
 Also covered: artifact swapping, injection through the requirement's
 <code>leanProp</code> field, a toolchain the theory does not name, an artifact of
 the wrong type, post-hoc mutation of a certified map, and a swing certificate that
-does not span its band. 44 tests, all green.
+does not span its band. 49 tests, all green.
 </p>
 
 </v-click>
@@ -1119,8 +1089,6 @@ code. The checker enforces a timeout and nothing else. Every verdict says so in
 its `checker.sandbox` field rather than letting a reader assume otherwise.
 -->
 
----
-clicks: 3
 ---
 
 <div class="kicker">the output</div>
@@ -1192,8 +1160,6 @@ verdicts comparable, and it sets up the next slide.
 -->
 
 ---
-clicks: 3
----
 
 <div class="kicker">step 7 — the payoff</div>
 
@@ -1238,8 +1204,6 @@ with no way to tell why.
 -->
 
 ---
-clicks: 2
----
 
 <div class="kicker">step 8 — versioning for free</div>
 
@@ -1277,8 +1241,6 @@ regulatory setting: a state whose map is out of date has not been accused of
 gerrymandering.
 -->
 
----
-clicks: 3
 ---
 
 <div class="kicker">the boundary</div>
@@ -1345,7 +1307,6 @@ the same treatment — a `geometrySource` is the obvious next field.
 -->
 
 ---
-clicks: 1
 layout: default
 ---
 
@@ -1388,8 +1349,6 @@ already work this way informally, with the "proof" being a spreadsheet nobody
 re-runs.
 -->
 
----
-clicks: 3
 ---
 
 <div class="kicker">before you try it</div>
@@ -1487,7 +1446,6 @@ it is the most convincing artifact in the repository.
 
 ---
 layout: default
-clicks: 1
 ---
 
 <div class="kicker">take it with you</div>
@@ -1511,7 +1469,7 @@ clicks: 1
 cd lean && lake build     # the regulator's theory
 pnpm install
 pnpm demo                 # the full story, ~60s
-pnpm test                 # 44 tests, incl. the adversarial suite
+pnpm test                 # 49 tests, incl. the adversarial suite
 pnpm present              # this deck
 ```
 

@@ -375,7 +375,7 @@ If the votes differed too, the comparison would prove nothing about maps.
 cd lean && lake build     # the regulator's theory
 pnpm install
 pnpm demo                 # the full story, ~60s
-pnpm test                 # metrics + adversarial suite
+pnpm test                 # metrics, adversarial suite, deck guards
 pnpm present              # the slide deck (Slidev; prose in presentation/slides.md)
 pnpm present:data         # re-capture the deck's figures from a fresh run
 ```
