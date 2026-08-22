@@ -1,0 +1,57 @@
+{
+  "lexicon": 1,
+  "id": "gov.redistrict.defs",
+  "description": "Shared types for districting plans. Deliberately flat and integer-only: every quantity a requirement can talk about must survive a canonical, total decode into a Lean value, so there are no floats, no geometry, and no free-form strings in the numeric path.",
+  "defs": {
+    "precinct": {
+      "type": "object",
+      "description": "One indivisible unit of geography, with the population and vote tallies attributed to it.",
+      "required": ["id", "county", "population", "votesA", "votesB"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 32,
+          "description": "Stable identifier, unique within the plan."
+        },
+        "county": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Containing county. Used only by the county-splits clause."
+        },
+        "population": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Census population. See censusSource on the plan record: nothing in this system verifies that this number is true."
+        },
+        "votesA": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Votes cast for party A in the reference election."
+        },
+        "votesB": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Votes cast for party B in the reference election."
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "description": "An undirected geographic adjacency between two precincts. Contiguity is defined against this graph and nothing else; the graph itself is an input the plan's author supplies.",
+      "required": ["a", "b"],
+      "properties": {
+        "a": { "type": "string", "maxLength": 32 },
+        "b": { "type": "string", "maxLength": 32 }
+      }
+    },
+    "assignment": {
+      "type": "object",
+      "description": "Assignment of one precinct to one district. Exactly one entry per precinct is required for the plan to decode.",
+      "required": ["precinct", "district"],
+      "properties": {
+        "precinct": { "type": "string", "maxLength": 32 },
+        "district": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

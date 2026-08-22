@@ -1,0 +1,67 @@
+{
+  "lexicon": 1,
+  "id": "gov.redistrict.plan",
+  "description": "A districting plan: the artifact under test. Published by the jurisdiction that drew it. Its CID is what proofs are bound to, so any edit to any field invalidates every existing proof about it.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": [
+          "name",
+          "jurisdiction",
+          "districtCount",
+          "precincts",
+          "adjacency",
+          "assignment",
+          "createdAt"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "Human name of the plan, e.g. 'Fairfax 2026 Congressional'."
+          },
+          "jurisdiction": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "districtCount": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 256
+          },
+          "precincts": {
+            "type": "array",
+            "minLength": 1,
+            "maxLength": 100000,
+            "items": { "type": "ref", "ref": "gov.redistrict.defs#precinct" }
+          },
+          "adjacency": {
+            "type": "array",
+            "maxLength": 1000000,
+            "items": { "type": "ref", "ref": "gov.redistrict.defs#edge" }
+          },
+          "assignment": {
+            "type": "array",
+            "minLength": 1,
+            "maxLength": 100000,
+            "items": { "type": "ref", "ref": "gov.redistrict.defs#assignment" }
+          },
+          "censusSource": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "The population data this plan claims to be built from, published by a separate authority. A proof certifies that these numbers satisfy the requirement; it certifies nothing about whether they are the real numbers. Making that dependency an explicit edge in the record graph is the point of this field."
+          },
+          "returnsSource": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "The election returns underlying votesA/votesB. Same trust caveat as censusSource."
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

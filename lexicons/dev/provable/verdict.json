@@ -1,0 +1,89 @@
+{
+  "lexicon": 1,
+  "id": "dev.provable.verdict",
+  "description": "The evidence behind a label. Published by whoever ran the check, in their own repo.\n\nThis record type exists because label values are constrained to bare kebab-case tokens with no structured payload. A label can say `proof-refuted`; it cannot say which clause failed, which axioms turned up, or how long the kernel took. So the label is the index and this is the receipt, and the two are joined by a strongRef.\n\nA verdict is not an authority's ruling. It is a report of a computation that anyone holding the same three CIDs can repeat and contradict.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["proof", "outcome", "checker", "checkedAt"],
+        "properties": {
+          "proof": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "Subject of the verdict. Pinned by CID: a verdict about a proof is not a verdict about a later edit of that proof."
+          },
+          "requirement": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "Denormalised from the proof for indexing."
+          },
+          "artifact": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "Denormalised from the proof for indexing."
+          },
+          "outcome": {
+            "type": "string",
+            "maxLength": 32,
+            "knownValues": [
+              "verified",
+              "refuted",
+              "malformed",
+              "stale",
+              "timeout",
+              "unsupported"
+            ],
+            "description": "verified: kernel accepted and the axiom set was clean. refuted: the obligation was well-formed and the payload did not discharge it. malformed: the payload was rejected before the kernel saw it. stale: a referenced record no longer hashes to its pinned CID. timeout: resource limits hit, which is not evidence either way. unsupported: the checker could not honour the pinned toolchain and declined rather than guessing."
+          },
+          "failedClause": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Which named conjunct of the requirement went unproved, when that can be localised. The difference between a refutation a legislator can act on and one they cannot."
+          },
+          "axioms": {
+            "type": "array",
+            "maxLength": 64,
+            "description": "Axiom set the kernel actually reports for the obligation. The presence of sorryAx or any native-evaluation axiom is disqualifying regardless of whether the build succeeded.",
+            "items": { "type": "string", "maxLength": 128 }
+          },
+          "obligationDigest": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "sha256 of the checker-generated statement module. Two independent checkers that agree on this digest are demonstrably checking the same theorem; two that disagree have a bug or a disagreement about decoding, and either is worth knowing about."
+          },
+          "checker": { "type": "ref", "ref": "#checkerInfo" },
+          "durationMs": { "type": "integer", "minimum": 0 },
+          "log": {
+            "type": "blob",
+            "accept": ["text/plain"],
+            "maxSize": 4194304,
+            "description": "Full build output. Attached rather than summarised, because a refutation nobody can inspect is just an assertion."
+          },
+          "logDigest": { "type": "string", "maxLength": 128 },
+          "checkedAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    },
+    "checkerInfo": {
+      "type": "object",
+      "required": ["name", "version", "toolchain"],
+      "properties": {
+        "name": { "type": "string", "maxLength": 128 },
+        "version": { "type": "string", "maxLength": 32 },
+        "toolchain": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Proof assistant release actually used, which the checker must confirm equals the theory's pinned value."
+        },
+        "sandbox": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "How the untrusted payload was isolated. Running a prover's Lean is arbitrary code execution; a verdict from an unsandboxed checker is a weaker claim and should say so."
+        }
+      }
+    }
+  }
+}

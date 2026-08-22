@@ -1,0 +1,102 @@
+{
+  "lexicon": 1,
+  "id": "dev.provable.theory",
+  "description": "A formal theory: the vocabulary, semantics, and proof environment that requirements are written in. Published by the regulator. A theory record is what makes a requirement mean something to a machine, and it is the object that pins the trusted computing base — toolchain, source digest, and the decoder that turns network records into values the theory can talk about.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "toolchain",
+          "rootModule",
+          "source",
+          "sourceDigest",
+          "artifactTypes",
+          "createdAt"
+        ],
+        "properties": {
+          "name": { "type": "string", "maxLength": 128 },
+          "version": {
+            "type": "string",
+            "maxLength": 32,
+            "description": "Semver of the theory itself, independent of the record CID. The CID is what proofs bind to; this is for humans."
+          },
+          "toolchain": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Exact proof assistant release, e.g. 'leanprover/lean4:v4.33.1'. A checker that cannot honour this string must refuse to issue a verdict rather than substitute a nearby version."
+          },
+          "rootModule": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "Lean module that re-exports the whole theory, e.g. 'Redistrict'."
+          },
+          "source": {
+            "type": "blob",
+            "accept": ["application/gzip", "application/x-tar"],
+            "maxSize": 33554432,
+            "description": "The theory's Lean package. Shipped in-band so that verification has no dependency on a package registry staying up or staying honest."
+          },
+          "sourceDigest": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "sha256 of the source blob, hex. Redundant with the blob CID by design: it is the value a human quotes and a third-party checker re-derives."
+          },
+          "artifactTypes": {
+            "type": "array",
+            "minLength": 1,
+            "maxLength": 64,
+            "description": "The bridge between the network and the theory. Without this, a proof is about a value someone typed rather than about a record anyone can fetch.",
+            "items": { "type": "ref", "ref": "#artifactBinding" }
+          },
+          "vocabulary": {
+            "type": "array",
+            "maxLength": 256,
+            "description": "Self-description: which phrases the DSL accepts and what each one denotes. Lets a reader who will never run Lean audit what a requirement is claiming.",
+            "items": { "type": "ref", "ref": "#term" }
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    },
+    "artifactBinding": {
+      "type": "object",
+      "description": "Declares that records of a given lexicon decode into a given type in the theory, by way of a named total decoder. All three must be stated: the lexicon alone does not fix a representation, and the Lean type alone does not fix which records are eligible.",
+      "required": ["lexicon", "leanType", "decoder"],
+      "properties": {
+        "lexicon": { "type": "string", "format": "nsid" },
+        "leanType": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Fully-qualified type in the theory, e.g. 'Redistrict.Plan'."
+        },
+        "decoder": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Fully-qualified decoder, e.g. 'Redistrict.Codec.decodePlan'. Must be total and canonical: the same record bytes must always yield the same value, or proofs stop being about anything in particular."
+        }
+      }
+    },
+    "term": {
+      "type": "object",
+      "required": ["phrase", "leanName"],
+      "properties": {
+        "phrase": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "The DSL surface syntax, e.g. 'efficiency gap of'."
+        },
+        "leanName": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "What it elaborates to, e.g. 'Redistrict.effGapBp'."
+        },
+        "doc": { "type": "string", "maxLength": 2048 }
+      }
+    }
+  }
+}

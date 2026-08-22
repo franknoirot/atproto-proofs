@@ -1,0 +1,30 @@
+{
+  "lexicon": 1,
+  "id": "gov.redistrict.datasource",
+  "description": "A published dataset that plans cite as the origin of their population or vote numbers. Exists so that the honest-input assumption is a visible, attributable edge in the record graph rather than an unexamined gap. Nothing in the proof pipeline verifies these records; a human or a downstream service decides whether the publisher is credible.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": ["kind", "title", "publishedAt"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "knownValues": ["census", "election-returns"],
+            "maxLength": 32
+          },
+          "title": { "type": "string", "maxLength": 256 },
+          "url": { "type": "string", "format": "uri" },
+          "digest": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "Hash of the upstream dataset, so a citation names a specific version of the data."
+          },
+          "publishedAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

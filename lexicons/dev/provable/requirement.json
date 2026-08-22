@@ -1,0 +1,75 @@
+{
+  "lexicon": 1,
+  "id": "dev.provable.requirement",
+  "description": "An obligation that regulated actors must discharge by proof. Published by the regulator. The `statement` field is compilable source in the theory's DSL, not a paraphrase of one — there is no second, informal version of the rule that could drift from the formal one.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": [
+          "title",
+          "theory",
+          "artifactType",
+          "statement",
+          "leanProp",
+          "createdAt"
+        ],
+        "properties": {
+          "title": { "type": "string", "maxLength": 256 },
+          "citation": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Where this obligation comes from in law, e.g. 'Fair Districting Act § 2'."
+          },
+          "theory": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "Pinned by CID, so amending the theory cannot silently change what an existing requirement means."
+          },
+          "artifactType": {
+            "type": "string",
+            "format": "nsid",
+            "description": "Which collection this quantifies over. Must appear in the theory's artifactTypes."
+          },
+          "statement": {
+            "type": "string",
+            "maxLength": 8192,
+            "description": "The requirement as written, in the theory's DSL. This exact text appears in the theory package and elaborates to `leanProp`; the checker does not re-parse it."
+          },
+          "leanProp": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Fully-qualified name of the predicate the statement elaborates to, e.g. 'Redistrict.FairDistrictingAct.section2'. The checker applies this to the decoded artifact to synthesise the proof obligation."
+          },
+          "clauses": {
+            "type": "array",
+            "maxLength": 64,
+            "description": "Names of the conjuncts, in order. Lets a refutation say which part of the rule was violated instead of only that the rule was violated.",
+            "items": { "type": "ref", "ref": "#clause" }
+          },
+          "effectiveFrom": { "type": "string", "format": "datetime" },
+          "supersedes": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "Prior version of this requirement, if any. Proofs against the superseded CID remain valid statements; they are simply no longer about current law."
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    },
+    "clause": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Machine name of the conjunct, matching its label in the elaborated term, e.g. 'efficiencyGap'."
+        },
+        "description": { "type": "string", "maxLength": 1024 }
+      }
+    }
+  }
+}

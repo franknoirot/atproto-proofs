@@ -1,0 +1,28 @@
+{
+  "name": "atproto-proofs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Proof-carrying regulation on atproto: a regulator publishes machine-checkable requirements, regulated actors publish Lean proofs, anyone can re-run the check.",
+  "scripts": {
+    "demo": "tsx scripts/demo.ts",
+    "check": "tsx scripts/check.ts",
+    "lean:build": "cd lean && lake build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@atproto/common": "^0.4.11",
+    "@atproto/crypto": "^0.4.4",
+    "@atproto/repo": "^0.8.4",
+    "@atproto/syntax": "^0.4.1",
+    "@ipld/dag-cbor": "^9.2.2",
+    "multiformats": "^13.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

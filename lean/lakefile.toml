@@ -1,0 +1,14 @@
+name = "redistrict"
+version = "0.1.0"
+defaultTargets = ["Redistrict", "Provable"]
+
+# No Mathlib, on purpose. Every quantity in this theory is an integer in basis
+# points, so core's Int and omega are sufficient, and a regulator's theory
+# package that builds in seconds from a bare toolchain is a far smaller trusted
+# computing base than one that pulls in a general mathematics library.
+
+[[lean_lib]]
+name = "Provable"
+
+[[lean_lib]]
+name = "Redistrict"
