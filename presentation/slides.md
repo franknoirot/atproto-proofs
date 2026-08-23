@@ -846,99 +846,159 @@ is why that is not enough.
 
 <div class="kicker">what § 2 cannot see</div>
 
-## What happens when opinion moves
+## The same two maps, at elections that didn't happen
 
-<SwingChart>
-Efficiency gap against a uniform swing, computed by the Lean theory itself rather
-than re-derived for this chart. Gerryland v1 is off this scale at
-<Val check="gerryland1-s2" gap />.
+<SwingChart :h="256">
+Computed by the Lean theory itself, not re-derived for this chart. Gerryland v1 is
+off the top of this scale at <Val check="gerryland1-s2" gap />.
 </SwingChart>
+
+<div class="cols-3">
+<v-click>
+<div>
+
+**Left to right is a hypothetical.** Shift every precinct the same distance toward
+one party and recount. Zero is the election that really happened.
+
+</div>
+</v-click>
+
+<v-click>
+<div>
+
+**Up and down is § 2's own metric** — the efficiency gap, recomputed at each of
+those imagined elections. The pale band is the legal limit.
+
+</div>
+</v-click>
+
+<v-click>
+<div>
+
+**At zero the lines touch.** On the day the maps were filed they score the same.
+It is the only place they agree.
+
+</div>
+</v-click>
+</div>
 
 <v-click>
 
-Fairfax sawtooths and stays inside the limit across the whole band. Gerryland v2
-runs straight through it — *<Val plan="gerryland2" :at-swing="-500" />* at a
-five-point swing toward B, *<Val plan="gerryland2" :at-swing="500" />* toward A.
+Move one step either way and they separate. Fairfax sawtooths and stays inside the
+band the whole distance. Gerryland v2 climbs straight out of it —
+*<Val plan="gerryland2" :at-swing="-500" />* at a five-point shift toward B,
+*<Val plan="gerryland2" :at-swing="500" />* toward A.
 
 </v-click>
 
 <!--
-Let the picture work before explaining it. Hover along the lines for values; the
-`table` toggle in the legend has the numbers.
+This chart is the densest thing in the deck, so spend the clicks teaching it
+before drawing anything from it. Point at the axis as you read each line.
 
-Each near-vertical drop in the green line is a seat changing hands, which pushes
+Then the two features worth naming out loud once the shape is legible:
+
+Each near-vertical drop in the green line is a seat changing hands, which shoves
 the gap back the other way. The purple line has no drops at all, because nothing
 in that map ever changes hands inside the band.
 
-Both curves have the same slope everywhere: the gap moves at exactly twice the
-swing between seat changes. That is a theorem, not an eyeball reading.
+Both curves have exactly the same slope everywhere else: the gap moves at twice
+the swing between seat changes. That is a theorem, not an eyeball reading, and the
+next two slides are about it.
+
+Hover along the lines for values; the `table` toggle in the legend has the numbers
+if someone wants them.
 -->
 
 ---
 
 <div class="kicker">why</div>
 
-## The difference is competitiveness, not fairness
+## The difference is whether any seat can change hands
 
 <div class="cols">
 <div>
 
-### Fairfax — two seats in play
-<ShareStrip plan="fairfax" />
+<div class="small" style="margin-bottom:0.2rem">Fairfax — two seats in play</div>
+<ShareStrip plan="fairfax" :w="300" />
+
+<div class="small" style="margin:0.6rem 0 0.2rem">Gerryland v2 — none</div>
+<ShareStrip plan="gerryland2" :w="300" />
 
 </div>
+
 <div>
 
-### Gerryland v2 — none
-<ShareStrip plan="gerryland2" />
+<v-click>
+
+**How to read the strips.** The pale stripe covers every shift the rule asks
+about — up to five points either way. A bar reaching into it is a seat that would
+change hands somewhere in that range. Fairfax has <Val plan="fairfax"
+seats-in-play />. Gerryland v2 has <Val plan="gerryland2" seats-in-play />; its
+closest seat needs an <Val plan="gerryland2" closest-flip />-point shift.
+
+</v-click>
+
+<v-click>
+
+**Between seat changes the gap moves at a fixed rate** — two points of gap for
+every one point of shift. So a map where nothing changes hands travels ten points
+across the band, and a ten-point journey cannot stay inside a seven-point limit
+wherever it starts.
+
+</v-click>
+
+<v-click>
+
+**A seat changing hands knocks the gap back the other way.** That is the only
+thing that keeps the number in bounds, and it is why Fairfax's line sawtooths
+instead of running off the chart.
+
+</v-click>
+
+<v-click>
+
+So a rule that reads *stay fair when things change* can only be met by maps where
+things **can** change. Ask for a map that holds up, and you have quietly asked for
+competitive districts — a consequence nobody wrote into the statute, and one you
+only notice by proving it.
+
+</v-click>
 
 </div>
 </div>
 
 <v-click>
 
-The shaded strip is the ±5-point band § 5 quantifies over. A district whose bar tip
-falls inside it changes hands somewhere in that range. Fairfax has <Val
-plan="fairfax" seats-in-play /> of them; Gerryland v2 has <Val plan="gerryland2"
-seats-in-play /> — its most competitive seat would need an <Val plan="gerryland2"
-closest-flip />-point swing to move.
+<div class="card tag warn">
 
-</v-click>
+<p class="small">
+<strong>Competitive is not the same as fair.</strong> Gerryland v1 — the map § 2
+already threw out — has <Val plan="gerryland1" seats-in-play /> seats in the
+stripe, more than either map above. It is the most competitive of the three and
+the most unfair. Being responsive keeps a map's score steady as opinion moves; it
+does not make the score good. § 5 asks for the first. § 2 asks for the second. A
+map has to pass both.
+</p>
 
-<v-click>
-
-So the theorem inverts the intuition. Between seat changes the gap drifts at twice
-the swing, so a map of safe seats drifts ten points across a five-point band and
-*cannot* satisfy any threshold under 10%. The only maps that hold are the ones
-where seats actually change hands.
-
-</v-click>
-
-<v-click>
-
-*A durability requirement turns out to be a responsiveness requirement* — and the
-maps it rejects are the ones built out of safe seats. That is not what you would
-guess from reading the words, and it is exactly the kind of thing formalizing a
-rule is good for.
+</div>
 
 </v-click>
 
 <!--
-The most interesting result in the project, and it was not the plan. The
-requirement was drafted as "the gap stays bounded under swing", which sounds like a
-stability condition. Proving it showed stability is only reachable through
-responsiveness.
+The most interesting result in the project, and it was not the plan. The rule was
+drafted as "the gap stays bounded under swing", which sounds like a stability
+condition. Proving it showed that stability is only reachable through
+responsiveness — you cannot hold the number still except by letting seats move.
+
+Say the fourth line slowly. It is the one people write down.
 
 If someone objects that competitive districts are a policy choice rather than a
-legal requirement — yes, exactly. The formalization surfaced a policy consequence
-the drafter did not write down. That is an argument *for* formalizing.
+legal requirement — yes, exactly, and that is the point. The formalization
+surfaced a policy consequence the drafter did not write down. Better to find that
+in a proof than in a decade of litigation.
 
-Expect "why v2 and not v1?" — it is the natural question, since v1 is the map that
-already failed. Two answers. v1 was refuted on § 2 outright, so § 5 never gets
-asked about it. And more interestingly, v1 has *four* seats inside the band: it is
-the most competitive of the three maps and still the most unfair, which is a
-useful reminder that responsiveness and fairness are different properties. § 5
-requires the first; § 2 measures the second.
+Expect "why v2 and not v1?" — v1 was refuted on § 2 outright, so § 5 never gets
+asked about it. The card answers the more interesting half.
 -->
 
 ---
