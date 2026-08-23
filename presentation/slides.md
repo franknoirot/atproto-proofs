@@ -1003,25 +1003,26 @@ asked about it. The card answers the more interesting half.
 
 ---
 
-<div class="kicker">the certificate</div>
+<div class="kicker">why a prover and not a test suite</div>
 
 ## Six checks instead of a thousand
 
-<SwingChart :h="272" markers :breakpoints="[-500, -150, -149, 350, 351, 500]"
+<SwingChart :h="238" markers :breakpoints="[-500, -150, -149, 350, 351, 500]"
   :jumps="[-149.5, 350.5]">
-The rings are the only six swings Fairfax actually evaluates. Everything between
-them is settled by an argument rather than by a measurement.
+The rings are the only six shifts Fairfax actually evaluates.
 </SwingChart>
 
 <div class="cols-3">
 <v-click>
 <div class="card">
 
-### 1 · Between jumps it is a straight line
+### A test checks the cases you run
 
 <p class="small">
-As the swing moves, the gap climbs at a steady rate — twice the swing, always. No
-map can make it climb faster or slower.
+You could enumerate all 1001 whole-point shifts in this band and genuinely cover
+it — while asking the kernel to compute the gap a thousand times, which it will
+not finish. Widen the band or slice it finer and enumeration stops being possible
+at all. Then you are sampling, and hoping the gaps are boring.
 </p>
 
 </div>
@@ -1030,11 +1031,13 @@ map can make it climb faster or slower.
 <v-click>
 <div class="card">
 
-### 2 · A jump is a seat changing hands
+### A proof checks the shape
 
 <p class="small">
-That is the only thing that breaks the line. Fairfax has two inside the band, at
-the vertical rules.
+The theorem is about no particular shift. It says the gap climbs at a fixed rate
+between seat changes — so on any stretch with no jump in it, the highest and
+lowest values sit at the two ends. That single fact is true of every point on the
+chart at once.
 </p>
 
 </div>
@@ -1043,11 +1046,12 @@ the vertical rules.
 <v-click>
 <div class="card">
 
-### 3 · A steady climb is highest and lowest at its ends
+### So the rings are not samples
 
 <p class="small">
-So if the gap is inside the limit at both ends of a stretch, it is inside the limit
-<em>everywhere</em> in that stretch. Check the two ends; the middle comes free.
+They are the ends of each stretch. Everything between them is covered by the
+argument rather than by measurement — which is why the same six work however
+finely you slice the axis, and why there is nothing left to miss.
 </p>
 
 </div>
@@ -1056,22 +1060,29 @@ So if the gap is inside the limit at both ends of a stretch, it is inside the li
 
 <v-click>
 
-<p style="margin-top:1rem">
-Six ends — the two edges of the band, and the swing either side of each jump —
-settle all 1001 swings in it.
+<p style="margin-top:0.9rem">
+This is what a theorem prover buys that a test suite cannot. Lean is not running
+1001 cases quickly; it is checking a different kind of claim — one about all of
+them at once. Widen the band to ±50 points and a test suite has 10,001 cases to
+run. The certificate goes from six entries to at most twenty-two, because it grows
+with the number of seats, not with the size of the space.
 </p>
 
 </v-click>
 
 <!--
-This is the answer to "couldn't you just check every swing?" At ±5 points you
-could, slowly. At ±50 you could not, and the certificate is the same length.
+The title promises an argument about coverage, so make the cards carry it rather
+than the mechanism. Point at the chart while reading card two — the green line
+*is* the shape fact, drawn.
 
-Walk the three cards and point at the chart for each. The green line is the
-argument drawn out.
+Be precise if pushed: at this band enumeration really would be exhaustive, because
+swings are counted in whole basis points and there is nothing between them. The
+case for the proof here is that the kernel cannot finish a thousand evaluations,
+and that the argument does not care how big the space gets. Overclaiming that
+sampling is unsound would be wrong and someone will catch it.
 
-Say out loud that this is not sampling. The middle of a stretch is not
-spot-checked, it is *proved* — the theorem is what licenses skipping it.
+The scaling line is the one to land. Test effort tracks the size of the space;
+certificate length tracks the number of seats. Those come apart fast.
 -->
 
 ---
