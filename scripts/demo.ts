@@ -192,9 +192,9 @@ async function main() {
     'Attempting the same breakpoint certificate Fairfax used.')
   console.log(
     dim(
-      '     But every seat is safe by eleven points, so nothing changes hands inside the\n' +
-        '     band and the gap drifts at twice the swing: −12.00% at −5%, +8.00% at +5%.\n' +
-        '     Durable fairness turns out to require responsive seats, not safe ones.',
+      '     But its closest seat needs an eight-point swing to move, so nothing changes\n' +
+        '     hands inside the band and the gap drifts at twice the swing: −12.00% at −5%,\n' +
+        '     +8.00% at +5%. Durable fairness needs responsive seats, not safe ones.',
     ),
   )
 

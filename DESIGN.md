@@ -361,7 +361,7 @@ clause — which is what a state needs in order to know what to change.
 
 Gerryland v2 is the case the demo exists for. Same voters as v1, redrawn: the gap
 is now identical to Fairfax's, so § 2 sees two indistinguishable maps. But every
-seat is safe by eleven points, so nothing changes hands inside the band and the
+seat would need an eight-point swing to move, so nothing changes hands inside the band and the
 gap drifts to −12.00% at a five-point swing toward B and +8.00% toward A.
 
 The two Gerryland maps share precinct data exactly; only the assignment differs.

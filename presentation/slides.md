@@ -69,7 +69,7 @@ ROUGH SHAPE, if you are cutting for time:
 # Lean proofs on the atproto for regulation
 
 <p class="lead">
-Regulators publish proofs that regulated actors must submit evidence for, and the public can check each party's work.
+Regulators publish runnable proofs in readable language that regulated actors must submit evidence for, and the public can check each party's work.
 </p>
 
 <p class="muted">
@@ -898,8 +898,10 @@ swing between seat changes. That is a theorem, not an eyeball reading.
 <v-click>
 
 The shaded strip is the ±5-point band § 5 quantifies over. A district whose bar tip
-falls inside it changes hands somewhere in that range. Fairfax has two; Gerryland
-v2's closest seat is safe by eleven points.
+falls inside it changes hands somewhere in that range. Fairfax has <Val
+plan="fairfax" seats-in-play /> of them; Gerryland v2 has <Val plan="gerryland2"
+seats-in-play /> — its most competitive seat would need an <Val plan="gerryland2"
+closest-flip />-point swing to move.
 
 </v-click>
 
@@ -930,6 +932,13 @@ responsiveness.
 If someone objects that competitive districts are a policy choice rather than a
 legal requirement — yes, exactly. The formalization surfaced a policy consequence
 the drafter did not write down. That is an argument *for* formalizing.
+
+Expect "why v2 and not v1?" — it is the natural question, since v1 is the map that
+already failed. Two answers. v1 was refuted on § 2 outright, so § 5 never gets
+asked about it. And more interestingly, v1 has *four* seats inside the band: it is
+the most competitive of the three maps and still the most unfair, which is a
+useful reminder that responsiveness and fairness are different properties. § 5
+requires the first; § 2 measures the second.
 -->
 
 ---

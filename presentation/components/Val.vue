@@ -32,12 +32,26 @@ const props = defineProps<{
   cid?: string
   /** Number of signed labels / repositories in the run. */
   count?: 'labels' | 'repos'
-  /** The Lean release the theory pins and the checker honoured. */
+  /** The Lean release the theory pins and the checker honored. */
   toolchain?: boolean
+  /** Swing, in points, that the plan's most competitive seat needs to change hands. */
+  closestFlip?: boolean
+  /** How many of the plan's seats change hands somewhere inside the ±5-point band. */
+  seatsInPlay?: boolean
 }>()
+
+/** Half-width of the band § 5 quantifies over, in basis points. */
+const BAND_BP = 500
 
 const text = computed(() => {
   if (props.toolchain) return DEMO.toolchain
+  if (props.plan && (props.closestFlip || props.seatsInPlay)) {
+    // A seat changes hands when its share crosses half, so the swing it needs is
+    // its distance from even.
+    const gaps = plan(props.plan).sharesBp.map((bp) => Math.abs(5000 - bp))
+    if (props.seatsInPlay) return String(gaps.filter((g) => g <= BAND_BP).length)
+    return (Math.min(...gaps) / 100).toFixed(0)
+  }
   if (props.count) return String(DEMO.counts[props.count])
   if (props.cid) return shortCid(props.cid)
   if (props.plan && props.atSwing !== undefined) {

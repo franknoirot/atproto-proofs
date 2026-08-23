@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-22T23:07:34.458Z",
+ "generatedAt": "2026-08-23T05:10:44.573Z",
  "toolchain": "leanprover/lean4:v4.33.1",
  "actors": [
   {
@@ -4913,7 +4913,7 @@
    },
    "verdictRef": {
     "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/5559f61e7602c64a695b3b0f",
-    "cid": "bafyreiggbvro7edmlwukyt4ep55pnwuulhnfkoed6sbdnoemdyvw55hmoe"
+    "cid": "bafyreigztxcasp7hfwkxabbdbnzlksbean7f42tqumql63626m3zir2yzi"
    },
    "labelVal": "proof-verified",
    "outcome": "verified",
@@ -4954,7 +4954,7 @@
     "propext"
    ],
    "obligationDigest": "6c7954d98eb8b63624876f7e2058033c708d1db5624c94f516e6d9e4eae8fd63",
-   "durationMs": 10500
+   "durationMs": 21070
   },
   {
    "id": "fairfax-s5",
@@ -4969,7 +4969,7 @@
    },
    "verdictRef": {
     "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/92f837e44beac306fa2e8e41",
-    "cid": "bafyreidkqtmczul4u5eoczwipt57dr7ljzx3mogwihsgdeiytspqv5bv3m"
+    "cid": "bafyreidmkrp3belxxsfsbdgis7wn3tt2i26ghhuru6squuyrpkzgfnn7si"
    },
    "labelVal": "proof-verified",
    "outcome": "verified",
@@ -5000,7 +5000,7 @@
     "Quot.sound"
    ],
    "obligationDigest": "b22256a3e45e45a4b7672eb09667023f9a711bd57820ad74d046ce24bd2b1e6d",
-   "durationMs": 7046
+   "durationMs": 11188
   },
   {
    "id": "gerryland1-s2",
@@ -5015,7 +5015,7 @@
    },
    "verdictRef": {
     "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/217daa2f39aa30051700b023",
-    "cid": "bafyreibf3ntjmyl2axw33lgn2xe5smlsbmpw3kqqdlrih6pr4esop5ox24"
+    "cid": "bafyreiau5tj3akzmcy5jwzuzkt5wgtsbk7b33qknzofw6hkmqwv4pcukki"
    },
    "labelVal": "proof-refuted",
    "outcome": "refuted",
@@ -5054,7 +5054,7 @@
    },
    "axioms": [],
    "obligationDigest": "b781c426aec1d8545f64576a78f27321a3d87c9667191ad41d14d182a226e9a3",
-   "durationMs": 6003
+   "durationMs": 9554
   },
   {
    "id": "gerryland2-s2",
@@ -5069,7 +5069,7 @@
    },
    "verdictRef": {
     "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/57b0c28515b14f173f1d44a1",
-    "cid": "bafyreigverlp77wqkpsd5f4ft4v6vh6jxjpg2jxnfgvpr7zjmjskcbuhbi"
+    "cid": "bafyreifzitsvskmvm2esr3rryauas5rav4g3ay6uxvd4y6ie6f23gfnbf4"
    },
    "labelVal": "proof-verified",
    "outcome": "verified",
@@ -5110,7 +5110,7 @@
     "propext"
    ],
    "obligationDigest": "b7f649e745b85c2f587c22d192b58e1c02a47ef74e1763348e87b2f4b981991a",
-   "durationMs": 9182
+   "durationMs": 10964
   },
   {
    "id": "gerryland2-s5",
@@ -5125,7 +5125,7 @@
    },
    "verdictRef": {
     "uri": "at://did:key:zQ3shgVXZLaMzm5S5x7XzGUG6YFHFLtoEMiv9ao2Bqa7hGyg2/dev.provable.verdict/12e805b6815cb8893a34b50a",
-    "cid": "bafyreigx2t4eq4pdy4smactrsfvgqb73pjucfzzgs3vgzkeulduerfcvjq"
+    "cid": "bafyreiamzxhwjpsknwwnpsqpl2z65ozo5rgsigxb5dkajpzne6fb7wpmwm"
    },
    "labelVal": "proof-refuted",
    "outcome": "refuted",
@@ -5152,7 +5152,7 @@
    },
    "axioms": [],
    "obligationDigest": "30fe9234888527077818f1471ffab24fa8ee5d7769581edcd200d71dfc76d682",
-   "durationMs": 11614
+   "durationMs": 9963
   }
  ],
  "breakpoints": [
@@ -5169,7 +5169,7 @@
   "outcome": "verified",
   "verdictRef": {
    "uri": "at://did:key:zQ3shvo4qdi6h8J1rgWuequSwDYVFd3GejGvL5qNtXYve7V9j/dev.provable.verdict/10e0daa440bb9814d912c509",
-   "cid": "bafyreidiz325uksfgq3juuinjtaeu5lpzxksv2swydx2ve2aaz3j7jhvny"
+   "cid": "bafyreibpfky5qivjtjxhfclpizp2dvmc3pc72ooxdkyomlgheggb5f4f3m"
   },
   "checker": "watchdog.example"
  },

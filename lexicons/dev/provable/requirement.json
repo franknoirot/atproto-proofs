@@ -41,7 +41,7 @@
           "leanProp": {
             "type": "string",
             "maxLength": 256,
-            "description": "Fully-qualified name of the predicate the statement elaborates to, e.g. 'Redistrict.FairDistrictingAct.section2'. The checker applies this to the decoded artifact to synthesise the proof obligation."
+            "description": "Fully-qualified name of the predicate the statement elaborates to, e.g. 'Redistrict.FairDistrictingAct.section2'. The checker applies this to the decoded artifact to synthesize the proof obligation."
           },
           "clauses": {
             "type": "array",
